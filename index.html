@@ -4,31 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AL ILLM - AI Chatbot Keilmuan Islam</title>
-    <!-- Google Fonts: Roboto & Material Icons (Outlined for icons like help_outline) -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
     <style>
         :root {
-            --md-primary-color: #1976D2; /* Blue 700 */
+            --md-primary-color: #1976D2;
             --md-primary-variant-color: #004ba0;
-            --md-secondary-color: #673AB7; /* Deep Purple 500 */
-            --md-background-color: #f5f5f5; /* Grey 100 */
+            --md-secondary-color: #673AB7;
+            --md-background-color: #f5f5f5;
             --md-surface-color: #FFFFFF;
-            --md-sidebar-color: #ECEFF1; /* Blue Grey 50 */
+            --md-sidebar-color: #ECEFF1;
             --md-on-primary-color: #FFFFFF;
-            --md-on-surface-color: #000000;
             --md-text-primary: rgba(0, 0, 0, 0.87);
             --md-text-secondary: rgba(0, 0, 0, 0.60);
-            --md-text-disabled: rgba(0, 0, 0, 0.38);
-
-            --sahih-bg: #E8F5E9; /* Green 50 */
-            --sahih-text: #2E7D32; /* Green 800 */
-            --generated-bg: #FFF3E0; /* Orange 50 */
-            --generated-text: #E65100; /* Orange 900 */
-
+            --sahih-bg: #E8F5E9;
+            --sahih-text: #2E7D32;
+            --generated-bg: #FFF3E0;
+            --generated-text: #E65100;
             --elevation-1: 0 2px 1px -1px rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 3px 0 rgba(0,0,0,0.12);
             --elevation-2: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
             --elevation-4: 0 2px 4px -1px rgba(0,0,0,0.2), 0 4px 5px 0 rgba(0,0,0,0.14), 0 1px 10px 0 rgba(0,0,0,0.12);
+            --sidebar-width: 280px;
         }
 
         body {
@@ -46,13 +42,33 @@
         }
 
         .sidebar {
-            width: 280px;
+            width: var(--sidebar-width);
             background-color: var(--md-sidebar-color);
             border-right: 1px solid #e0e0e0;
             display: flex;
             flex-direction: column;
             padding: 16px;
             flex-shrink: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            z-index: 100;
+            transition: transform 0.3s ease;
+            transform: translateX(0);
+        }
+
+        .sidebar.collapsed {
+            transform: translateX(calc(-1 * var(--sidebar-width)));
+        }
+
+        .sidebar .profile-section, .sidebar .main-menu, .sidebar .chat-history {
+            transition: opacity 0.2s ease;
+        }
+
+        .sidebar.collapsed .profile-section, .sidebar.collapsed .main-menu, .sidebar.collapsed .chat-history {
+            opacity: 0;
+            pointer-events: none;
         }
 
         .sidebar .profile-section {
@@ -61,130 +77,60 @@
             margin-bottom: 16px;
         }
 
-        .sidebar .profile-card {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .sidebar .profile-card .avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background-color: var(--md-secondary-color);
-            color: var(--md-on-primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.5rem;
-        }
-
-        .sidebar .profile-card .user-info h5 {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 500;
-            color: var(--md-text-primary);
-        }
-
-        .sidebar .profile-card .user-info p {
-            margin: 0;
-            font-size: 0.875rem;
-            color: var(--md-text-secondary);
-        }
-
-        .sidebar .credits {
-            font-size: 0.8rem;
-            color: var(--md-text-secondary);
-            margin-top: 12px;
-        }
-
-        .sidebar .main-menu {
-            flex-grow: 1;
-        }
-
-        .sidebar .nav-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .sidebar .nav-list a {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 12px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: var(--md-text-primary);
-            font-weight: 500;
-            font-size: 0.95rem;
-            transition: background-color 0.3s;
-        }
-
-        .sidebar .nav-list a:hover, .sidebar .nav-list a.active {
-            background-color: rgba(25, 118, 210, 0.1);
-            color: var(--md-primary-color);
-        }
-
-        .sidebar .nav-list .material-icons {
-            color: var(--md-text-secondary);
-        }
-
-        .sidebar .nav-list a:hover .material-icons, .sidebar .nav-list a.active .material-icons {
-            color: var(--md-primary-color);
-        }
-
-        .sidebar .chat-history {
-            height: 200px; /* Example height */
-            overflow-y: auto;
-        }
-
-        .sidebar .history-title {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--md-text-secondary);
-            padding: 12px;
-        }
+        .sidebar .profile-card { display: flex; align-items: center; gap: 12px; }
+        .sidebar .profile-card .avatar { width: 48px; height: 48px; border-radius: 50%; background-color: var(--md-secondary-color); color: var(--md-on-primary-color); display: flex; align-items: center; justify-content: center; font-size: 1.5rem; }
+        .sidebar .profile-card .user-info h5 { margin: 0; font-size: 1rem; font-weight: 500; color: var(--md-text-primary); }
+        .sidebar .profile-card .user-info p { margin: 0; font-size: 0.875rem; color: var(--md-text-secondary); }
+        .sidebar .credits { font-size: 0.8rem; color: var(--md-text-secondary); margin-top: 12px; }
+        .sidebar .main-menu { flex-grow: 1; }
+        .sidebar .nav-list { list-style: none; padding: 0; margin: 0; }
+        .sidebar .nav-list a { display: flex; align-items: center; gap: 16px; padding: 12px; border-radius: 8px; text-decoration: none; color: var(--md-text-primary); font-weight: 500; font-size: 0.95rem; transition: background-color 0.3s; }
+        .sidebar .nav-list a:hover, .sidebar .nav-list a.active { background-color: rgba(25, 118, 210, 0.1); color: var(--md-primary-color); }
+        .sidebar .nav-list .material-icons, .sidebar .nav-list .material-icons-outlined { color: var(--md-text-secondary); }
+        .sidebar .nav-list a:hover .material-icons, .sidebar .nav-list a:hover .material-icons-outlined, .sidebar .nav-list a.active .material-icons, .sidebar .nav-list a.active .material-icons-outlined { color: var(--md-primary-color); }
+        .sidebar .chat-history { flex-shrink: 0; border-top: 1px solid #e0e0e0; padding-top: 16px; }
+        .sidebar .history-title { font-size: 0.875rem; font-weight: 500; color: var(--md-text-secondary); padding: 0 12px 8px 12px; }
+        .sidebar .chat-history .nav-list { max-height: 200px; overflow-y: auto; }
 
         .main-content {
             flex-grow: 1;
             display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 24px;
-            overflow: hidden;
+            flex-direction: column;
+            height: 100vh;
+            margin-left: var(--sidebar-width);
+            width: calc(100% - var(--sidebar-width));
+            transition: margin-left 0.3s ease, width 0.3s ease;
         }
 
-        .chat-container {
+        .main-content.sidebar-collapsed {
+            margin-left: 0;
             width: 100%;
-            max-width: 900px;
-            height: 100%;
-            background-color: var(--md-surface-color);
-            border-radius: 8px;
-            box-shadow: var(--elevation-4);
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
         }
 
         .chat-header {
-            background-color: var(--md-primary-color);
-            color: var(--md-on-primary-color);
-            padding: 16px 24px;
-            box-shadow: var(--elevation-2);
+            background-color: var(--md-surface-color);
+            color: var(--md-text-primary);
+            padding: 12px 24px;
+            border-bottom: 1px solid #e0e0e0;
             z-index: 10;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            flex-shrink: 0;
         }
 
-        .chat-header h1 {
-            font-size: 1.35rem;
-            font-weight: 500;
-            margin: 0;
-        }
+        .menu-toggle { background: none; border: none; cursor: pointer; padding: 8px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .menu-toggle:hover { background-color: rgba(0,0,0,0.05); }
+        .menu-toggle .material-icons { font-size: 28px; color: var(--md-text-secondary); }
+        .chat-header h1 { font-size: 1.35rem; font-weight: 500; margin: 0; }
 
-        .chat-header p {
-            font-size: 0.9rem;
-            margin: 0;
-            opacity: 0.8;
+        .chat-container {
+            width: 100%;
+            height: 100%;
+            background-color: var(--md-surface-color);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
         }
 
         .chat-messages {
@@ -194,232 +140,51 @@
             display: flex;
             flex-direction: column;
             gap: 16px;
-        }
-
-        .message {
-            display: flex;
-            gap: 16px;
-            max-width: 85%;
-        }
-
-        .message.user-message {
-            align-self: flex-end;
-            flex-direction: row-reverse;
-        }
-
-        .message .avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-weight: 500;
-            flex-shrink: 0;
-        }
-        
-        .user-message .avatar {
-            background-color: var(--md-secondary-color);
-            color: var(--md-on-primary-color);
-        }
-
-        .bot-message .avatar {
-            background-color: var(--md-primary-color);
-            color: var(--md-on-primary-color);
-        }
-
-        .message-content {
-            border-radius: 16px;
-            padding: 16px 20px;
-            font-size: 1rem; /* Increased font size */
-            line-height: 1.6;
-            color: var(--md-text-primary);
-        }
-
-        .user-message .message-content {
-            background-color: var(--md-secondary-color);
-            color: var(--md-on-primary-color);
-            border-radius: 16px 16px 4px 16px;
-        }
-
-        .bot-message .message-content {
-            background-color: var(--md-surface-color);
-            box-shadow: var(--elevation-1);
-            border-radius: 16px 16px 16px 4px;
-        }
-        
-        .response-card {
-            padding: 12px;
-            border-radius: 8px;
-            margin-top: 8px;
-        }
-
-        .response-card.sahih {
-            background-color: var(--sahih-bg);
-        }
-
-        .response-card.generated {
-            background-color: var(--generated-bg);
-        }
-
-        .status-badge {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            font-size: 1rem;
-            margin-bottom: 8px;
-        }
-
-        .status-badge .material-icons {
-            font-size: 22px;
-        }
-
-        .status-badge.sahih {
-            color: var(--sahih-text);
-        }
-
-        .status-badge.generated {
-            color: var(--generated-text);
-        }
-
-        .metadata {
-            font-size: 0.875rem;
-            color: var(--md-text-secondary);
-            border-left: 3px solid var(--sahih-text);
-            padding-left: 12px;
-            margin-top: 12px;
-        }
-        
-        .disclaimer {
-            font-size: 0.875rem;
-            color: var(--generated-text);
-            margin-top: 12px;
-        }
-
-        .actions {
-            margin-top: 16px;
-            display: flex;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .action-chip {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            text-decoration: none;
-            font-size: 0.875rem;
-            font-weight: 500;
-            padding: 8px 16px;
-            border-radius: 18px;
-            background-color: var(--md-surface-color);
-            color: var(--md-primary-color);
-            border: 1px solid #e0e0e0;
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .action-chip:hover {
-            background-color: #f0f0f0;
-            box-shadow: var(--elevation-1);
-        }
-
-        .action-chip .material-icons {
-            font-size: 20px;
-        }
-
-        .related-questions {
-            margin-top: 20px;
-            border-top: 1px solid #e0e0e0;
-            padding-top: 16px;
-        }
-
-        .related-questions h6 {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: 500;
-            font-size: 1rem;
-            color: var(--md-text-primary);
-            margin: 0 0 12px 0;
-        }
-
-        .related-questions ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .related-questions a {
-            text-decoration: none;
-            color: var(--md-primary-color);
-            font-size: 0.95rem;
-            display: block;
-            padding: 10px;
-            border-radius: 8px;
-            transition: background-color 0.3s;
-        }
-
-        .related-questions a:hover {
-            background-color: rgba(25, 118, 210, 0.08);
-        }
-
-        .chat-input-area {
-            padding: 12px 24px;
-            border-top: 1px solid #e0e0e0;
-            background-color: var(--md-surface-color);
-        }
-
-        .chat-input {
-            display: flex;
-            align-items: center;
             background-color: var(--md-background-color);
-            border-radius: 28px;
-            padding: 6px;
         }
 
-        .chat-input input {
-            flex-grow: 1;
-            border: none;
-            background: transparent;
-            padding: 14px 20px;
-            font-size: 1.05rem;
-            color: var(--md-text-primary);
-        }
-
-        .chat-input input:focus {
-            outline: none;
-        }
-
-        .chat-input button {
-            border: none;
-            background-color: var(--md-primary-color);
-            color: var(--md-on-primary-color);
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            box-shadow: var(--elevation-1);
-            transition: background-color 0.3s, box-shadow 0.3s;
-        }
-
-        .chat-input button:hover {
-            box-shadow: var(--elevation-2);
-            background-color: var(--md-primary-variant-color);
-        }
+        .message-wrapper { display: flex; justify-content: center; }
+        .message-container { width: 100%; max-width: 900px; }
+        .message { display: flex; gap: 16px; max-width: 85%; margin-bottom: 16px; }
+        .message.user-message { margin-left: auto; flex-direction: row-reverse; }
+        .message .avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; font-weight: 500; flex-shrink: 0; }
+        .user-message .avatar { background-color: var(--md-secondary-color); color: var(--md-on-primary-color); }
+        .bot-message .avatar { background-color: var(--md-primary-color); color: var(--md-on-primary-color); }
+        .message-content { border-radius: 16px; padding: 16px 20px; font-size: 1rem; line-height: 1.6; color: var(--md-text-primary); }
+        .user-message .message-content { background-color: var(--md-secondary-color); color: var(--md-on-primary-color); border-radius: 16px 16px 4px 16px; }
+        .bot-message .message-content { background-color: var(--md-surface-color); box-shadow: var(--elevation-1); border-radius: 16px 16px 16px 4px; }
+        .response-card { padding: 12px; border-radius: 8px; margin-top: 8px; }
+        .response-card.sahih { background-color: var(--sahih-bg); }
+        .response-card.generated { background-color: var(--generated-bg); }
+        .status-badge { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 1rem; margin-bottom: 8px; }
+        .status-badge .material-icons { font-size: 22px; }
+        .status-badge.sahih { color: var(--sahih-text); }
+        .status-badge.generated { color: var(--generated-text); }
+        .metadata { font-size: 0.875rem; color: var(--md-text-secondary); border-left: 3px solid var(--sahih-text); padding-left: 12px; margin-top: 12px; }
+        .disclaimer { font-size: 0.875rem; color: var(--generated-text); margin-top: 12px; }
+        .actions { margin-top: 16px; display: flex; gap: 8px; flex-wrap: wrap; }
+        .action-chip { display: inline-flex; align-items: center; gap: 8px; text-decoration: none; font-size: 0.875rem; font-weight: 500; padding: 8px 16px; border-radius: 18px; background-color: var(--md-surface-color); color: var(--md-primary-color); border: 1px solid #e0e0e0; transition: background-color 0.3s, box-shadow 0.3s; }
+        .action-chip:hover { background-color: #f0f0f0; box-shadow: var(--elevation-1); }
+        .action-chip .material-icons { font-size: 20px; }
+        .related-questions { margin-top: 20px; border-top: 1px solid #e0e0e0; padding-top: 16px; }
+        .related-questions h6 { display: flex; align-items: center; gap: 8px; font-weight: 500; font-size: 1rem; color: var(--md-text-primary); margin: 0 0 12px 0; }
+        .related-questions ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+        .related-questions a { text-decoration: none; color: var(--md-primary-color); font-size: 0.95rem; display: block; padding: 10px; border-radius: 8px; transition: background-color 0.3s; }
+        .related-questions a:hover { background-color: rgba(25, 118, 210, 0.08); }
+        .chat-input-area-wrapper { padding: 12px 24px; border-top: 1px solid #e0e0e0; background-color: var(--md-surface-color); flex-shrink: 0; }
+        .chat-input-area { max-width: 900px; margin: 0 auto; }
+        .chat-input { display: flex; align-items: center; background-color: var(--md-background-color); border-radius: 28px; padding: 6px; }
+        .chat-input input { flex-grow: 1; border: none; background: transparent; padding: 14px 20px; font-size: 1.05rem; color: var(--md-text-primary); }
+        .chat-input input:focus { outline: none; }
+        .chat-input button { border: none; background-color: var(--md-primary-color); color: var(--md-on-primary-color); width: 48px; height: 48px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; box-shadow: var(--elevation-1); transition: background-color 0.3s, box-shadow 0.3s; }
+        .chat-input button:hover { box-shadow: var(--elevation-2); background-color: var(--md-primary-variant-color); }
 
     </style>
 </head>
 <body>
 
     <div class="app-layout">
-        <aside class="sidebar">
+        <aside class="sidebar" id="sidebar">
             <div class="profile-section">
                 <div class="profile-card">
                     <div class="avatar">E</div>
@@ -435,11 +200,13 @@
 
             <nav class="main-menu">
                 <ul class="nav-list">
-                    <li><a href="#" class="active"><span class="material-icons">question_answer</span><span>Chatbot</span></a></li>
-                    <li><a href="#"><span class="material-icons">info_outline</span><span>Tentang AL ILLM</span></a></li>
-                    <li><a href="#"><span class="material-icons">account_tree</span><span>Knowledge Graph</span></a></li>
-                    <li><a href="#"><span class="material-icons">lan</span><span>IPFS & Blockchain</span></a></li>
-                    <li><a href="#"><span class="material-icons">science</span><span>Metodologi Riset</span></a></li>
+                    <li><a href="#" class="active"><span class="material-icons">question_answer</span><span>Chatbot AL 'ILLM</span></a></li>
+                    <li><a href="#"><span class="material-icons-outlined">description</span><span>Narasi & Visi Proyek</span></a></li>
+                    <li><a href="#"><span class="material-icons-outlined">history_edu</span><span>Kurasi & Anotasi Naskah</span></a></li>
+                    <li><a href="#"><span class="material-icons-outlined">schema</span><span>Ontologi & Knowledge Graph</span></a></li>
+                    <li><a href="#"><span class="material-icons-outlined">model_training</span><span>Model AI & Pelatihan (RLHF)</span></a></li>
+                    <li><a href="#"><span class="material-icons-outlined">verified_user</span><span>Integritas Data (IPFS & Blockchain)</span></a></li>
+                    <li><a href="#"><span class="material-icons-outlined">group</span><span>Sistem Pengguna Bertingkat</span></a></li>
                 </ul>
             </nav>
 
@@ -452,108 +219,114 @@
             </div>
         </aside>
 
-        <main class="main-content">
+        <main class="main-content" id="main-content">
             <div class="chat-container">
                 <header class="chat-header">
-                    <h1>AL ILLM</h1>
-                    <p>Authorized Intelligence Islamic Large Language Model</p>
+                    <button class="menu-toggle" id="menu-toggle-btn">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <h1>AL ILLM Chat</h1>
                 </header>
 
                 <main class="chat-messages">
-                    <!-- Example 1: Sahih Answer -->
-                    <div class="message user-message">
-                        <div class="avatar">E</div>
-                        <div class="message-content">
-                            Siapakah Imam Syafi'i dan apa karya utamanya?
-                        </div>
-                    </div>
+                    <div class="message-wrapper">
+                        <div class="message-container">
+                            <div class="message user-message">
+                                <div class="avatar">E</div>
+                                <div class="message-content">
+                                    Siapakah Imam Syafi'i dan apa karya utamanya?
+                                </div>
+                            </div>
 
-                    <div class="message bot-message">
-                        <div class="avatar">AI</div>
-                        <div class="message-content">
-                            <div class="response-card sahih">
-                                <div class="status-badge sahih">
-                                    <span class="material-icons">verified</span> Jawaban Sahih
+                            <div class="message bot-message">
+                                <div class="avatar">AI</div>
+                                <div class="message-content">
+                                    <div class="response-card sahih">
+                                        <div class="status-badge sahih">
+                                            <span class="material-icons">verified</span> Jawaban Sahih
+                                        </div>
+                                        <p>Imam Syafi'i (150-204 H) adalah seorang mufti, faqih, dan pendiri mazhab Syafi'i. Nama lengkapnya adalah Abū ʿAbdullāh Muḥammad ibn Idrīs al-Shāfiʿī. Beliau dikenal sebagai salah satu dari empat imam mazhab besar dalam fiqih Sunni.</p>
+                                        <p>Karya utamanya yang paling monumental adalah <strong>"Ar-Risalah"</strong>, yang dianggap sebagai buku pertama tentang ushul fiqh, dan <strong>"Al-Umm"</strong>, kompilasi fatwa-fatwanya.</p>
+                                        <div class="metadata">
+                                            <strong>Kontributor Q&A:</strong> Dr. Ahmad Fulan<br>
+                                            <strong>Mushahih:</strong> Prof. Dr. Budi Santoso
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <a href="#" class="action-chip"><span class="material-icons">account_tree</span> Knowledge Graph</a>
+                                        <a href="#" class="action-chip"><span class="material-icons">article</span> Dokumen Anotasi</a>
+                                    </div>
+                                    <div class="related-questions">
+                                        <h6><span class="material-icons-outlined">help_outline</span> Pertanyaan Terkait</h6>
+                                        <ul>
+                                            <li><a href="#">Di mana Imam Syafi'i lahir dan wafat?</a></li>
+                                            <li><a href="#">Apa saja isi dari kitab Ar-Risalah?</a></li>
+                                            <li><a href="#">Siapa saja murid-murid utama Imam Syafi'i?</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
-                                <p>
-                                    Imam Syafi'i (150-204 H) adalah seorang mufti, faqih, dan pendiri mazhab Syafi'i. Nama lengkapnya adalah Abū ʿAbdullāh Muḥammad ibn Idrīs al-Shāfiʿī. Beliau dikenal sebagai salah satu dari empat imam mazhab besar dalam fiqih Sunni.
-                                </p>
-                                <p>
-                                    Karya utamanya yang paling monumental adalah <strong>"Ar-Risalah"</strong>, yang dianggap sebagai buku pertama tentang ushul fiqh, dan <strong>"Al-Umm"</strong>, kompilasi fatwa-fatwanya.
-                                </p>
-                                <div class="metadata">
-                                    <strong>Kontributor Q&A:</strong> Dr. Ahmad Fulan<br>
-                                    <strong>Mushahih:</strong> Prof. Dr. Budi Santoso
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="action-chip"><span class="material-icons">account_tree</span> Knowledge Graph</a>
-                                <a href="#" class="action-chip"><span class="material-icons">article</span> Dokumen Anotasi</a>
-                            </div>
-                            <div class="related-questions">
-                                <h6><span class="material-icons-outlined">help_outline</span> Pertanyaan Terkait</h6>
-                                <ul>
-                                    <li><a href="#">Di mana Imam Syafi'i lahir dan wafat?</a></li>
-                                    <li><a href="#">Apa saja isi dari kitab Ar-Risalah?</a></li>
-                                    <li><a href="#">Siapa saja murid-murid utama Imam Syafi'i?</a></li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Example 2: Generated Answer -->
-                    <div class="message user-message">
-                        <div class="avatar">E</div>
-                        <div class="message-content">
-                            Bagaimana konteks sosial di Baghdad saat Imam Syafi'i tinggal di sana?
-                        </div>
-                    </div>
-
-                    <div class="message bot-message">
-                        <div class="avatar">AI</div>
-                        <div class="message-content">
-                            <div class="response-card generated">
-                                <div class="status-badge generated">
-                                    <span class="material-icons">model_training</span> Jawaban Belum Ditashih
-                                </div>
-                                <p>
-                                    Berdasarkan analisis, Baghdad pada masa Imam Syafi'i (awal abad ke-9 M) adalah pusat intelektual Kekhalifahan Abbasiyah. Kota ini menjadi tempat pertemuan para ulama dari berbagai mazhab, termasuk Ahl al-Ra'y (rasionalis) dan Ahl al-Hadith (tradisionalis).
-                                </p>
-                                <p>
-                                    Interaksi ini menciptakan diskursus intelektual yang dinamis. Metodologi Imam Syafi'i yang menggabungkan hadis dan qiyas sangat dipengaruhi oleh lingkungan ini.
-                                </p>
-                                <div class="disclaimer">
-                                    Jawaban ini digenerasi oleh model AI dan belum melalui proses tashih.
-                                </div>
-                            </div>
-                            <div class="actions">
-                                <a href="#" class="action-chip"><span class="material-icons">account_tree</span> Knowledge Graph</a>
-                                <a href="#" class="action-chip"><span class="material-icons">find_in_page</span> Rujukan Dokumen</a>
-                            </div>
-                            <div class="related-questions">
-                                <h6><span class="material-icons-outlined">help_outline</span> Pertanyaan Terkait</h6>
-                                <ul>
-                                    <li><a href="#">Siapa khalifah yang berkuasa di Baghdad saat itu?</a></li>
-                                    <li><a href="#">Bagaimana pengaruh mazhab Ahl al-Ra'y terhadap pemikiran Imam Syafi'i?</a></li>
-                                    <li><a href="#">Apakah ada karya Imam Syafi'i yang ditulis di Baghdad?</a></li>
-                                </ul>
                             </div>
                         </div>
                     </div>
-
+                     <div class="message-wrapper">
+                        <div class="message-container">
+                            <div class="message bot-message">
+                                <div class="avatar">AI</div>
+                                <div class="message-content">
+                                    <div class="response-card generated">
+                                        <div class="status-badge generated">
+                                            <span class="material-icons">model_training</span> Jawaban Belum Ditashih
+                                        </div>
+                                        <p>Berdasarkan analisis, Baghdad pada masa Imam Syafi'i (awal abad ke-9 M) adalah pusat intelektual Kekhalifahan Abbasiyah. Kota ini menjadi tempat pertemuan para ulama dari berbagai mazhab, termasuk Ahl al-Ra'y (rasionalis) dan Ahl al-Hadith (tradisionalis).</p>
+                                        <p>Interaksi ini menciptakan diskursus intelektual yang dinamis. Metodologi Imam Syafi'i yang menggabungkan hadis dan qiyas sangat dipengaruhi oleh lingkungan ini.</p>
+                                        <div class="disclaimer">
+                                            Jawaban ini digenerasi oleh model AI dan belum melalui proses tashih.
+                                        </div>
+                                    </div>
+                                    <div class="actions">
+                                        <a href="#" class="action-chip"><span class="material-icons">account_tree</span> Knowledge Graph</a>
+                                        <a href="#" class="action-chip"><span class="material-icons">find_in_page</span> Rujukan Dokumen</a>
+                                    </div>
+                                    <div class="related-questions">
+                                        <h6><span class="material-icons-outlined">help_outline</span> Pertanyaan Terkait</h6>
+                                        <ul>
+                                            <li><a href="#">Siapa khalifah yang berkuasa di Baghdad saat itu?</a></li>
+                                            <li><a href="#">Bagaimana pengaruh mazhab Ahl al-Ra'y terhadap pemikiran Imam Syafi'i?</a></li>
+                                            <li><a href="#">Apakah ada karya Imam Syafi'i yang ditulis di Baghdad?</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </main>
 
-                <footer class="chat-input-area">
-                    <div class="chat-input">
-                        <input type="text" placeholder="Tanyakan sesuatu...">
-                        <button>
-                            <span class="material-icons">send</span>
-                        </button>
+                <footer class="chat-input-area-wrapper">
+                    <div class="chat-input-area">
+                        <div class="chat-input">
+                            <input type="text" placeholder="Tanyakan sesuatu...">
+                            <button>
+                                <span class="material-icons">send</span>
+                            </button>
+                        </div>
                     </div>
                 </footer>
             </div>
         </main>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const menuToggleBtn = document.getElementById('menu-toggle-btn');
+            const sidebar = document.getElementById('sidebar');
+            const mainContent = document.getElementById('main-content');
+
+            menuToggleBtn.addEventListener('click', function () {
+                sidebar.classList.toggle('collapsed');
+                mainContent.classList.toggle('sidebar-collapsed');
+            });
+        });
+    </script>
 
 </body>
 </html>
