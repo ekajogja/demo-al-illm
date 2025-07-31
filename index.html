@@ -37,7 +37,41 @@
             overflow: hidden;
         }
 
-        .app-layout { display: flex; width: 100%; height: 100%; position: relative; }
+        /* Mobile Warning */
+        .mobile-warning {
+            display: none; /* Hidden by default, shown on small screens */
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: var(--md-background-color);
+            color: var(--md-text-primary);
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+        }
+
+        .app-layout { 
+            display: none; /* Hidden by default, shown on large screens */
+            width: 100%; 
+            height: 100%; 
+            position: relative; 
+        }
+
+        /* Media Query for larger screens */
+        @media (min-width: 768px) {
+            .mobile-warning {
+                display: none;
+            }
+            .app-layout {
+                display: flex;
+            }
+        }
 
         .sidebar, .sidebar-right {
             width: var(--sidebar-width);
@@ -280,7 +314,11 @@
 </head>
 <body>
 
-    <div class="app-layout">
+    <div class="mobile-warning">
+        <p>Sila buka di layar besar (laptop/tablet)</p>
+    </div>
+
+    <div class="app-layout" id="app-layout">
         <aside class="sidebar" id="sidebar-left">
             <div class="sidebar-content">
                 <div class="profile-section">
