@@ -8,11 +8,14 @@
 
 ## 1. Struktur Layout & Komponen Utama
 
-Aplikasi menggunakan layout dua kolom: **Sidebar Navigasi** (kiri, statis secara default) dan **Konten Utama** (kanan, dinamis).
+Aplikasi menggunakan layout tiga kolom yang fleksibel:
+1.  **Sidebar Kiri (`.sidebar`):** Berisi profil pengguna, aksi utama, dan riwayat percakapan. Dapat diciutkan (*collapsible*).
+2.  **Konten Utama (`.main-content`):** Area dinamis untuk menampilkan alur percakapan.
+3.  **Sidebar Kanan (`.sidebar-right`):** Berisi menu navigasi utama untuk laman-laman proyek. Dapat diciutkan (*collapsible*).
 
-### 1.1. Sidebar (`<aside class="sidebar">`)
+### 1.1. Sidebar Kiri (`<aside class="sidebar" id="sidebar-left">`)
 
-Sidebar adalah pusat kontrol dan navigasi. Terdiri dari tiga zona fungsional.
+Sidebar kiri berfungsi sebagai pusat kontrol percakapan dan identitas pengguna. Terdiri dari dua zona fungsional utama.
 
 - **Zona 1: Profil & Aksi Utama**
     - **Elemen:**
@@ -23,28 +26,32 @@ Sidebar adalah pusat kontrol dan navigasi. Terdiri dari tiga zona fungsional.
         - **Klik `new-chat-btn`:** Membersihkan seluruh konten di area `.chat-messages` dan mempersiapkan state untuk percakapan baru. Riwayat chat sebelumnya harus diarsipkan.
         - **Tooltip:** Saat hover di atas tombol "Chat Baru", muncul tooltip "Mulai percakapan baru".
 
-- **Zona 2: Menu Navigasi Utama (`.main-menu`)**
-    - **Elemen:** Daftar tautan (`<a>`) yang merepresentasikan pilar-pilar proyek.
-    - **Spesifikasi Interaksi:**
-        - **Klik Item Menu:** Mengubah tampilan di area `.main-content`. Kontainer `.chat-container` akan disembunyikan atau diganti dengan konten yang relevan dengan menu yang dipilih (misalnya, visualisasi Knowledge Graph atau halaman teks statis tentang metodologi). Item menu yang diklik diberi kelas `.active`.
-        - **Tooltip:** Setiap item menu memiliki tooltip yang menjelaskan halaman tujuan (contoh: "Jelajahi struktur data dan hubungan entitas" untuk menu Knowledge Graph).
-
-- **Zona 3: Riwayat Chat (`.chat-history`)**
+- **Zona 2: Riwayat Chat (`.chat-history`)**
     - **Elemen:** Daftar tautan percakapan sebelumnya.
     - **Spesifikasi Interaksi:**
         - **Klik Item Riwayat:** Memuat ulang seluruh state percakapan yang dipilih ke dalam area `.chat-messages`, termasuk semua pertanyaan pengguna dan jawaban bot yang terkait.
-        - **Tooltip:** Setiap item riwayat memiliki tooltip yang mengklarifikasi aksinya (contoh: "Lanjutkan percakapan tentang 'Biografi Imam Syafi'i'").
+        - **Tooltip:** Setiap item riwayat memiliki tooltip yang mengklarifikasi aksinya (contoh: "Lanjutkan percakapan tentang 'Hari Santri'").
 
-### 1.2. Konten Utama (`<main class="main-content">`)
+### 1.2. Sidebar Kanan (`<aside class="sidebar-right" id="sidebar-right">`)
+
+Sidebar kanan didedikasikan untuk navigasi antar-laman utama proyek.
+
+- **Elemen:** `.main-menu` yang berisi daftar tautan (`<a>`) pilar-pilar proyek.
+- **Spesifikasi Interaksi:**
+    - **Klik Item Menu:** Mengubah tampilan di area `.main-content`. Kontainer `.chat-container` akan disembunyikan atau diganti dengan konten yang relevan dengan menu yang dipilih (misalnya, visualisasi Knowledge Graph atau halaman teks statis tentang metodologi). Item menu yang diklik diberi kelas `.active`.
+    - **Tooltip:** Setiap item menu memiliki tooltip yang menjelaskan halaman tujuan (contoh: "Jelajahi struktur data dan hubungan entitas" untuk menu Knowledge Graph).
+
+### 1.3. Konten Utama (`<main class="main-content">`)
 
 - **Elemen:** Terdiri dari `.chat-header` dan `.chat-container`.
-- **Spesifikasi Interaksi:** Lebar area ini secara otomatis menyesuaikan saat sidebar di-expand/collapse untuk mengisi ruang yang tersedia.
+- **Spesifikasi Interaksi:** Lebar area ini secara otomatis menyesuaikan saat salah satu atau kedua sidebar di-expand/collapse untuk mengisi ruang yang tersedia.
 
 - **Header (`.chat-header`)**
-    - **Elemen:** Tombol `menu-toggle` dan logo.
+    - **Elemen:** Dua tombol *toggle* dan logo.
     - **Spesifikasi Interaksi:**
-        - **Klik `menu-toggle`:** Memicu fungsi JavaScript untuk menambahkan/menghapus kelas `.collapsed` pada elemen `sidebar` dan `main-content`, menciptakan efek geser yang mulus.
-        - **Tooltip:** Hover di atas tombol menu menampilkan "Buka/Tutup Sidebar".
+        - **Klik `#menu-toggle-left`:** Memicu fungsi JavaScript untuk menambahkan/menghapus kelas `.collapsed` pada elemen `#sidebar-left`, menciptakan efek geser yang mulus.
+        - **Klik `#menu-toggle-right`:** Memicu fungsi JavaScript untuk menambahkan/menghapus kelas `.collapsed` pada elemen `#sidebar-right`.
+        - **Tooltip:** Setiap tombol menu menampilkan tooltip yang sesuai ("Buka/Tutup Sidebar Kiri" dan "Buka/Tutup Menu Laman").
 
 ---
 
@@ -62,7 +69,7 @@ Setiap jawaban dari bot harus berisi komponen-komponen berikut untuk memastikan 
 - **Sumber Informasi (`.source-section`)**
     - **Elemen:** Terdiri dari dua sub-seksi: "Entitas Knowledge Graph" dan "Dokumen Teranotasi". Keduanya berisi elemen `.source-chip`.
     - **Spesifikasi Interaksi:**
-        - **Ekstraksi Dinamis:** Chip yang ditampilkan harus diekstrak secara dinamis dari konten jawaban. Jika jawaban menyebut "Imam Syafi'i" dan "Ar-Risalah", maka chip untuk keduanya harus muncul di bawah seksi yang relevan.
+        - **Ekstraksi Dinamis & Tampilan Penuh:** Semua chip yang relevan dengan jawaban harus diekstrak dan ditampilkan. Jika jumlah chip melebihi lebar kontainer, mereka akan secara otomatis mengalir ke baris berikutnya (`flex-wrap: wrap`) untuk memastikan tidak ada sumber yang tersembunyi.
         - **Klik `.source-chip`:** Memicu event untuk menampilkan informasi detail tentang entitas atau dokumen tersebut. Ini bisa berupa *overlay*, *modal*, atau tampilan baru di sidebar. Contoh: mengklik chip `Imam Syafi'i` akan menampilkan node-nya di Knowledge Graph.
         - **Tooltip:** Setiap chip memiliki tooltip yang menjelaskan aksinya (contoh: "Lihat entitas 'Imam Syafi'i' dalam Knowledge Graph").
 
