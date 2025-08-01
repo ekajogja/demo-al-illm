@@ -37,40 +37,11 @@
             overflow: hidden;
         }
 
-        /* Mobile Warning */
-        .mobile-warning {
-            display: none; /* Hidden by default, shown on small screens */
-            position: fixed;
-            top: 0;
-            left: 0;
+        .app-layout {
+            display: flex;
             width: 100%;
             height: 100%;
-            background-color: var(--md-background-color);
-            color: var(--md-text-primary);
-            font-size: 1.2rem;
-            text-align: center;
-            padding: 20px;
-            box-sizing: border-box;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-        }
-
-        .app-layout { 
-            display: none; /* Hidden by default, shown on large screens */
-            width: 100%; 
-            height: 100%; 
-            position: relative; 
-        }
-
-        /* Media Query for larger screens */
-        @media (min-width: 768px) {
-            .mobile-warning {
-                display: none;
-            }
-            .app-layout {
-                display: flex;
-            }
+            position: relative;
         }
 
         .sidebar, .sidebar-right {
@@ -171,10 +142,10 @@
             display: flex; 
             flex-direction: column; 
             height: 100vh; 
-            margin-left: var(--sidebar-width); 
-            margin-right: 0; /* Start with right sidebar collapsed */
-            width: calc(100% - var(--sidebar-width)); 
-            transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease;
+            margin-left: 0;
+            margin-right: 0;
+            width: 100%; 
+            transition: margin-left 0.3s ease, margin-right 0.3s ease, width 0.3s ease, transform 0.3s ease;
         }
 
         .chat-header {
@@ -313,10 +284,6 @@
     </style>
 </head>
 <body>
-
-    <div class="mobile-warning">
-        <p>Sila buka di layar besar (laptop/tablet)</p>
-    </div>
 
     <div class="app-layout" id="app-layout">
         <aside class="sidebar" id="sidebar-left">
@@ -641,40 +608,96 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            const menuToggleLeft = document.getElementById('menu-toggle-left');
             const sidebarLeft = document.getElementById('sidebar-left');
-            const menuToggleRight = document.getElementById('menu-toggle-right');
             const sidebarRight = document.getElementById('sidebar-right');
             const mainContent = document.getElementById('main-content');
+            const menuToggleLeft = document.getElementById('menu-toggle-left');
+            const menuToggleRight = document.getElementById('menu-toggle-right');
+            const appLayout = document.getElementById('app-layout');
 
-            function updateMainContentMargin() {
-                const leftMargin = sidebarLeft.classList.contains('collapsed') ? '0' : 'var(--sidebar-width)';
-                const rightMargin = sidebarRight.classList.contains('collapsed') ? '0' : 'var(--sidebar-width)';
-                
-                let width = '100%';
-                if (!sidebarLeft.classList.contains('collapsed') && !sidebarRight.classList.contains('collapsed')) {
-                    width = 'calc(100% - (var(--sidebar-width) * 2))';
-                } else if (!sidebarLeft.classList.contains('collapsed') || !sidebarRight.classList.contains('collapsed')) {
-                    width = 'calc(100% - var(--sidebar-width))';
+            const smallScreenBreakpoint = 992;
+
+            function updateLayout() {
+                const isSmallScreen = window.innerWidth < smallScreenBreakpoint;
+
+                // Reset styles first
+                mainContent.style.transform = '';
+                mainContent.style.marginLeft = '';
+                mainContent.style.marginRight = '';
+                mainContent.style.width = '';
+                appLayout.style.overflowX = '';
+
+                if (isSmallScreen) {
+                    // Small screen: Push content, no margins
+                    if (!sidebarLeft.classList.contains('collapsed')) {
+                        mainContent.style.transform = `translateX(var(--sidebar-width))`;
+                    } else if (!sidebarRight.classList.contains('collapsed')) {
+                        mainContent.style.transform = `translateX(calc(-1 * var(--sidebar-width)))`;
+                    }
+                    // Prevent horizontal scroll when sidebars are closed
+                    if (sidebarLeft.classList.contains('collapsed') && sidebarRight.classList.contains('collapsed')) {
+                        appLayout.style.overflowX = 'hidden';
+                    }
+
+                } else {
+                    // Large screen: Use margins
+                    const leftMargin = sidebarLeft.classList.contains('collapsed') ? '0' : 'var(--sidebar-width)';
+                    const rightMargin = sidebarRight.classList.contains('collapsed') ? '0' : 'var(--sidebar-width)';
+                    
+                    let width = '100%';
+                    if (!sidebarLeft.classList.contains('collapsed') && !sidebarRight.classList.contains('collapsed')) {
+                        width = 'calc(100% - (var(--sidebar-width) * 2))';
+                    } else if (!sidebarLeft.classList.contains('collapsed') || !sidebarRight.classList.contains('collapsed')) {
+                        width = 'calc(100% - var(--sidebar-width))';
+                    }
+
+                    mainContent.style.marginLeft = leftMargin;
+                    mainContent.style.marginRight = rightMargin;
+                    mainContent.style.width = width;
                 }
+            }
 
-                mainContent.style.marginLeft = leftMargin;
-                mainContent.style.marginRight = rightMargin;
-                mainContent.style.width = width;
+            function setInitialSidebarState() {
+                const isSmallScreen = window.innerWidth < smallScreenBreakpoint;
+                if (isSmallScreen) {
+                    sidebarLeft.classList.add('collapsed');
+                    sidebarRight.classList.add('collapsed');
+                } else {
+                    sidebarLeft.classList.remove('collapsed');
+                    sidebarRight.classList.remove('collapsed');
+                }
+                updateLayout();
             }
 
             menuToggleLeft.addEventListener('click', function () {
+                const isSmallScreen = window.innerWidth < smallScreenBreakpoint;
                 sidebarLeft.classList.toggle('collapsed');
-                updateMainContentMargin();
+                // On small screens, opening one sidebar should close the other
+                if (isSmallScreen && !sidebarLeft.classList.contains('collapsed')) {
+                    sidebarRight.classList.add('collapsed');
+                }
+                updateLayout();
             });
 
             menuToggleRight.addEventListener('click', function () {
+                const isSmallScreen = window.innerWidth < smallScreenBreakpoint;
                 sidebarRight.classList.toggle('collapsed');
-                updateMainContentMargin();
+                // On small screens, opening one sidebar should close the other
+                if (isSmallScreen && !sidebarRight.classList.contains('collapsed')) {
+                    sidebarLeft.classList.add('collapsed');
+                }
+                updateLayout();
             });
 
-            // Initial state (sidebarRight is now expanded by default)
-            updateMainContentMargin();
+            window.addEventListener('resize', () => {
+                // Use a timeout to avoid rapid-fire calls during resize
+                let timeout;
+                clearTimeout(timeout);
+                timeout = setTimeout(setInitialSidebarState, 100);
+            });
+
+            // Set initial state on page load
+            setInitialSidebarState();
         });
     </script>
 
