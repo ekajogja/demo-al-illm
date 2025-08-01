@@ -4,6 +4,8 @@
 
 **Filosofi Inti:** Setiap elemen dan interaksi bertujuan untuk mewujudkan tiga prinsip utama: **Otoritas yang Transparan**, **Eksplorasi Terpandu**, dan **Kejelasan Intuitif**.
 
+**Pembaruan Terakhir:** Fungsionalitas telah diperbarui secara signifikan untuk menyertakan perilaku responsif dan interaksi berbasis modal. `index.html` kini merupakan file mandiri (*self-contained*) yang menyematkan semua CSS, JavaScript, dan konten teks yang diperlukan.
+
 ---
 
 ## 1. Struktur Layout & Komponen Utama
@@ -38,7 +40,7 @@ Sidebar kanan didedikasikan untuk navigasi antar-laman utama proyek.
 
 - **Elemen:** `.main-menu` yang berisi daftar tautan (`<a>`) pilar-pilar proyek.
 - **Spesifikasi Interaksi:**
-    - **Klik Item Menu:** Mengubah tampilan di area `.main-content`. Kontainer `.chat-container` akan disembunyikan atau diganti dengan konten yang relevan dengan menu yang dipilih (misalnya, visualisasi Knowledge Graph atau halaman teks statis tentang metodologi). Item menu yang diklik diberi kelas `.active`.
+    - **Klik Item Menu:** **Membuka jendela modal** yang menampilkan konten penjelasan yang relevan. Konten ini disematkan langsung di dalam file `index.html` dari dokumen `esai-final.md`.
     - **Tooltip:** Setiap item menu memiliki tooltip yang menjelaskan halaman tujuan (contoh: "Jelajahi struktur data dan hubungan entitas" untuk menu Knowledge Graph).
 
 ### 1.3. Konten Utama (`<main class="main-content">`)
@@ -49,7 +51,7 @@ Sidebar kanan didedikasikan untuk navigasi antar-laman utama proyek.
 - **Header (`.chat-header`)**
     - **Elemen:** Dua tombol *toggle* dan logo.
     - **Spesifikasi Interaksi:**
-        - **Klik `#menu-toggle-left`:** Memicu fungsi JavaScript untuk menambahkan/menghapus kelas `.collapsed` pada elemen `#sidebar-left`, menciptakan efek geser yang mulus.
+        - **Klik `#menu-toggle-left`:** Memicu fungsi JavaScript untuk menambahkan/menghapus kelas `.collapsed` pada elemen `#sidebar-left`.
         - **Klik `#menu-toggle-right`:** Memicu fungsi JavaScript untuk menambahkan/menghapus kelas `.collapsed` pada elemen `#sidebar-right`.
         - **Tooltip:** Setiap tombol menu menampilkan tooltip yang sesuai ("Buka/Tutup Sidebar Kiri" dan "Buka/Tutup Menu Laman").
 
@@ -69,17 +71,14 @@ Setiap jawaban dari bot harus berisi komponen-komponen berikut untuk memastikan 
 - **Sumber Informasi (`.source-section`)**
     - **Elemen:** Terdiri dari dua sub-seksi: "Entitas Knowledge Graph" dan "Dokumen Teranotasi". Keduanya berisi elemen `.source-chip`.
     - **Spesifikasi Interaksi:**
-        - **Ekstraksi Dinamis & Tampilan Penuh:** Semua chip yang relevan dengan jawaban harus diekstrak dan ditampilkan. Jika jumlah chip melebihi lebar kontainer, mereka akan secara otomatis mengalir ke baris berikutnya (`flex-wrap: wrap`) untuk memastikan tidak ada sumber yang tersembunyi.
-        - **Klik `.source-chip`:** Memicu event untuk menampilkan informasi detail tentang entitas atau dokumen tersebut. Ini bisa berupa *overlay*, *modal*, atau tampilan baru di sidebar. Contoh: mengklik chip `Imam Syafi'i` akan menampilkan node-nya di Knowledge Graph.
+        - **Klik `.source-chip`:** **Membuka jendela modal yang saat ini hanya menampilkan judul dari sumber tersebut sebagai placeholder.** Konten detail untuk setiap *chip* akan diimplementasikan di masa mendatang (lihat Daftar Tugas).
         - **Tooltip:** Setiap chip memiliki tooltip yang menjelaskan aksinya (contoh: "Lihat entitas 'Imam Syafi'i' dalam Knowledge Graph").
 
 ### 2.2. Riset Lanjutan (`.research-suggestions`)
 
 - **Fungsi:** Komponen proaktif untuk memandu pengguna.
 - **Spesifikasi Interaksi:**
-    - **Klik Pertanyaan:** Saat pengguna mengklik sebuah tautan pertanyaan di daftar ini:
-        1.  Tautan tersebut harus secara visual ditandai sebagai "sudah ditanyakan". Mockup ini menggunakan kelas `.answered` yang membuatnya berwarna abu-abu dan menambahkan tag `<span>Terjawab</span>` di sebelahnya. Tautan yang sudah dijawab menjadi non-interaktif (`pointer-events: none`).
-        2.  Teks dari pertanyaan yang diklik harus secara otomatis dikirim sebagai input pengguna baru, memicu giliran percakapan selanjutnya.
+    - **Klik Pertanyaan:** Saat pengguna mengklik sebuah tautan pertanyaan di daftar ini, teks dari pertanyaan tersebut harus secara otomatis dikirim sebagai input pengguna baru, memicu giliran percakapan selanjutnya.
 
 ### 2.3. Input Pengguna (`.chat-input-area-wrapper`)
 
@@ -87,5 +86,26 @@ Setiap jawaban dari bot harus berisi komponen-komponen berikut untuk memastikan 
 - **Spesifikasi Interaksi:**
     - **Klik Tombol Kirim:** Memicu pengiriman konten dari input field.
     - **Tooltip:** Hover di atas tombol kirim menampilkan "Kirim Pesan".
+
+---
+
+## 3. Perilaku Responsif
+
+Aplikasi ini dirancang untuk menjadi *mobile-friendly* dengan logika sebagai berikut:
+
+- **Layar Besar (Lebar > 992px):** Kedua sidebar (kiri dan kanan) akan terlihat secara default.
+- **Layar Kecil (Lebar < 992px):** Kedua sidebar akan **otomatis diciutkan** (*collapsed*) saat halaman dimuat untuk memaksimalkan area konten.
+- **Mekanisme "Push Content":** Di layar kecil, saat salah satu sidebar dibuka, ia akan **mendorong** konten utama ke samping, bukan menindihnya. Ini memastikan tombol *toggle* di header tetap terlihat dan dapat diakses oleh pengguna.
+
+---
+
+## 4. Daftar Tugas (TODO)
+
+Berikut adalah daftar fungsionalitas yang perlu diimplementasikan atau diselesaikan:
+
+1.  **Isi Konten Modal `source-chip`:** Ganti *placeholder* judul saat ini dengan konten penjelasan yang relevan untuk setiap *chip* sumber informasi.
+2.  **Modal Info Pengguna:** Implementasikan jendela modal yang muncul saat pengguna mengklik area `.user-info` untuk menampilkan detail profil.
+3.  **Modal Rincian Kredit:** Implementasikan jendela modal yang muncul saat pengguna mengklik `.credits span` untuk menampilkan riwayat dan detail penggunaan kredit.
+4.  **Modal Top-Up:** Implementasikan jendela modal yang muncul saat pengguna mengklik tombol `.top-up-btn` untuk menampilkan instruksi atau antarmuka penambahan kredit.
 
 Dengan mengikuti spesifikasi ini, tim pengembangan dapat membangun antarmuka yang fungsional dan setia pada visi konseptual proyek AL 'ILLM.

@@ -281,6 +281,89 @@
             transform: translateY(-50%); /* Ensure transform is consistent */
         }
 
+    /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        .modal-overlay.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .modal-container {
+            background-color: var(--md-surface-color);
+            border-radius: 12px;
+            box-shadow: var(--elevation-2);
+            width: 90%;
+            max-width: 800px;
+            max-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            transform: scale(0.95);
+            transition: transform 0.3s ease;
+        }
+        .modal-overlay.visible .modal-container {
+            transform: scale(1);
+        }
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 24px;
+            border-bottom: 1px solid #e0e0e0;
+            flex-shrink: 0;
+        }
+        .modal-header h4 {
+            margin: 0;
+            font-size: 1.25rem;
+            font-weight: 500;
+            color: var(--md-text-primary);
+        }
+        .modal-close-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-close-btn:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+        .modal-content {
+            padding: 24px;
+            overflow-y: auto;
+            line-height: 1.7;
+            color: var(--md-text-secondary);
+        }
+        .modal-content h5 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            color: var(--md-text-primary);
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+        }
+         .modal-content p {
+            margin-bottom: 1em;
+        }
+        .modal-content strong {
+            color: var(--md-text-primary);
+        }
+
     </style>
 </head>
 <body>
@@ -594,63 +677,76 @@
                 <nav class="main-menu">
                     <ul class="nav-list">
                         <li><a href="#" class="active" data-tooltip="Masuk ke antarmuka utama chatbot"><span class="material-icons">question_answer</span><span>Chatbot AL 'ILLM</span></a></li>
-                        <li><a href="#" data-tooltip="Pelajari latar belakang dan tujuan proyek"><span class="material-icons-outlined">description</span><span>Narasi & Visi Proyek</span></a></li>
-                        <li><a href="#" data-tooltip="Pahami proses kurasi dan anotasi naskah sumber"><span class="material-icons-outlined">history_edu</span><span>Kurasi & Anotasi Naskah</span></a></li>
-                        <li><a href="#" data-tooltip="Jelajahi struktur data dan hubungan entitas"><span class="material-icons-outlined">schema</span><span>Ontologi & Knowledge Graph</span></a></li>
-                        <li><a href="#" data-tooltip="Lihat bagaimana model AI dilatih dan diselaraskan"><span class="material-icons-outlined">model_training</span><span>Model AI & Pelatihan (RLHF)</span></a></li>
-                        <li><a href="#" data-tooltip="Pelajari tentang penggunaan IPFS dan Blockchain"><span class="material-icons-outlined">verified_user</span><span>Integritas Data (IPFS & Blockchain)</span></a></li>
-                        <li><a href="#" data-tooltip="Pahami perbedaan level akses untuk pengguna"><span class="material-icons-outlined">group</span><span>Sistem Pengguna Bertingkat</span></a></li>
+                        <li><a href="#" data-tooltip="Pelajari latar belakang dan tujuan proyek" data-section="Membangun Kecerdasan Buatan yang Berkah: Narasi di Balik AL 'ILLM"><span class="material-icons-outlined">description</span><span>Narasi & Visi Proyek</span></a></li>
+                        <li><a href="#" data-tooltip="Pahami proses kurasi dan anotasi naskah sumber" data-section="Pilar Pertama: Kuratorial Naskah Sebagai Fondasi Otentisitas"><span class="material-icons-outlined">history_edu</span><span>Kurasi & Anotasi Naskah</span></a></li>
+                        <li><a href="#" data-tooltip="Jelajahi struktur data dan hubungan entitas" data-section="Pilar Kedua: Knowledge Graph (Graf Pengetahuan) dan Urgensi Ontologi Solid"><span class="material-icons-outlined">schema</span><span>Ontologi & Knowledge Graph</span></a></li>
+                        <li><a href="#" data-tooltip="Lihat bagaimana model AI dilatih dan diselaraskan" data-section="Pilar Ketiga: Fine Tuning (Penyesuaian Khusus) dan RLHF oleh Otoritas Keilmuan"><span class="material-icons-outlined">model_training</span><span>Model AI & Pelatihan (RLHF)</span></a></li>
+                        <li><a href="#" data-tooltip="Pelajari tentang penggunaan IPFS dan Blockchain" data-section="Pilar Pertama: Kuratorial Naskah Sebagai Fondasi Otentisitas"><span class="material-icons-outlined">verified_user</span><span>Integritas Data (IPFS & Blockchain)</span></a></li>
+                        <li><a href="#" data-tooltip="Pahami perbedaan level akses untuk pengguna" data-section="Pilar Keempat: Sistem Strata User (Pengguna) untuk Penyebaran Informasi Bertanggung Jawab"><span class="material-icons-outlined">group</span><span>Sistem Pengguna Bertingkat</span></a></li>
                     </ul>
                 </nav>
             </div>
         </aside>
     </div>
 
+    <div class="modal-overlay" id="essay-modal">
+        <div class="modal-container">
+            <div class="modal-header">
+                <h4 id="modal-title"></h4>
+                <button class="modal-close-btn" id="modal-close-btn">
+                    <span class="material-icons">close</span>
+                </button>
+            </div>
+            <div class="modal-content" id="modal-content"></div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // --- Embedded Essay Content ---
+            const essayContent = {
+                "Narasi & Visi Proyek": `Seorang santri bertanya tentang hukum cryptocurrency kepada chatbot. Seorang mahasiswa mencari dalil untuk skripsinya dari AI (Kecerdasan Buatan) generatif. Kedua skenario ini bukan lagi angan-angan, melainkan realitas sehari-hari yang tak terhindarkan.\n\nAI sudah masuk ke ranah studi Islam. Pertanyaannya bukan lagi haruskah kita menggunakan AI, melainkan bagaimana memastikan AI yang digunakan tidak menyesatkan.\n\nDi sinilah letak urgensi AL 'ILLM (*Authorized Intelligence - Islamic Large Language Model* atau Model Bahasa Besar Islami Berotoritas). Bukan sekadar membangun AI islami, melainkan merajut sebuah ekosistem kecerdasan buatan yang komprehensif, aman, dan dapat dipertanggungjawabkan.`,
+                "Kurasi & Anotasi Naskah": `Fondasi setiap sistem pengetahuan adalah data. Dalam konteks keilmuan Islam, ini berarti naskah-naskah klasik, kitab-kitab, dan dokumen-dokumen otentik yang menjadi rujukan utama. Pilar pertama AL 'ILLM adalah kuratorial naskah yang menempatkan akurasi sebagai prioritas absolut.\n\nKeputusan krusial pertama menyangkut digitalisasi. *OCR* (*Optical Character Recognition* atau pengenalan karakter optik) yang umum digunakan rawan kekeliruan, terutama untuk aksara Arab atau naskah kuno. Pilihan kami adalah mengetik ulang secara manual, yang tampaknya mundur di era otomasi. Namun sesungguhnya, ini adalah strategi yang disengaja untuk mencegah distorsi makna.`,
+                "Ontologi & Knowledge Graph": `Pengetahuan Islam bukanlah kumpulan fakta terpisah. Ia adalah jaring kompleks hubungan antar konsep, ulama, karya, dan mazhab. AI yang mengandalkan *keyword matching* (pencocokan kata kunci) akan gagal memahami nuansa ini. *Knowledge graph* (graf pengetahuan) menjadi pilar kedua yang merepresentasikan struktur hubungan-hubungan kompleks tersebut.\n\nTahap paling krusial adalah penyusunan *foundational ontology* (ontologi dasar) yang solid. Cetak biru konseptual ini mendefinisikan entitas dan hubungan dalam keilmuan Islam melalui kolaborasi intensif antara ulama, profesor, filsuf, dan pakar IT.`,
+                "Model AI & Pelatihan (RLHF)": `*State-of-the-Art* (*SOTA* atau Kondisi Seni/Terkini) LLM seperti Claude Opus 4 atau Gemini 2.5 Pro menjadi basis AL 'ILLM. Namun model-model ini bersifat umum dan harus di-*fine-tune* (disesuaikan secara khusus) dengan dataset dan *knowledge graph* yang telah dibangun. Ini saja belum cukup.\n\n*Reinforcement Learning from Human Feedback* (RLHF atau Pembelajaran Penguatan dari Umpan Balik Manusia) oleh tim ulama dan akademisi Islam adalah pilar ketiga yang menentukan. RLHF memastikan *alignment* (keselarasan) antara algoritma pemrosesan kueri dengan penyusunan respons yang tepat.`,
+                "Integritas Data (IPFS & Blockchain)": `Manuskrip hasil kuratorial disimpan permanen di *IPFS* (*InterPlanetary File System* atau sistem file antarplanet) dengan *blockchain* (rantai blok) untuk manajemen data. Teknologi yang tampak berlebihan ini sesungguhnya krusial untuk integritas data. Ketika ada perbedaan pendapat tentang otentisitas teks klasik, *blockchain* memungkinkan pelacakan setiap perubahan dengan *timestamp* (cap waktu) dan *validator identity* (identitas validator). Ini tentang akuntabilitas intelektual: transparansi terhadap setiap modifikasi dan basis otorisasinya.`,
+                "Sistem Pengguna Bertingkat": `Interaksi AI dengan pengguna menjadi pilar keempat dalam arsitektur keamanan. AL 'ILLM mengimplementasikan pembedaan empat strata user: *public* (publik), *registered standard user* (pengguna terdaftar standar), santri/mahasiswa, dan ulama/akademisi. Setiap strata menghasilkan respons berbeda berdasarkan *safety measure* (langkah keamanan) yang disusun tim pakar psikologi dan edukasi Islam.\n\nPendekatan ini mencegah bahaya dari penyebaran informasi yang tidak proporsional.`
+            };
+
+            // --- Sidebar & Layout Logic ---
             const sidebarLeft = document.getElementById('sidebar-left');
             const sidebarRight = document.getElementById('sidebar-right');
             const mainContent = document.getElementById('main-content');
             const menuToggleLeft = document.getElementById('menu-toggle-left');
             const menuToggleRight = document.getElementById('menu-toggle-right');
             const appLayout = document.getElementById('app-layout');
-
             const smallScreenBreakpoint = 992;
 
             function updateLayout() {
                 const isSmallScreen = window.innerWidth < smallScreenBreakpoint;
-
-                // Reset styles first
                 mainContent.style.transform = '';
                 mainContent.style.marginLeft = '';
                 mainContent.style.marginRight = '';
                 mainContent.style.width = '';
                 appLayout.style.overflowX = '';
-
                 if (isSmallScreen) {
-                    // Small screen: Push content, no margins
                     if (!sidebarLeft.classList.contains('collapsed')) {
                         mainContent.style.transform = `translateX(var(--sidebar-width))`;
                     } else if (!sidebarRight.classList.contains('collapsed')) {
                         mainContent.style.transform = `translateX(calc(-1 * var(--sidebar-width)))`;
                     }
-                    // Prevent horizontal scroll when sidebars are closed
                     if (sidebarLeft.classList.contains('collapsed') && sidebarRight.classList.contains('collapsed')) {
                         appLayout.style.overflowX = 'hidden';
                     }
-
                 } else {
-                    // Large screen: Use margins
                     const leftMargin = sidebarLeft.classList.contains('collapsed') ? '0' : 'var(--sidebar-width)';
                     const rightMargin = sidebarRight.classList.contains('collapsed') ? '0' : 'var(--sidebar-width)';
-                    
                     let width = '100%';
                     if (!sidebarLeft.classList.contains('collapsed') && !sidebarRight.classList.contains('collapsed')) {
-                        width = 'calc(100% - (var(--sidebar-width) * 2))';
+                        width = `calc(100% - (var(--sidebar-width) * 2))`;
                     } else if (!sidebarLeft.classList.contains('collapsed') || !sidebarRight.classList.contains('collapsed')) {
-                        width = 'calc(100% - var(--sidebar-width))';
+                        width = `calc(100% - var(--sidebar-width))`;
                     }
-
                     mainContent.style.marginLeft = leftMargin;
                     mainContent.style.marginRight = rightMargin;
                     mainContent.style.width = width;
@@ -672,7 +768,6 @@
             menuToggleLeft.addEventListener('click', function () {
                 const isSmallScreen = window.innerWidth < smallScreenBreakpoint;
                 sidebarLeft.classList.toggle('collapsed');
-                // On small screens, opening one sidebar should close the other
                 if (isSmallScreen && !sidebarLeft.classList.contains('collapsed')) {
                     sidebarRight.classList.add('collapsed');
                 }
@@ -682,7 +777,6 @@
             menuToggleRight.addEventListener('click', function () {
                 const isSmallScreen = window.innerWidth < smallScreenBreakpoint;
                 sidebarRight.classList.toggle('collapsed');
-                // On small screens, opening one sidebar should close the other
                 if (isSmallScreen && !sidebarRight.classList.contains('collapsed')) {
                     sidebarLeft.classList.add('collapsed');
                 }
@@ -690,14 +784,62 @@
             });
 
             window.addEventListener('resize', () => {
-                // Use a timeout to avoid rapid-fire calls during resize
                 let timeout;
                 clearTimeout(timeout);
                 timeout = setTimeout(setInitialSidebarState, 100);
             });
 
-            // Set initial state on page load
             setInitialSidebarState();
+
+            // --- Modal Logic ---
+            const modal = document.getElementById('essay-modal');
+            const modalTitle = document.getElementById('modal-title');
+            const modalContent = document.getElementById('modal-content');
+            const closeModalBtn = document.getElementById('modal-close-btn');
+            
+            function showModal(title, content) {
+                modalTitle.textContent = title;
+                let htmlContent = content
+                    .replace(/\n\n+/g, '</p><p>')
+                    .replace(/\n/g, '<br>')
+                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                    .replace(/`(.*?)`/g, '<code>$1</code>');
+                modalContent.innerHTML = `<p>${htmlContent}</p>`;
+                modal.classList.add('visible');
+            }
+
+            function hideModal() {
+                modal.classList.remove('visible');
+            }
+
+            // Handler for sidebar menu links
+            const menuLinks = document.querySelectorAll('.main-menu .nav-list a[data-section]');
+            menuLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const sectionKey = this.querySelector('span:last-child').textContent;
+                    const sectionContent = essayContent[sectionKey] || "Konten tidak ditemukan.";
+                    showModal(sectionKey, sectionContent);
+                });
+            });
+
+            // Handler for source chips (event delegation)
+            mainContent.addEventListener('click', function(e) {
+                const chip = e.target.closest('.source-chip');
+                if (chip) {
+                    e.preventDefault();
+                    const chipText = chip.textContent.trim();
+                    showModal(chipText, ''); // Show only the title for now
+                }
+            });
+
+            closeModalBtn.addEventListener('click', hideModal);
+            modal.addEventListener('click', function(e) {
+                if (e.target === modal) {
+                    hideModal();
+                }
+            });
         });
     </script>
 
