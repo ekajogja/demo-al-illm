@@ -109,6 +109,8 @@ Setiap `.source-chip` di dalam aplikasi kini bersifat interaktif. Saat diklik, s
 
 Fitur ini juga mendukung **penjelajahan rekursif**: mengklik tautan entitas lain di dalam modal akan memuat profil entitas baru tersebut di dalam modal yang sama, memungkinkan eksplorasi mendalam tanpa hambatan.
 
+Selain itu, untuk entitas yang ditandai sebagai `tipe_entitas: "dokumen"`, sebuah tombol **"Tampilkan dokumen teranotasi"** akan muncul di bagian atas konten modal. Fitur ini memberikan akses langsung ke tampilan dokumen yang lebih mendalam.
+
 **Contoh Implementasi untuk Chip "Hari Santri":**
 -   **HTML:** `<a href="#" class="source-chip" data-chip-id="hari-santri">Hari Santri</a>`
 -   **JavaScript (dalam `sourceChipContent`):**

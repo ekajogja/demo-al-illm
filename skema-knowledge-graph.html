@@ -1,0 +1,1795 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>skema-knowledge-graph.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="skema-knowledge-graph-al-illm">Skema Knowledge Graph AL ILLM</h1>
+<h2 id="skema-entitas">Skema Entitas</h2>
+<h3 id="1-ulama-dan-tokoh">1. Ulama dan Tokoh</h3>
+<h4 id="11-entitas-utama">1.1. Entitas Utama</h4>
+<ul>
+<li>Ulama Nusantara (dengan sub-kategori berdasarkan periode, wilayah, dan spesialisasi)</li>
+<li>Tokoh Berpengaruh Lokal (pemimpin adat, bangsawan, pedagang)</li>
+<li>Tokoh Berpengaruh Internasional (ulama dari Timur Tengah, Asia Selatan, dll.)</li>
+<li>Keluarga dan Silsilah (termasuk sanad keilmuan)</li>
+<li>Murid dan Pengikut</li>
+</ul>
+<h4 id="12-atribut-penting">1.2. Atribut Penting</h4>
+<ul>
+<li>Biografi lengkap (termasuk perjalanan hidup, pendidikan, dan karir)</li>
+<li>Jaringan sosial dan intelektual</li>
+<li>Kontribusi utama dalam berbagai bidang</li>
+<li>Posisi dalam struktur sosial dan keagamaan</li>
+<li>Pandangan dan ideologi</li>
+</ul>
+<h4 id="13-relasi-kompleks">1.3. Relasi Kompleks</h4>
+<ul>
+<li>Guru-Murid (dengan tingkat kedekatan dan durasi hubungan)</li>
+<li>Kolaborasi Intelektual (co-authorship, debat, korespondensi)</li>
+<li>Pengaruh Pemikiran (langsung dan tidak langsung)</li>
+<li>Hubungan Keluarga (termasuk pernikahan strategis dan aliansi keluarga)</li>
+<li>Jaringan Patronase (hubungan dengan penguasa atau lembaga)</li>
+<li>Konflik dan Persaingan (perbedaan pendapat, rivalitas)</li>
+<li>Transmisi Pengetahuan (jalur penyebaran ilmu dan gagasan)</li>
+</ul>
+<h3 id="2-karya-dan-kontribusi">2. Karya dan Kontribusi</h3>
+<h4 id="21-entitas-utama">2.1. Entitas Utama</h4>
+<ul>
+<li>Karya Tulis:
+<ul>
+<li>Kitab (dengan sub-kategori berdasarkan tema: fiqh, tafsir, tasawuf, dll.)</li>
+<li>Syarah (komentar dan penjelasan atas kitab lain)</li>
+<li>Hasyiyah (catatan pinggir atau superkomentar)</li>
+<li>Manzhumah (karya puitis atau nazham)</li>
+<li>Surat dan Korespondensi</li>
+<li>Fatwa dan Keputusan Hukum</li>
+<li>Risalah (traktat pendek)</li>
+<li>Manuskrip (termasuk variasi dan salinan)</li>
+</ul>
+</li>
+<li>Karya Arsitektur:
+<ul>
+<li>Masjid dan Surau</li>
+<li>Pesantren dan Madrasah</li>
+<li>Istana dan Keraton</li>
+<li>Rumah Adat</li>
+</ul>
+</li>
+<li>Tata Kota dan Tata Negara:
+<ul>
+<li>Perencanaan Kota Islami</li>
+<li>Sistem Pemerintahan</li>
+<li>Hukum dan Peraturan</li>
+</ul>
+</li>
+<li>Upacara Adat:
+<ul>
+<li>Ritual Keagamaan</li>
+<li>Upacara Daur Hidup</li>
+<li>Perayaan Musiman</li>
+</ul>
+</li>
+<li>Kesenian Tradisi:
+<ul>
+<li>Kaligrafi</li>
+<li>Seni Rupa Islami</li>
+<li>Seni Pertunjukan (wayang, tari)</li>
+<li>Musik Tradisional (termasuk musik religi)</li>
+</ul>
+</li>
+<li>Struktur Sosial:
+<ul>
+<li>Sistem Kekerabatan</li>
+<li>Stratifikasi Sosial</li>
+<li>Organisasi Masyarakat</li>
+</ul>
+</li>
+</ul>
+<h4 id="22-atribut-penting">2.2. Atribut Penting</h4>
+<ul>
+<li>Deskripsi lengkap karya</li>
+<li>Konteks penciptaan (waktu, tempat, situasi sosial-politik)</li>
+<li>Bahasa dan gaya penulisan</li>
+<li>Sumber referensi dan inspirasi</li>
+<li>Penyebaran dan transmisi karya</li>
+<li>Dampak dan resepsi dalam masyarakat</li>
+<li>Variasi dan interpretasi sepanjang waktu</li>
+</ul>
+<h4 id="23-relasi-kompleks">2.3. Relasi Kompleks</h4>
+<ul>
+<li>Pengarang-Karya (termasuk kontributor, editor, dan penerjemah)</li>
+<li>Inspirasi dan Pengaruh antar Karya (intertekstualitas)</li>
+<li>Karya-Konteks Historis (bagaimana karya merespons situasi zamannya)</li>
+<li>Karya-Dampak Sosial (perubahan sosial yang diakibatkan)</li>
+<li>Karya-Institusi (hubungan dengan lembaga pendidikan atau pemerintahan)</li>
+<li>Karya-Aliran Pemikiran (bagaimana karya mewakili atau mempengaruhi mazhab tertentu)</li>
+<li>Karya-Tradisi Intelektual (posisi dalam rangkaian pemikiran yang lebih luas)</li>
+<li>Karya-Polemik (perdebatan dan kontroversi yang ditimbulkan)</li>
+</ul>
+<h3 id="3-konteks-sosio-kultural">3. Konteks Sosio-Kultural</h3>
+<h4 id="31-entitas-utama">3.1. Entitas Utama</h4>
+<ul>
+<li>Struktur Sosial:
+<ul>
+<li>Kelas Sosial (bangsawan, ulama, pedagang, petani, dll.)</li>
+<li>Sistem Kasta (di beberapa daerah)</li>
+<li>Kelompok Etnis</li>
+<li>Komunitas Keagamaan</li>
+</ul>
+</li>
+<li>Institusi Sosial:
+<ul>
+<li>Keluarga dan Kekerabatan</li>
+<li>Pesantren dan Madrasah</li>
+<li>Tarekat dan Perkumpulan Sufi</li>
+<li>Pasar dan Sistem Ekonomi</li>
+<li>Pengadilan Agama</li>
+</ul>
+</li>
+<li>Norma dan Nilai:
+<ul>
+<li>Adat Istiadat</li>
+<li>Etika Islam</li>
+<li>Hukum Adat</li>
+<li>Tradisi Lokal</li>
+</ul>
+</li>
+<li>Praktik Keagamaan:
+<ul>
+<li>Ritual Harian</li>
+<li>Perayaan Keagamaan</li>
+<li>Ziarah dan Wisata Religi</li>
+</ul>
+</li>
+<li>Produk Budaya:
+<ul>
+<li>Makanan Tradisional</li>
+<li>Pakaian dan Tekstil (termasuk batik)</li>
+<li>Seni Kriya (termasuk tosan aji)</li>
+<li>Alat Musik (termasuk gamelan)</li>
+</ul>
+</li>
+</ul>
+<h4 id="32-atribut-penting">3.2. Atribut Penting</h4>
+<ul>
+<li>Deskripsi mendalam tentang setiap elemen sosio-kultural</li>
+<li>Asal-usul dan perkembangan historis</li>
+<li>Variasi regional dan temporal</li>
+<li>Fungsi sosial dan simbolis</li>
+<li>Interaksi dengan elemen budaya lain</li>
+<li>Perubahan dan adaptasi seiring waktu</li>
+</ul>
+<h4 id="33-relasi-kompleks">3.3. Relasi Kompleks</h4>
+<ul>
+<li>Struktur Sosial-Pemikiran Ulama (bagaimana stratifikasi sosial mempengaruhi dan dipengaruhi oleh pemikiran ulama)</li>
+<li>Institusi-Transmisi Pengetahuan (peran pesantren dan tarekat dalam menyebarkan ilmu)</li>
+<li>Norma-Praktik Keagamaan (bagaimana nilai-nilai lokal berbaur dengan ajaran Islam)</li>
+<li>Produk Budaya-Identitas Sosial (peran batik, gamelan, dll. dalam membentuk identitas)</li>
+<li>Adat Istiadat-Hukum Islam (interaksi dan negosiasi antara adat dan syariah)</li>
+<li>Praktik Keagamaan-Ekonomi (misalnya, dampak ziarah terhadap ekonomi lokal)</li>
+<li>Struktur Sosial-Mobilitas Intelektual (bagaimana kelas sosial mempengaruhi akses ke pendidikan)</li>
+</ul>
+<h3 id="4-geopolitik-dan-sejarah-dunia">4. Geopolitik dan Sejarah Dunia</h3>
+<h4 id="41-entitas-utama">4.1. Entitas Utama</h4>
+<ul>
+<li>Kerajaan dan Kesultanan Nusantara:
+<ul>
+<li>Majapahit, Sriwijaya, Mataram, Aceh, dll.</li>
+</ul>
+</li>
+<li>Kekuatan Kolonial:
+<ul>
+<li>VOC, Hindia Belanda, Inggris, Portugis</li>
+</ul>
+</li>
+<li>Imperium Dunia Islam:
+<ul>
+<li>Khilafah Abbasiyah, Kesultanan Utsmaniyah, Kesultanan Mughal</li>
+</ul>
+</li>
+<li>Pusat Keilmuan Islam Global:
+<ul>
+<li>Al-Azhar, Haramain (Mekah dan Madinah), Baghdad, Isfahan</li>
+</ul>
+</li>
+<li>Peristiwa Sejarah Dunia:
+<ul>
+<li>Perang Salib, Jatuhnya Baghdad, Penemuan Dunia Baru</li>
+<li>Revolusi Industri, Pencerahan Eropa</li>
+</ul>
+</li>
+<li>Rute Perdagangan:
+<ul>
+<li>Jalur Sutra, Jalur Rempah, Rute Haji</li>
+</ul>
+</li>
+</ul>
+<h4 id="42-atribut-penting">4.2. Atribut Penting</h4>
+<ul>
+<li>Kronologi detail</li>
+<li>Tokoh-tokoh kunci dalam setiap entitas</li>
+<li>Kebijakan dan sistem pemerintahan</li>
+<li>Hubungan diplomatik dan perdagangan</li>
+<li>Perkembangan teknologi dan ilmu pengetahuan</li>
+<li>Konflik dan aliansi</li>
+</ul>
+<h4 id="43-relasi-kompleks">4.3. Relasi Kompleks</h4>
+<ul>
+<li>Kerajaan Nusantara-Kekuatan Kolonial (dinamika kekuasaan dan resistensi)</li>
+<li>Ulama Nusantara-Pusat Keilmuan Global (jaringan intelektual transnasional)</li>
+<li>Peristiwa Dunia-Pemikiran Lokal (bagaimana events global mempengaruhi diskursus lokal)</li>
+<li>Rute Perdagangan-Penyebaran Ide (peran pedagang dalam transmisi pengetahuan)</li>
+<li>Kekuasaan Politik-Otoritas Keagamaan (negosiasi antara penguasa dan ulama)</li>
+<li>Kolonialisme-Transformasi Sosial (dampak kebijakan kolonial terhadap struktur masyarakat)</li>
+<li>Geopolitik-Aliran Pemikiran (bagaimana konteks global membentuk mazhab lokal)</li>
+</ul>
+<h3 id="5-bahasa-dan-aksara">5. Bahasa dan Aksara</h3>
+<h4 id="51-entitas-utama">5.1. Entitas Utama</h4>
+<ul>
+<li>Bahasa:
+<ul>
+<li>Bahasa Arab (Fusha dan dialek)</li>
+<li>Bahasa Melayu (berbagai varian)</li>
+<li>Bahasa Jawa (Kuno, Pertengahan, Modern)</li>
+<li>Bahasa Sunda, Madura, Bugis, dan lainnya</li>
+<li>Bahasa Persia dan Urdu (pengaruh)</li>
+</ul>
+</li>
+<li>Aksara:
+<ul>
+<li>Arab (termasuk variasi lokal seperti Pegon)</li>
+<li>Jawi</li>
+<li>Aksara Jawa (Hanacaraka)</li>
+<li>Aksara Bugis (Lontara)</li>
+<li>Latin (setelah pengaruh kolonial)</li>
+</ul>
+</li>
+<li>Literasi dan Tradisi Oral:
+<ul>
+<li>Tradisi penulisan manuskrip</li>
+<li>Sastra lisan (pantun, syair, hikayat)</li>
+<li>Sistem pendidikan tradisional</li>
+</ul>
+</li>
+</ul>
+<h4 id="52-atribut-penting">5.2. Atribut Penting</h4>
+<ul>
+<li>Sejarah perkembangan bahasa dan aksara</li>
+<li>Fungsi sosial dan religius</li>
+<li>Variasi dialek dan penggunaan</li>
+<li>Interaksi antar bahasa (peminjaman kata, sintaksis)</li>
+<li>Evolusi makna kata dan konsep kunci</li>
+</ul>
+<h4 id="53-relasi-kompleks">5.3. Relasi Kompleks</h4>
+<ul>
+<li>Bahasa-Identitas Kultural (peran bahasa dalam membentuk identitas)</li>
+<li>Aksara-Transmisi Pengetahuan (penggunaan aksara tertentu untuk jenis teks tertentu)</li>
+<li>Bahasa-Pemikiran Teologis (bagaimana bahasa membentuk dan dibentuk oleh konsep teologis)</li>
+<li>Literasi-Stratifikasi Sosial (hubungan antara kemampuan baca-tulis dan status sosial)</li>
+<li>Bahasa Ritual-Praktik Keagamaan (penggunaan bahasa tertentu dalam ibadah)</li>
+<li>Sastra Lisan-Penyebaran Ide (peran tradisi oral dalam transmisi pengetahuan)</li>
+<li>Aksara-Otoritas Keilmuan (penggunaan aksara tertentu sebagai simbol otoritas)</li>
+</ul>
+<h3 id="6-aliran-pemikiran-dan-mazhab">6. Aliran Pemikiran dan Mazhab</h3>
+<h4 id="61-entitas-utama">6.1. Entitas Utama</h4>
+<ul>
+<li>Mazhab Fiqh:
+<ul>
+<li>Syafi'i, Maliki, Hanafi, Hanbali</li>
+<li>Variasi dan adaptasi lokal</li>
+</ul>
+</li>
+<li>Aliran Teologi:
+<ul>
+<li>Asy'ariyah, Maturidiyah, Mu'tazilah</li>
+<li>Salafisme dan reformisme modern</li>
+</ul>
+</li>
+<li>Tarekat Sufi:
+<ul>
+<li>Qadiriyah, Naqsyabandiyah, Syattariyah, dll.</li>
+<li>Sinkretisme dengan tradisi lokal</li>
+</ul>
+</li>
+<li>Metodologi Tafsir dan Hadits:
+<ul>
+<li>Tafsir bi al-ma'tsur dan bi al-ra'yi</li>
+<li>Kritik hadits dan isnad</li>
+</ul>
+</li>
+<li>Filsafat dan Pemikiran:
+<ul>
+<li>Neo-Platonisme Islam</li>
+<li>Peripatetisme</li>
+<li>Illuminasionisme</li>
+</ul>
+</li>
+<li>Gerakan Pembaruan:
+<ul>
+<li>Modernisme Islam</li>
+<li>Revivalisme</li>
+<li>Tradisionalisme</li>
+</ul>
+</li>
+</ul>
+<h4 id="62-atribut-penting">6.2. Atribut Penting</h4>
+<ul>
+<li>Tokoh-tokoh kunci dan karya utama</li>
+<li>Prinsip dan metodologi dasar</li>
+<li>Perkembangan historis dan geografis</li>
+<li>Perdebatan dan polemik utama</li>
+<li>Adaptasi dan interpretasi lokal</li>
+</ul>
+<h4 id="63-relasi-kompleks">6.3. Relasi Kompleks</h4>
+<ul>
+<li>Mazhab-Praktik Sosial (bagaimana mazhab fiqh mempengaruhi kehidupan sehari-hari)</li>
+<li>Aliran Teologi-Legitimasi Politik (penggunaan teologi untuk mendukung atau menentang kekuasaan)</li>
+<li>Tarekat-Struktur Sosial (peran tarekat dalam membentuk jaringan sosial)</li>
+<li>Metodologi Tafsir-Konteks Sosio-Politik (bagaimana pendekatan tafsir merespons situasi zaman)</li>
+<li>Filsafat-Sains dan Teknologi (interaksi antara pemikiran filosofis dan perkembangan ilmiah)</li>
+<li>Gerakan Pembaruan-Kolonialisme (respons intelektual terhadap dominasi Barat)</li>
+<li>Aliran Pemikiran-Pendidikan (pengaruh aliran tertentu dalam kurikulum pesantren)</li>
+</ul>
+<h3 id="7-ekologi-dan-geografi">7. Ekologi dan Geografi</h3>
+<h4 id="71-entitas-utama">7.1. Entitas Utama</h4>
+<ul>
+<li>Lanskap Alam:
+<ul>
+<li>Gunung dan Pegunungan</li>
+<li>Sungai dan Delta</li>
+<li>Hutan Tropis</li>
+<li>Pesisir dan Laut</li>
+</ul>
+</li>
+<li>Iklim dan Cuaca:
+<ul>
+<li>Musim (kemarau, hujan, angin monsun)</li>
+<li>Fenomena alam (El Niño, La Niña)</li>
+</ul>
+</li>
+<li>Sumber Daya Alam:
+<ul>
+<li>Pertanian (padi, rempah-rempah)</li>
+<li>Pertambangan (emas, timah)</li>
+<li>Hasil Hutan</li>
+</ul>
+</li>
+<li>Pola Permukiman:
+<ul>
+<li>Kota Pesisir</li>
+<li>Desa Pedalaman</li>
+<li>Kompleks Keagamaan</li>
+</ul>
+</li>
+</ul>
+<h4 id="72-atribut-penting">7.2. Atribut Penting</h4>
+<ul>
+<li>Karakteristik fisik dan biologis</li>
+<li>Perubahan ekologi seiring waktu</li>
+<li>Interaksi manusia dengan lingkungan</li>
+<li>Signifikansi spiritual dan kultural lanskap</li>
+<li>Pengaruh geografi terhadap pola migrasi dan perdagangan</li>
+</ul>
+<h4 id="73-relasi-kompleks">7.3. Relasi Kompleks</h4>
+<ul>
+<li>Ekologi-Sistem Ekonomi (bagaimana lingkungan membentuk aktivitas ekonomi)</li>
+<li>Geografi-Penyebaran Ilmu (peran sungai dan laut dalam transmisi pengetahuan)</li>
+<li>Iklim-Praktik Keagamaan (adaptasi ibadah terhadap kondisi lokal)</li>
+<li>Sumber Daya-Kekuasaan Politik (kontrol atas sumber daya sebagai basis kekuasaan)</li>
+<li>Lanskap-Kosmologi (interpretasi religius terhadap fitur geografis)</li>
+<li>Pola Permukiman-Struktur Sosial (bagaimana geografi mempengaruhi organisasi masyarakat)</li>
+<li>Ekologi-Hukum Islam (adaptasi fiqh terhadap kondisi lingkungan lokal)</li>
+</ul>
+<h3 id="8-produk-budaya-dan-seni">8. Produk Budaya dan Seni</h3>
+<h4 id="81-entitas-utama">8.1. Entitas Utama</h4>
+<ul>
+<li>Seni Rupa:
+<ul>
+<li>Kaligrafi Islam</li>
+<li>Seni Ukir (kayu, batu)</li>
+<li>Arsitektur Masjid dan Istana</li>
+<li>Seni Miniatur dan Iluminasi Manuskrip</li>
+</ul>
+</li>
+<li>Seni Pertunjukan:
+<ul>
+<li>Wayang (Kulit, Golek, Wong)</li>
+<li>Tari Tradisional</li>
+<li>Teater Tradisional (Ketoprak, Ludruk)</li>
+<li>Musik Gamelan</li>
+</ul>
+</li>
+<li>Seni Sastra:
+<ul>
+<li>Syair dan Nazam</li>
+<li>Hikayat dan Babad</li>
+<li>Kitab dan Risalah</li>
+<li>Serat dan Suluk</li>
+</ul>
+</li>
+<li>Kerajinan Tangan:
+<ul>
+<li>Batik dan Tekstil</li>
+<li>Tosan Aji (senjata pusaka)</li>
+<li>Keramik dan Gerabah</li>
+<li>Anyaman dan Tenun</li>
+</ul>
+</li>
+<li>Kuliner:
+<ul>
+<li>Makanan Ritual</li>
+<li>Hidangan Istana</li>
+<li>Makanan Sehari-hari</li>
+<li>Pengawetan Makanan Tradisional</li>
+</ul>
+</li>
+<li>Obat-obatan Tradisional:
+<ul>
+<li>Jamu dan Ramuan Herbal</li>
+<li>Praktik Penyembuhan Spiritual</li>
+</ul>
+</li>
+</ul>
+<h4 id="82-atribut-penting">8.2. Atribut Penting</h4>
+<ul>
+<li>Teknik dan metode pembuatan</li>
+<li>Simbolisme dan makna filosofis</li>
+<li>Fungsi sosial dan ritual</li>
+<li>Variasi regional dan temporal</li>
+<li>Pengaruh eksternal (Hindu-Buddha, Cina, Arab, Eropa)</li>
+<li>Inovasi dan adaptasi seiring waktu</li>
+</ul>
+<h4 id="84-relasi-kompleks">8.4. Relasi Kompleks</h4>
+<ul>
+<li>Seni Rupa-Kosmologi Islam (representasi visual konsep keagamaan)</li>
+<li>Seni Pertunjukan-Dakwah (penggunaan wayang dan tari dalam penyebaran Islam)</li>
+<li>Sastra-Transmisi Pengetahuan (peran hikayat dan syair dalam pendidikan)</li>
+<li>Kerajinan-Status Sosial (batik dan tosan aji sebagai penanda kelas)</li>
+<li>Kuliner-Identitas Kultural (makanan sebagai penanda identitas etnis dan agama)</li>
+<li>Obat Tradisional-Praktik Keagamaan (integrasi pengobatan dengan ritual)</li>
+<li>Seni-Ekonomi (peran produk budaya dalam perdagangan dan diplomasi)</li>
+<li>Arsitektur-Ekspresi Teologis (desain masjid sebagai manifestasi pemahaman agama)</li>
+</ul>
+<h3 id="9-jaringan-pengetahuan-dan-transmisi-ilmu">9. Jaringan Pengetahuan dan Transmisi Ilmu</h3>
+<h4 id="91-entitas-utama">9.1. Entitas Utama</h4>
+<ul>
+<li>Pusat Pendidikan:
+<ul>
+<li>Pesantren dan Surau</li>
+<li>Madrasah</li>
+<li>Zawiyah (pusat sufi)</li>
+<li>Perpustakaan dan Scriptorium</li>
+</ul>
+</li>
+<li>Metode Transmisi:
+<ul>
+<li>Ijazah dan Sanad</li>
+<li>Halaqah (lingkaran belajar)</li>
+<li>Rihlah Ilmiah (perjalanan mencari ilmu)</li>
+<li>Korespondensi Ulama</li>
+</ul>
+</li>
+<li>Kitab dan Teks Kunci:
+<ul>
+<li>Kitab Kuning</li>
+<li>Manuskrip Langka</li>
+<li>Kompendium dan Mukhtasar</li>
+</ul>
+</li>
+<li>Tradisi Intelektual:
+<ul>
+<li>Bahtsul Masail</li>
+<li>Musyawarah Kitab</li>
+<li>Debat Teologis</li>
+<li>Penulisan Syarah dan Hasyiyah</li>
+</ul>
+</li>
+</ul>
+<h4 id="92-atribut-penting">9.2. Atribut Penting</h4>
+<ul>
+<li>Kurikulum dan metodologi pengajaran</li>
+<li>Hierarki keilmuan dan spesialisasi</li>
+<li>Proses validasi dan otentikasi ilmu</li>
+<li>Evolusi metode pengajaran seiring waktu</li>
+<li>Pengaruh teknologi (cetak, digital) terhadap transmisi ilmu</li>
+</ul>
+<h4 id="93-relasi-kompleks">9.3. Relasi Kompleks</h4>
+<ul>
+<li>Pusat Pendidikan-Jaringan Ulama (pesantren sebagai simpul jaringan intelektual)</li>
+<li>Metode Transmisi-Otoritas Keilmuan (peran ijazah dalam membangun kredibilitas)</li>
+<li>Kitab-Aliran Pemikiran (teks sebagai representasi dan pembentuk mazhab)</li>
+<li>Tradisi Intelektual-Inovasi Pemikiran (bahtsul masail sebagai mekanisme ijtihad)</li>
+<li>Jaringan Pengetahuan-Geopolitik (pengaruh politik terhadap alur transmisi ilmu)</li>
+<li>Transmisi Ilmu-Teknologi (dampak percetakan terhadap penyebaran pengetahuan)</li>
+<li>Pusat Pendidikan-Mobilitas Sosial (peran pesantren dalam perubahan status sosial)</li>
+</ul>
+<h3 id="10-dialektika-dan-dinamika-pemikiran">10. Dialektika dan Dinamika Pemikiran</h3>
+<h4 id="101-entitas-utama">10.1. Entitas Utama</h4>
+<ul>
+<li>Polemik dan Perdebatan:
+<ul>
+<li>Konflik Antar Mazhab</li>
+<li>Pertentangan Tradisionalis-Modernis</li>
+<li>Dialektika Syariat-Tasawuf</li>
+</ul>
+</li>
+<li>Sintesis dan Akomodasi:
+<ul>
+<li>Sinkretisme Islam-Budaya Lokal</li>
+<li>Harmonisasi Antar Mazhab</li>
+<li>Integrasi Ilmu Agama-Ilmu Umum</li>
+</ul>
+</li>
+<li>Reformasi dan Pembaruan:
+<ul>
+<li>Gerakan Tajdid (Pembaruan)</li>
+<li>Respons terhadap Modernitas</li>
+<li>Reinterpretasi Teks Klasik</li>
+</ul>
+</li>
+<li>Resistensi dan Konservasi:
+<ul>
+<li>Penjagaan Tradisi</li>
+<li>Penolakan terhadap Bid'ah</li>
+<li>Preservasi Warisan Intelektual</li>
+</ul>
+</li>
+</ul>
+<h4 id="102-atribut-penting">10.2. Atribut Penting</h4>
+<ul>
+<li>Argumen dan counter-argumen utama</li>
+<li>Tokoh-tokoh kunci dalam setiap perdebatan</li>
+<li>Konteks sosio-politik perdebatan</li>
+<li>Dampak jangka panjang terhadap pemikiran Islam</li>
+<li>Evolusi posisi dan argumen seiring waktu</li>
+</ul>
+<h4 id="103-relasi-kompleks">10.3. Relasi Kompleks</h4>
+<ul>
+<li>Polemik-Produksi Tekstual (perdebatan sebagai katalis penulisan kitab)</li>
+<li>Sintesis-Identitas Kultural (Islam Nusantara sebagai hasil akomodasi)</li>
+<li>Reformasi-Respons Kolonial (pembaruan sebagai reaksi terhadap dominasi Barat)</li>
+<li>Resistensi-Preservasi Tradisi (konservatisme sebagai bentuk perlawanan kultural)</li>
+<li>Dialektika-Evolusi Hukum Islam (ijtihad dan tajdid dalam fiqh)</li>
+<li>Dinamika Pemikiran-Perubahan Sosial (bagaimana perdebatan intelektual mempengaruhi masyarakat)</li>
+<li>Polemik-Fragmentasi Komunitas (dampak perdebatan terhadap kohesi sosial)</li>
+</ul>
+<h3 id="11-konteks-ekonomi-dan-perdagangan">11. Konteks Ekonomi dan Perdagangan</h3>
+<h4 id="111-entitas-utama">11.1. Entitas Utama</h4>
+<ul>
+<li>Sistem Ekonomi:
+<ul>
+<li>Ekonomi Berbasis Pertanian</li>
+<li>Perdagangan Maritim</li>
+<li>Sistem Barter dan Moneter</li>
+<li>Wakaf dan Ekonomi Islam</li>
+</ul>
+</li>
+<li>Komoditas Utama:
+<ul>
+<li>Rempah-rempah (cengkeh, pala, lada)</li>
+<li>Tekstil (batik, sutra)</li>
+<li>Logam Mulia (emas, perak)</li>
+<li>Hasil Pertanian (beras, kelapa)</li>
+</ul>
+</li>
+<li>Jaringan Perdagangan:
+<ul>
+<li>Rute Perdagangan Laut</li>
+<li>Pasar dan Pelabuhan Utama</li>
+<li>Komunitas Pedagang (Arab, Cina, India)</li>
+</ul>
+</li>
+<li>Institusi Ekonomi:
+<ul>
+<li>Sistem Gulden (VOC)</li>
+<li>Cultuurstelsel (Tanam Paksa)</li>
+<li>Koperasi Tradisional</li>
+<li>Lembaga Keuangan Syariah Awal</li>
+</ul>
+</li>
+</ul>
+<h4 id="112-atribut-penting">11.2. Atribut Penting</h4>
+<ul>
+<li>Pola produksi dan distribusi</li>
+<li>Regulasi perdagangan dan pajak</li>
+<li>Fluktuasi harga dan nilai tukar</li>
+<li>Inovasi teknologi dalam produksi</li>
+<li>Dampak kebijakan ekonomi kolonial</li>
+</ul>
+<h4 id="113-relasi-kompleks">11.3. Relasi Kompleks</h4>
+<ul>
+<li>Ekonomi-Penyebaran Islam (peran pedagang dalam dakwah)</li>
+<li>Komoditas-Kekuasaan Politik (kontrol atas rempah sebagai sumber kekuatan)</li>
+<li>Jaringan Perdagangan-Transmisi Ilmu (pertukaran ide melalui rute dagang)</li>
+<li>Institusi Ekonomi-Hukum Islam (adaptasi fiqh muamalah terhadap praktik ekonomi lokal)</li>
+<li>Sistem Ekonomi-Stratifikasi Sosial (dampak perubahan ekonomi terhadap struktur masyarakat)</li>
+<li>Perdagangan-Perkembangan Bahasa (evolusi bahasa Melayu sebagai lingua franca perdagangan)</li>
+<li>Wakaf-Pendidikan Islam (peran wakaf dalam mendukung lembaga pendidikan)</li>
+</ul>
+<h3 id="12-teknologi-dan-inovasi">12. Teknologi dan Inovasi</h3>
+<h4 id="121-entitas-utama">12.1. Entitas Utama</h4>
+<ul>
+<li>Teknologi Maritim:
+<ul>
+<li>Kapal dan Navigasi</li>
+<li>Pelabuhan dan Galangan</li>
+<li>Peta dan Instrumen Navigasi</li>
+</ul>
+</li>
+<li>Teknologi Pertanian:
+<ul>
+<li>Sistem Irigasi</li>
+<li>Teknik Bercocok Tanam</li>
+<li>Pengolahan Hasil Pertanian</li>
+</ul>
+</li>
+<li>Teknologi Militer:
+<ul>
+<li>Persenjataan Tradisional</li>
+<li>Fortifikasi dan Pertahanan</li>
+<li>Strategi Perang</li>
+</ul>
+</li>
+<li>Teknologi Tulis dan Cetak:
+<ul>
+<li>Produksi Kertas dan Tinta</li>
+<li>Teknik Penyalinan Manuskrip</li>
+<li>Percetakan (setelah kontak dengan Barat)</li>
+</ul>
+</li>
+<li>Arsitektur dan Konstruksi:
+<ul>
+<li>Teknik Bangunan Tahan Gempa</li>
+<li>Sistem Ventilasi Alami</li>
+<li>Ornamentasi dan Dekorasi</li>
+</ul>
+</li>
+</ul>
+<h4 id="122-atribut-penting">12.2. Atribut Penting</h4>
+<ul>
+<li>Proses pengembangan dan inovasi</li>
+<li>Transfer teknologi antar budaya</li>
+<li>Adaptasi teknologi asing ke konteks lokal</li>
+<li>Dampak sosial dan ekonomi dari inovasi</li>
+<li>Hambatan dan fasilitator perkembangan teknologi</li>
+</ul>
+<h4 id="123-relasi-kompleks">12.3. Relasi Kompleks</h4>
+<ul>
+<li>Teknologi Maritim-Penyebaran Islam (peran kapal dalam ekspansi Islam)</li>
+<li>Teknologi Pertanian-Pola Permukiman (pengaruh irigasi terhadap pembentukan desa)</li>
+<li>Teknologi Militer-Geopolitik (dampak inovasi militer terhadap keseimbangan kekuatan)</li>
+<li>Teknologi Tulis-Preservasi Pengetahuan (evolusi metode penyimpanan ilmu)</li>
+<li>Arsitektur-Ekspresi Kultural (bangunan sebagai manifestasi identitas Islam-Nusantara)</li>
+<li>Inovasi-Respons Terhadap Lingkungan (adaptasi teknologi terhadap kondisi geografis)</li>
+<li>Teknologi-Perubahan Sosial (dampak inovasi terhadap struktur dan dinamika masyarakat)</li>
+</ul>
+<h3 id="13-gender-dan-peran-sosial">13. Gender dan Peran Sosial</h3>
+<h4 id="131-entitas-utama">13.1. Entitas Utama</h4>
+<ul>
+<li>Tokoh Perempuan:
+<ul>
+<li>Ulama Perempuan</li>
+<li>Pejuang dan Pemimpin Perempuan</li>
+<li>Penulis dan Seniman Perempuan</li>
+</ul>
+</li>
+<li>Institusi Sosial:
+<ul>
+<li>Pendidikan Khusus Perempuan</li>
+<li>Organisasi Perempuan Islam</li>
+<li>Majelis Taklim Perempuan</li>
+</ul>
+</li>
+<li>Praktik Sosial:
+<ul>
+<li>Pernikahan dan Keluarga</li>
+<li>Pembagian Kerja Berbasis Gender</li>
+<li>Partisipasi Perempuan dalam Ritual Keagamaan</li>
+</ul>
+</li>
+<li>Wacana Gender:
+<ul>
+<li>Interpretasi Teks Agama terkait Gender</li>
+<li>Perdebatan tentang Peran Perempuan</li>
+<li>Gerakan Emansipasi dan Feminisme Islam</li>
+</ul>
+</li>
+</ul>
+<h4 id="132-atribut-penting">13.2. Atribut Penting</h4>
+<ul>
+<li>Evolusi peran gender seiring waktu</li>
+<li>Variasi regional dalam praktik gender</li>
+<li>Kontestasi dan negosiasi peran gender</li>
+<li>Representasi gender dalam literatur dan seni</li>
+<li>Dampak kolonialisme terhadap konstruksi gender</li>
+</ul>
+<h4 id="133-relasi-kompleks">13.3. Relasi Kompleks</h4>
+<ul>
+<li>Tokoh Perempuan-Produksi Pengetahuan (kontribusi ulama perempuan dalam keilmuan Islam)</li>
+<li>Institusi Sosial-Pemberdayaan Perempuan (peran pesantren putri dalam pendidikan)</li>
+<li>Praktik Sosial-Interpretasi Hukum Islam (adaptasi fiqh terhadap peran gender lokal)</li>
+<li>Wacana Gender-Reformasi Sosial (gerakan pembaruan dan isu gender)</li>
+<li>Gender-Struktur Kekuasaan (akses perempuan terhadap posisi otoritas)</li>
+<li>Peran Gender-Ekonomi (partisipasi perempuan dalam aktivitas ekonomi)</li>
+<li>Gender-Transmisi Pengetahuan (peran ibu dalam pendidikan informal)</li>
+</ul>
+<h3 id="14-kosmologi-dan-pandangan-dunia">14. Kosmologi dan Pandangan Dunia</h3>
+<h4 id="141-entitas-utama">14.1. Entitas Utama</h4>
+<ul>
+<li>Konsep Alam Semesta:
+<ul>
+<li>Tujuh Lapis Langit</li>
+<li>Alam Gaib (Jin, Malaikat)</li>
+<li>Konsep Mikrokosmos-Makrokosmos</li>
+</ul>
+</li>
+<li>Waktu dan Sejarah:
+<ul>
+<li>Kalender Hijriah dan Adaptasi Lokal</li>
+<li>Konsep Eskatologi Islam</li>
+<li>Siklus Kosmik dan Ramalan</li>
+</ul>
+</li>
+<li>Hubungan Manusia-Alam:
+<ul>
+<li>Konsep Khalifah di Bumi</li>
+<li>Etika Lingkungan Islam</li>
+<li>Harmoni Kosmik</li>
+</ul>
+</li>
+<li>Metafisika dan Epistemologi:
+<ul>
+<li>Teori Emanasi</li>
+<li>Konsep Wahdat al-Wujud</li>
+<li>Hierarki Pengetahuan (Zahir-Batin)</li>
+</ul>
+</li>
+</ul>
+<h4 id="142-atribut-penting">14.2. Atribut Penting</h4>
+<ul>
+<li>Sumber dan asal-usul konsep kosmologis</li>
+<li>Variasi interpretasi antar aliran pemikiran</li>
+<li>Pengaruh kosmologi terhadap praktik sehari-hari</li>
+<li>Interaksi antara kosmologi Islam dan kepercayaan lokal</li>
+<li>Evolusi pandangan kosmologis seiring perkembangan sains</li>
+</ul>
+<h4 id="143-relasi-kompleks">14.3. Relasi Kompleks</h4>
+<ul>
+<li>Kosmologi-Arsitektur Sakral (desain masjid sebagai representasi alam semesta)</li>
+<li>Konsep Waktu-Ritual Keagamaan (penentuan waktu salat dan puasa)</li>
+<li>Hubungan Manusia-Alam-Praktik Pertanian (etika lingkungan dalam bertani)</li>
+<li>Metafisika-Seni dan Sastra (ekspresi konsep wahdat al-wujud dalam puisi sufi)</li>
+<li>Kosmologi-Pengobatan Tradisional (praktik penyembuhan berdasarkan keseimbangan kosmik)</li>
+<li>Pandangan Dunia-Struktur Sosial (hierarki sosial sebagai cerminan tatanan kosmik)</li>
+<li>Epistemologi-Metodologi Keilmuan (pengaruh konsep zahir-batin dalam pendekatan ilmiah)</li>
+</ul>
+<h3 id="15-konflik-dan-resolusi">15. Konflik dan Resolusi</h3>
+<h4 id="151-entitas-utama">15.1. Entitas Utama</h4>
+<ul>
+<li>Jenis Konflik:
+<ul>
+<li>Konflik Antar Mazhab</li>
+<li>Konflik Ulama-Penguasa</li>
+<li>Perlawanan terhadap Kolonialisme</li>
+<li>Gerakan Purifikasi vs Tradisionalisme</li>
+</ul>
+</li>
+<li>Mekanisme Resolusi:
+<ul>
+<li>Musyawarah dan Tahkim</li>
+<li>Fatwa dan Ijtihad Kolektif</li>
+<li>Diplomasi dan Negosiasi</li>
+<li>Sinkretisme dan Akulturasi</li>
+</ul>
+</li>
+<li>Institusi Penengah:
+<ul>
+<li>Majelis Ulama</li>
+<li>Pengadilan Agama</li>
+<li>Lembaga Tahkim Adat</li>
+<li>Forum Dialog Antar Iman</li>
+</ul>
+</li>
+<li>Dampak Konflik:
+<ul>
+<li>Perpecahan Komunitas</li>
+<li>Inovasi Pemikiran</li>
+<li>Reformasi Sosial</li>
+<li>Penguatan Identitas</li>
+</ul>
+</li>
+</ul>
+<h4 id="152-atribut-penting">15.2. Atribut Penting</h4>
+<ul>
+<li>Akar penyebab dan eskalasi konflik</li>
+<li>Strategi dan taktik dalam konflik</li>
+<li>Proses mediasi dan rekonsiliasi</li>
+<li>Narasi dan wacana seputar konflik</li>
+<li>Transformasi sosial pasca-konflik</li>
+</ul>
+<h4 id="153-relasi-kompleks">15.3. Relasi Kompleks</h4>
+<ul>
+<li>Konflik-Produksi Tekstual (polemik sebagai pemicu penulisan kitab)</li>
+<li>Mekanisme Resolusi-Evolusi Hukum Islam (ijtihad dalam merespons konflik baru)</li>
+<li>Institusi Penengah-Legitimasi Sosial (peran ulama dalam meredam konflik)</li>
+<li>Dampak Konflik-Dinamika Intelektual (perdebatan sebagai katalis pembaruan pemikiran)</li>
+<li>Konflik-Geopolitik (peran kekuatan eksternal dalam konflik internal)</li>
+<li>Resolusi-Pembentukan Identitas (negosiasi identitas melalui resolusi konflik)</li>
+<li>Konflik-Transformasi Institusi (reformasi lembaga keagamaan sebagai hasil konflik)</li>
+</ul>
+<h3 id="16-media-dan-komunikasi">16. Media dan Komunikasi</h3>
+<h4 id="161-entitas-utama">16.1. Entitas Utama</h4>
+<ul>
+<li>Bentuk Media Tradisional:
+<ul>
+<li>Khutbah dan Ceramah</li>
+<li>Surat dan Risalah</li>
+<li>Syair dan Nazam</li>
+<li>Pertunjukan Wayang</li>
+</ul>
+</li>
+<li>Teknologi Komunikasi:
+<ul>
+<li>Manuskrip dan Kitab Cetak</li>
+<li>Surat Kabar dan Majalah Islam</li>
+<li>Radio dan Televisi</li>
+<li>Media Digital dan Internet</li>
+</ul>
+</li>
+<li>Jaringan Komunikasi:
+<ul>
+<li>Jaringan Ulama Transnasional</li>
+<li>Komunitas Pesantren</li>
+<li>Forum Bahtsul Masail</li>
+<li>Grup Media Sosial Keagamaan</li>
+</ul>
+</li>
+<li>Wacana dan Narasi:
+<ul>
+<li>Dakwah dan Propaganda</li>
+<li>Polemik dan Debat Publik</li>
+<li>Fatwa dan Edikt</li>
+<li>Mitos dan Legenda Islami</li>
+</ul>
+</li>
+</ul>
+<h4 id="162-atribut-penting">16.2. Atribut Penting</h4>
+<ul>
+<li>Jangkauan dan aksesibilitas media</li>
+<li>Bahasa dan gaya komunikasi</li>
+<li>Otoritas dan kredibilitas sumber</li>
+<li>Sensor dan kontrol informasi</li>
+<li>Interaktivitas dan partisipasi audiens</li>
+</ul>
+<h4 id="163-relasi-kompleks">16.3. Relasi Kompleks</h4>
+<ul>
+<li>Media-Penyebaran Ide (peran media dalam transmisi pemikiran Islam)</li>
+<li>Teknologi Komunikasi-Demokratisasi Pengetahuan (dampak percetakan terhadap akses ilmu)</li>
+<li>Jaringan Komunikasi-Pembentukan Opini (peran ulama dalam membentuk wacana publik)</li>
+<li>Wacana-Mobilisasi Sosial (penggunaan narasi keagamaan dalam gerakan sosial)</li>
+<li>Media-Otoritas Keagamaan (pergeseran otoritas dengan munculnya media baru)</li>
+<li>Komunikasi-Identitas Kolektif (peran media dalam membangun identitas Muslim Nusantara)</li>
+<li>Teknologi Media-Transformasi Praktik Keagamaan (dampak digital terhadap ibadah dan pembelajaran)</li>
+</ul>
+<h3 id="17-hukum-dan-sistem-peradilan">17. Hukum dan Sistem Peradilan</h3>
+<h4 id="171-entitas-utama">17.1. Entitas Utama</h4>
+<ul>
+<li>Sumber Hukum:
+<ul>
+<li>Al-Qur'an dan Hadits</li>
+<li>Ijma' dan Qiyas</li>
+<li>Kitab Fiqh Klasik</li>
+<li>Adat dan 'Urf (Kebiasaan Lokal)</li>
+</ul>
+</li>
+<li>Institusi Hukum:
+<ul>
+<li>Mahkamah Syariah</li>
+<li>Peradilan Adat</li>
+<li>Lembaga Tahkim (Arbitrase)</li>
+<li>Badan Fatwa</li>
+</ul>
+</li>
+<li>Bidang Hukum:
+<ul>
+<li>Hukum Keluarga (Nikah, Talak, Rujuk)</li>
+<li>Hukum Waris</li>
+<li>Hukum Muamalat (Transaksi)</li>
+<li>Hukum Jinayat (Pidana Islam)</li>
+</ul>
+</li>
+<li>Proses Hukum:
+<ul>
+<li>Ijtihad dan Istinbath Hukum</li>
+<li>Penerapan Hukum (Tathbiq)</li>
+<li>Talfiq (Penggabungan Mazhab)</li>
+<li>Siyasah Syar'iyyah (Politik Hukum Islam)</li>
+</ul>
+</li>
+</ul>
+<h4 id="172-atribut-penting">17.2. Atribut Penting</h4>
+<ul>
+<li>Metodologi penerapan hukum</li>
+<li>Hierarki dan yurisdiksi peradilan</li>
+<li>Evolusi hukum seiring perubahan sosial</li>
+<li>Interaksi antara hukum Islam dan hukum adat</li>
+<li>Pengaruh kolonialisme terhadap sistem hukum</li>
+</ul>
+<h4 id="173-relasi-kompleks">17.3. Relasi Kompleks</h4>
+<ul>
+<li>Sumber Hukum-Interpretasi Ulama (peran ulama dalam menafsirkan teks hukum)</li>
+<li>Institusi Hukum-Legitimasi Sosial (peran peradilan dalam menjaga kohesi masyarakat)</li>
+<li>Bidang Hukum-Praktik Sosial (dampak hukum keluarga terhadap struktur masyarakat)</li>
+<li>Proses Hukum-Dinamika Pemikiran (ijtihad sebagai mekanisme pembaruan hukum)</li>
+<li>Hukum Islam-Hukum Kolonial (negosiasi dan konflik antara sistem hukum)</li>
+<li>Peradilan-Kekuasaan Politik (otonomi dan intervensi dalam sistem peradilan)</li>
+<li>Hukum-Identitas Kultural (peran hukum Islam dalam membentuk identitas Muslim Nusantara)</li>
+</ul>
+<h3 id="18-spiritualitas-dan-praktik-keagamaan">18. Spiritualitas dan Praktik Keagamaan</h3>
+<h4 id="181-entitas-utama">18.1. Entitas Utama</h4>
+<ul>
+<li>Ritual Ibadah:
+<ul>
+<li>Salat (termasuk variasi lokal)</li>
+<li>Puasa (Ramadhan dan puasa sunat)</li>
+<li>Zakat dan Sedekah</li>
+<li>Haji dan Umrah</li>
+</ul>
+</li>
+<li>Praktik Sufisme:
+<ul>
+<li>Tarekat (Qadiriyah, Naqsyabandiyah, dll.)</li>
+<li>Zikir dan Wirid</li>
+<li>Khalwat dan Uzlah</li>
+<li>Manaqiban dan Ratib</li>
+</ul>
+</li>
+<li>Perayaan dan Festival:
+<ul>
+<li>Maulid Nabi</li>
+<li>Isra' Mi'raj</li>
+<li>Nuzulul Qur'an</li>
+<li>Perayaan Lokal (Sekaten, Grebeg, dll.)</li>
+</ul>
+</li>
+<li>Ziarah dan Kultus Wali:
+<ul>
+<li>Makam Wali Songo</li>
+<li>Situs Suci Lokal</li>
+<li>Tradisi Karamah dan Barakah</li>
+</ul>
+</li>
+<li>Praktek Magis-Religius:
+<ul>
+<li>Ruqyah dan Pengobatan Spiritual</li>
+<li>Jimat dan Rajah</li>
+<li>Ritual Tolak Bala</li>
+</ul>
+</li>
+</ul>
+<h4 id="182-atribut-penting">18.2. Atribut Penting</h4>
+<ul>
+<li>Variasi regional dalam praktik</li>
+<li>Sinkretisme dengan tradisi lokal</li>
+<li>Evolusi praktik seiring waktu</li>
+<li>Kontroversi dan perdebatan seputar praktik</li>
+<li>Fungsi sosial dan psikologis ritual</li>
+</ul>
+<h4 id="183-relasi-kompleks">18.3. Relasi Kompleks</h4>
+<ul>
+<li>Ritual Ibadah-Struktur Sosial (peran salat Jumat dalam kohesi komunitas)</li>
+<li>Sufisme-Otoritas Keagamaan (peran mursyid dalam tarekat)</li>
+<li>Perayaan-Ekonomi Lokal (dampak festival keagamaan terhadap ekonomi)</li>
+<li>Ziarah-Geografi Sakral (pembentukan lanskap spiritual)</li>
+<li>Praktik Magis-Sistem Kepercayaan (integrasi magis dengan doktrin Islam)</li>
+<li>Spiritualitas-Identitas Kultural (peran praktik keagamaan dalam membentuk identitas)</li>
+<li>Ritual-Transmisi Pengetahuan (peran ritual dalam menyampaikan ajaran Islam)</li>
+</ul>
+<h3 id="19-psikologi-dan-kesehatan-mental">19. Psikologi dan Kesehatan Mental</h3>
+<h4 id="191-entitas-utama">19.1. Entitas Utama</h4>
+<ul>
+<li>Konsep Jiwa dalam Islam:
+<ul>
+<li>Nafs (Jiwa)</li>
+<li>Qalb (Hati)</li>
+<li>Ruh (Roh)</li>
+<li>'Aql (Intelek)</li>
+</ul>
+</li>
+<li>Psikopatologi Islam:
+<ul>
+<li>Konsep Penyakit Hati</li>
+<li>Waswas (Keraguan)</li>
+<li>Hawa Nafsu</li>
+</ul>
+</li>
+<li>Terapi Spiritual:
+<ul>
+<li>Zikir dan Meditasi</li>
+<li>Muhasabah (Introspeksi Diri)</li>
+<li>Taubat dan Istighfar</li>
+</ul>
+</li>
+<li>Kesehatan Holistik:
+<ul>
+<li>Keseimbangan Humoral</li>
+<li>Pengobatan Nabawi</li>
+<li>Etika Makan dan Gaya Hidup</li>
+</ul>
+</li>
+</ul>
+<h4 id="192-atribut-penting">19.2. Atribut Penting</h4>
+<ul>
+<li>Teori psikologi dalam teks Islam klasik</li>
+<li>Integrasi konsep psikologi Barat dan Islam</li>
+<li>Pendekatan kultural terhadap kesehatan mental</li>
+<li>Stigma dan pemahaman gangguan jiwa</li>
+<li>Peran komunitas dalam penyembuhan</li>
+</ul>
+<h4 id="193-relasi-kompleks">19.3. Relasi Kompleks</h4>
+<ul>
+<li>Konsep Jiwa-Praktik Sufi (pengembangan diri melalui maqamat)</li>
+<li>Psikopatologi-Etika Islam (konsep akhlak dan kesehatan mental)</li>
+<li>Terapi Spiritual-Institusi Sosial (peran pesantren dalam penyembuhan)</li>
+<li>Kesehatan Holistik-Praktik Medis (integrasi pengobatan tradisional dan modern)</li>
+<li>Psikologi Islam-Pendidikan (pembentukan karakter dalam sistem pendidikan Islam)</li>
+<li>Kesehatan Mental-Wacana Sosial (perubahan persepsi tentang gangguan jiwa)</li>
+<li>Psikologi-Hukum Islam (pertimbangan kesehatan mental dalam fiqh)</li>
+</ul>
+<h3 id="20-eskatologi-dan-konsep-akhirat">20. Eskatologi dan Konsep Akhirat</h3>
+<h4 id="201-entitas-utama">20.1. Entitas Utama</h4>
+<ul>
+<li>Alam Barzakh:
+<ul>
+<li>Konsep Roh setelah Kematian</li>
+<li>Siksa dan Nikmat Kubur</li>
+</ul>
+</li>
+<li>Hari Kiamat:
+<ul>
+<li>Tanda-tanda Kiamat</li>
+<li>Kebangkitan (Ba'ats)</li>
+<li>Mahsyar dan Hisab</li>
+</ul>
+</li>
+<li>Surga dan Neraka:
+<ul>
+<li>Deskripsi Surga dalam Teks</li>
+<li>Tingkatan Neraka</li>
+<li>Konsep Kekekalan di Akhirat</li>
+</ul>
+</li>
+<li>Takdir dan Qadar:
+<ul>
+<li>Konsep Nasib dan Kehendak Bebas</li>
+<li>Hubungan Amal dengan Nasib Akhirat</li>
+</ul>
+</li>
+</ul>
+<h4 id="202-atribut-penting">20.2. Atribut Penting</h4>
+<ul>
+<li>Variasi interpretasi antar mazhab</li>
+<li>Representasi dalam literatur dan seni</li>
+<li>Pengaruh terhadap etika dan perilaku sosial</li>
+<li>Adaptasi konsep eskatologi dalam konteks lokal</li>
+<li>Evolusi pemahaman seiring perkembangan ilmu pengetahuan</li>
+</ul>
+<h4 id="203-relasi-kompleks">20.3. Relasi Kompleks</h4>
+<ul>
+<li>Eskatologi-Etika Sosial (dampak keyakinan akhirat terhadap perilaku)</li>
+<li>Konsep Akhirat-Praktik Ritual (hubungan doa dan sedekah dengan nasib di akhirat)</li>
+<li>Takdir-Filsafat Islam (perdebatan tentang kehendak bebas dan determinisme)</li>
+<li>Surga Neraka-Wacana Politik (penggunaan konsep akhirat dalam retorika politik)</li>
+<li>Alam Barzakh-Praktik Ziarah (hubungan antara konsep roh dan kultus wali)</li>
+<li>Eskatologi-Psikologi Sosial (peran keyakinan akhirat dalam mengatasi kecemasan eksistensial)</li>
+<li>Kiamat-Gerakan Sosial (peran ramalan kiamat dalam mobilisasi massa)</li>
+</ul>
+<h3 id="21-sains-dan-teknologi-dalam-tradisi-islam-nusantara">21. Sains dan Teknologi dalam Tradisi Islam Nusantara</h3>
+<h4 id="211-entitas-utama">21.1. Entitas Utama</h4>
+<ul>
+<li>Astronomi dan Ilmu Falak:
+<ul>
+<li>Penentuan Arah Kiblat</li>
+<li>Kalender Hijriah dan Penentuan Awal Bulan</li>
+<li>Observatorium Tradisional</li>
+</ul>
+</li>
+<li>Matematika dan Aritmetika:
+<ul>
+<li>Sistem Perhitungan Waris (Faraidh)</li>
+<li>Geometri dalam Seni Islam</li>
+</ul>
+</li>
+<li>Kedokteran dan Farmakologi:
+<ul>
+<li>Pengobatan Herbal Islami</li>
+<li>Rumah Sakit Islam Tradisional</li>
+</ul>
+</li>
+<li>Ilmu Alam dan Lingkungan:
+<ul>
+<li>Konservasi Alam berbasis Syariah</li>
+<li>Sistem Irigasi Tradisional</li>
+</ul>
+</li>
+</ul>
+<h4 id="212-atribut-penting">21.2. Atribut Penting</h4>
+<ul>
+<li>Metodologi ilmiah dalam tradisi Islam</li>
+<li>Integrasi sains dan agama</li>
+<li>Kontribusi ulama Nusantara dalam perkembangan sains</li>
+<li>Adaptasi pengetahuan dari peradaban lain</li>
+<li>Tantangan modernisasi terhadap sains tradisional</li>
+</ul>
+<h4 id="213-relasi-kompleks">21.3. Relasi Kompleks</h4>
+<ul>
+<li>Astronomi-Ibadah (peran ilmu falak dalam penentuan waktu salat)</li>
+<li>Matematika-Hukum Islam (aplikasi aritmetika dalam pembagian waris)</li>
+<li>Kedokteran-Etika Islam (prinsip bioetika dalam pengobatan Islam)</li>
+<li>Ilmu Alam-Teologi (pemahaman ayat kauniyah dalam konteks lokal)</li>
+<li>Sains Islam-Kolonialisme (respons terhadap sains modern Barat)</li>
+</ul>
+<h3 id="22-diplomasi-dan-hubungan-internasional">22. Diplomasi dan Hubungan Internasional</h3>
+<h4 id="221-entitas-utama">22.1. Entitas Utama</h4>
+<ul>
+<li>Hubungan dengan Dunia Islam:
+<ul>
+<li>Jaringan Ulama Haramayn</li>
+<li>Pertukaran Intelektual dengan Al-Azhar</li>
+</ul>
+</li>
+<li>Interaksi dengan Kekuatan Kolonial:
+<ul>
+<li>Perjanjian dan Kapitulasi</li>
+<li>Resistensi dan Akomodasi</li>
+</ul>
+</li>
+<li>Diplomasi Antar Kesultanan:
+<ul>
+<li>Aliansi Matrimonial</li>
+<li>Perjanjian Dagang dan Politik</li>
+</ul>
+</li>
+<li>Peran dalam Organisasi Islam Internasional:
+<ul>
+<li>Keterlibatan dalam OKI</li>
+<li>Konferensi Islam Internasional</li>
+</ul>
+</li>
+</ul>
+<h4 id="222-atribut-penting">22.2. Atribut Penting</h4>
+<ul>
+<li>Strategi diplomasi Islam Nusantara</li>
+<li>Pertukaran budaya dan intelektual</li>
+<li>Negosiasi identitas dalam konteks global</li>
+<li>Peran bahasa dalam diplomasi</li>
+<li>Dampak geopolitik terhadap Islam Nusantara</li>
+</ul>
+<h4 id="223-relasi-kompleks">22.3. Relasi Kompleks</h4>
+<ul>
+<li>Diplomasi-Penyebaran Ilmu (peran diplomat dalam transmisi pengetahuan)</li>
+<li>Hubungan Internasional-Reformasi Pemikiran (pengaruh ide global terhadap pembaruan lokal)</li>
+<li>Kolonialisme-Adaptasi Institusi (transformasi lembaga Islam akibat kebijakan kolonial)</li>
+<li>Diplomasi Antar Kesultanan-Penyebaran Mazhab (peran politik dalam ekspansi aliran pemikiran)</li>
+<li>Organisasi Internasional-Wacana Islam Global (posisi Islam Nusantara dalam diskursus global)</li>
+</ul>
+<h3 id="23-ekonomi-islam-dan-institusi-keuangan">23. Ekonomi Islam dan Institusi Keuangan</h3>
+<h4 id="231-entitas-utama">23.1. Entitas Utama</h4>
+<ul>
+<li>Sistem Ekonomi Tradisional:
+<ul>
+<li>Pasar Islam Tradisional</li>
+<li>Sistem Bagi Hasil (Mudharabah)</li>
+</ul>
+</li>
+<li>Lembaga Keuangan Syariah:
+<ul>
+<li>Bank Syariah</li>
+<li>Koperasi Syariah</li>
+<li>Asuransi Takaful</li>
+</ul>
+</li>
+<li>Filantropi Islam:
+<ul>
+<li>Sistem Wakaf</li>
+<li>Pengelolaan Zakat</li>
+</ul>
+</li>
+<li>Etika Bisnis Islam:
+<ul>
+<li>Konsep Halal dan Haram dalam Transaksi</li>
+<li>Riba dan Alternatifnya</li>
+</ul>
+</li>
+</ul>
+<h4 id="232-atribut-penting">23.2. Atribut Penting</h4>
+<ul>
+<li>Evolusi praktik ekonomi Islam di Nusantara</li>
+<li>Adaptasi konsep ekonomi Islam terhadap sistem modern</li>
+<li>Tantangan dan peluang ekonomi syariah</li>
+<li>Regulasi dan standarisasi praktik ekonomi Islam</li>
+<li>Dampak sosial-ekonomi dari institusi keuangan Islam</li>
+</ul>
+<h4 id="233-relasi-kompleks">23.3. Relasi Kompleks</h4>
+<ul>
+<li>Ekonomi Islam-Hukum Fiqh (ijtihad dalam pengembangan produk keuangan syariah)</li>
+<li>Filantropi-Pembangunan Sosial (peran wakaf dalam pendidikan dan kesehatan)</li>
+<li>Etika Bisnis-Praktik Dagang (penerapan prinsip Islam dalam perdagangan)</li>
+<li>Lembaga Keuangan-Otoritas Keagamaan (peran ulama dalam pengawasan syariah)</li>
+<li>Ekonomi Islam-Kebijakan Nasional (integrasi sistem syariah dalam ekonomi negara)</li>
+</ul>
+<h3 id="24-ekspresi-artistik-dan-estetika-islam">24. Ekspresi Artistik dan Estetika Islam</h3>
+<h4 id="241-entitas-utama">24.1. Entitas Utama</h4>
+<ul>
+<li>Seni Visual:
+<ul>
+<li>Kaligrafi Islam Nusantara</li>
+<li>Ornamentasi Masjid</li>
+<li>Seni Miniatur dan Iluminasi</li>
+</ul>
+</li>
+<li>Seni Suara:
+<ul>
+<li>Tilawah dan Qira'at</li>
+<li>Nasyid dan Musik Islami</li>
+<li>Shalawat dan Zikir Musikal</li>
+</ul>
+</li>
+<li>Seni Pertunjukan:
+<ul>
+<li>Teater Islam (Wayang Sadat)</li>
+<li>Tari-tarian Bernuansa Islam</li>
+</ul>
+</li>
+<li>Sastra Islam:
+<ul>
+<li>Syair dan Nazam</li>
+<li>Roman dan Hikayat Islami</li>
+<li>Puisi Sufi</li>
+</ul>
+</li>
+</ul>
+<h4 id="242-atribut-penting">24.2. Atribut Penting</h4>
+<ul>
+<li>Teknik dan metode produksi seni</li>
+<li>Simbolisme dan makna dalam karya seni</li>
+<li>Pengaruh budaya lokal terhadap estetika Islam</li>
+<li>Evolusi gaya dan tren dalam seni Islam Nusantara</li>
+<li>Fungsi sosial dan spiritual karya seni</li>
+<li>Patronase dan pendanaan seni Islam</li>
+</ul>
+<h4 id="243-relasi-kompleks">24.3. Relasi Kompleks</h4>
+<ul>
+<li>Seni Visual-Teologi (representasi konsep keagamaan dalam seni rupa)</li>
+<li>Seni Suara-Praktik Ibadah (peran musik dalam ritual keagamaan)</li>
+<li>Seni Pertunjukan-Dakwah (penggunaan teater untuk penyebaran ajaran Islam)</li>
+<li>Sastra Islam-Transmisi Pengetahuan (peran syair dalam pendidikan agama)</li>
+<li>Estetika Islam-Identitas Kultural (peran seni dalam membentuk identitas Muslim Nusantara)</li>
+<li>Seni Islam-Ekonomi Kreatif (dampak produksi seni terhadap ekonomi lokal)</li>
+<li>Artistik-Diplomasi Budaya (peran seni dalam memperkenalkan Islam Nusantara ke dunia luar)</li>
+</ul>
+<h3 id="25-pendidikan-dan-transmisi-pengetahuan">25.  Pendidikan dan Transmisi Pengetahuan</h3>
+<h4 id="251-entitas-utama">25.1. Entitas Utama</h4>
+<ul>
+<li>Institusi Pendidikan:
+<ul>
+<li>Pesantren dan Perkembangannya</li>
+<li>Madrasah dan Sekolah Islam</li>
+<li>Perguruan Tinggi Islam</li>
+</ul>
+</li>
+<li>Metode Pengajaran:
+<ul>
+<li>Sistem Sorogan dan Bandongan</li>
+<li>Halaqah dan Majelis Ilmu</li>
+<li>Pendidikan Jarak Jauh Islam</li>
+</ul>
+</li>
+<li>Kurikulum dan Materi Ajar:
+<ul>
+<li>Kitab Kuning dan Klasifikasi</li>
+<li>Integrasi Ilmu Agama dan Umum</li>
+<li>Pengembangan Bahan Ajar Kontemporer</li>
+</ul>
+</li>
+</ul>
+<h4 id="252-atribut-penting">25.2. Atribut Penting</h4>
+<ul>
+<li>Kurikulum dan silabus pendidikan Islam</li>
+<li>Kualifikasi dan peran guru/ustadz</li>
+<li>Metode evaluasi dan penilaian</li>
+<li>Infrastruktur dan fasilitas pendidikan</li>
+<li>Sumber pendanaan lembaga pendidikan</li>
+<li>Akreditasi dan standarisasi pendidikan Islam</li>
+</ul>
+<h4 id="253-relasi-kompleks">25.3. Relasi Kompleks</h4>
+<ul>
+<li>Institusi Pendidikan-Mobilitas Sosial (peran pesantren dalam perubahan status sosial)</li>
+<li>Metode Pengajaran-Transmisi Ilmu (efektivitas berbagai metode dalam penyebaran pengetahuan)</li>
+<li>Kurikulum-Ideologi (pengaruh berbagai aliran pemikiran dalam pembentukan kurikulum)</li>
+<li>Pendidikan Islam-Modernisasi (adaptasi sistem pendidikan terhadap tuntutan zaman)</li>
+<li>Transmisi Pengetahuan-Otoritas Keagamaan (peran pendidikan dalam membangun legitimasi ulama)</li>
+<li>Pendidikan-Ekonomi (hubungan antara tingkat pendidikan dan kesejahteraan ekonomi)</li>
+<li>Lembaga Pendidikan-Politik (peran pesantren dan madrasah dalam dinamika politik lokal dan nasional)</li>
+</ul>
+<h3 id="26-gerakan-sosial-dan-aktivisme-islam">26. Gerakan Sosial dan Aktivisme Islam</h3>
+<h4 id="261-entitas-utama">26.1. Entitas Utama</h4>
+<ul>
+<li>Organisasi Massa Islam:
+<ul>
+<li>Nahdlatul Ulama, Muhammadiyah, dll.</li>
+<li>Organisasi Pemuda dan Mahasiswa Islam</li>
+</ul>
+</li>
+<li>Gerakan Reformasi:
+<ul>
+<li>Gerakan Pembaruan Pemikiran Islam</li>
+<li>Gerakan Islamisasi Ilmu</li>
+</ul>
+</li>
+<li>Aktivisme Sosial-Politik:
+<ul>
+<li>Perjuangan Kemerdekaan Berbasis Islam</li>
+<li>Gerakan Anti-Korupsi Islam</li>
+<li>Advokasi Hak Asasi Manusia Perspektif Islam</li>
+</ul>
+</li>
+</ul>
+<h4 id="262-atribut-penting">26.2. Atribut Penting</h4>
+<ul>
+<li>Ideologi dan visi gerakan</li>
+<li>Struktur organisasi dan kepemimpinan</li>
+<li>Strategi mobilisasi massa</li>
+<li>Sumber daya dan pendanaan</li>
+<li>Jaringan dan aliansi</li>
+<li>Respons terhadap isu-isu kontemporer</li>
+<li>Dinamika internal gerakan</li>
+</ul>
+<h4 id="263-relasi-kompleks">26.3. Relasi Kompleks</h4>
+<ul>
+<li>Organisasi Massa-Politik Nasional (pengaruh ormas Islam dalam kebijakan negara)</li>
+<li>Gerakan Reformasi-Pembaruan Pemikiran (dampak aktivisme terhadap evolusi teologi)</li>
+<li>Aktivisme Sosial-Transformasi Masyarakat (peran gerakan Islam dalam perubahan sosial)</li>
+<li>Gerakan Islam-Media (representasi dan framing gerakan Islam di media massa)</li>
+<li>Aktivisme-Hukum Islam (peran gerakan sosial dalam reformasi hukum Islam)</li>
+<li>Organisasi Islam-Filantropi (mobilisasi sumber daya untuk program sosial)</li>
+<li>Gerakan Pemuda-Inovasi Sosial (peran aktivis muda dalam menghadirkan solusi kreatif untuk masalah sosial)</li>
+</ul>
+<h3 id="27-jaringan-kerjasama-dan-kolaborasi-islam-nusantara">27. Jaringan Kerjasama dan Kolaborasi Islam Nusantara</h3>
+<h4 id="271-entitas-utama">27.1. Entitas Utama</h4>
+<ul>
+<li>
+<p>Kerjasama Antar Lembaga:</p>
+<ul>
+<li>Sinergi Antar Pesantren</li>
+<li>Kolaborasi Perguruan Tinggi Islam</li>
+<li>Aliansi Organisasi Massa Islam</li>
+<li>Forum Lintas Iman</li>
+</ul>
+</li>
+<li>
+<p>Kerjasama Ekonomi:</p>
+<ul>
+<li>Jaringan Bisnis Syariah</li>
+<li>Koperasi Syariah Antar Komunitas</li>
+<li>Konsorsium Halal Industry</li>
+</ul>
+</li>
+<li>
+<p>Kolaborasi Intelektual:</p>
+<ul>
+<li>Proyek Riset Bersama</li>
+<li>Penerbitan Kolektif</li>
+<li>Seminar dan Konferensi Bersama</li>
+<li>Platform Sharing Pengetahuan Online</li>
+</ul>
+</li>
+<li>
+<p>Kerjasama Sosial:</p>
+<ul>
+<li>Program Pemberdayaan Masyarakat Bersama</li>
+<li>Inisiatif Tanggap Bencana Islam</li>
+<li>Gerakan Filantropi Kolektif</li>
+</ul>
+</li>
+<li>
+<p>Jaringan Internasional:</p>
+<ul>
+<li>Kerjasama dengan Lembaga Islam Global</li>
+<li>Program Pertukaran Ulama dan Santri</li>
+<li>Proyek Dakwah Transnasional</li>
+</ul>
+</li>
+<li>
+<p>Kolaborasi Seni dan Budaya:</p>
+<ul>
+<li>Festival Seni Islam Nusantara</li>
+<li>Pameran Bersama Artefak Islam</li>
+<li>Produksi Film dan Media Islam Kolaboratif</li>
+</ul>
+</li>
+</ul>
+<h4 id="272-atribut-penting">27.2. Atribut Penting</h4>
+<ul>
+<li>Bentuk dan struktur kerjasama</li>
+<li>Durasi dan keberlanjutan kolaborasi</li>
+<li>Skala dan jangkauan proyek bersama</li>
+<li>Mekanisme pengambilan keputusan dalam kerjasama</li>
+<li>Tantangan dan solusi dalam kolaborasi</li>
+<li>Dampak dan hasil kerjasama</li>
+</ul>
+<h4 id="273-relasi-kompleks">27.3. Relasi Kompleks</h4>
+<ul>
+<li>Kerjasama Antar Lembaga-Penguatan Institusi (bagaimana kolaborasi memperkuat setiap lembaga)</li>
+<li>Kolaborasi Intelektual-Inovasi Pemikiran (peran kerjasama dalam melahirkan ide-ide baru)</li>
+<li>Kerjasama Ekonomi-Pemberdayaan Komunitas (dampak jaringan bisnis terhadap kesejahteraan umat)</li>
+<li>Jaringan Internasional-Diplomasi Budaya (peran kerjasama dalam memperkenalkan Islam Nusantara ke dunia)</li>
+<li>Kolaborasi Seni-Identitas Kultural (bagaimana kerjasama seni memperkuat identitas Islam Nusantara)</li>
+<li>Kerjasama Sosial-Kohesi Masyarakat (dampak program bersama terhadap persatuan umat)</li>
+<li>Jaringan Kerjasama-Resiliensi Komunitas (peran kolaborasi dalam menghadapi tantangan bersama)</li>
+</ul>
+
+</body>
+</html>
