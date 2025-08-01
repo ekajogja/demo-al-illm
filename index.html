@@ -374,6 +374,33 @@
             text-decoration: underline;
         }
 
+        .modal-content .metadata-box {
+            background-color: var(--md-sidebar-color);
+            border-radius: 8px;
+            padding: 16px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        .metadata-row {
+            margin-bottom: 8px;
+        }
+        .metadata-row:last-child {
+            margin-bottom: 0;
+        }
+        .metadata-row strong {
+            color: var(--md-text-primary);
+            margin-right: 8px;
+        }
+        .metadata-row a {
+            color: var(--md-primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .metadata-row a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -455,21 +482,21 @@
                                     <div class="source-section">
                                         <h6><span class="material-icons-outlined">hub</span> Entitas Knowledge Graph</h6>
                                         <div class="chip-container">
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Hari Santri' dalam Knowledge Graph">Hari Santri</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Resolusi Jihad' dalam Knowledge Graph">Resolusi Jihad</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'KH Hasyim Asy'ari' dalam Knowledge Graph">KH Hasyim Asy'ari</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Nahdlatul Ulama' dalam Knowledge Graph">Nahdlatul Ulama</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Pertempuran Surabaya' dalam Knowledge Graph">Pertempuran Surabaya</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'NICA' dalam Knowledge Graph">NICA</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Pasukan Sekutu' dalam Knowledge Graph">Pasukan Sekutu</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas '10 November 1945' dalam Knowledge Graph">10 November 1945</a>
+                                            <a href="#" class="source-chip" data-chip-id="hari-santri" data-tooltip="Lihat entitas 'Hari Santri' dalam Knowledge Graph">Hari Santri</a>
+                                            <a href="#" class="source-chip" data-chip-id="resolusi-jihad" data-tooltip="Lihat entitas 'Resolusi Jihad' dalam Knowledge Graph">Resolusi Jihad</a>
+                                            <a href="#" class="source-chip" data-chip-id="kh-hasyim-asyari" data-tooltip="Lihat entitas 'KH Hasyim Asy'ari' dalam Knowledge Graph">KH Hasyim Asy'ari</a>
+                                            <a href="#" class="source-chip" data-chip-id="nahdlatul-ulama" data-tooltip="Lihat entitas 'Nahdlatul Ulama' dalam Knowledge Graph">Nahdlatul Ulama</a>
+                                            <a href="#" class="source-chip" data-chip-id="pertempuran-surabaya" data-tooltip="Lihat entitas 'Pertempuran Surabaya' dalam Knowledge Graph">Pertempuran Surabaya</a>
+                                            <a href="#" class="source-chip" data-chip-id="nica" data-tooltip="Lihat entitas 'NICA' dalam Knowledge Graph">NICA</a>
+                                            <a href="#" class="source-chip" data-chip-id="pasukan-sekutu" data-tooltip="Lihat entitas 'Pasukan Sekutu' dalam Knowledge Graph">Pasukan Sekutu</a>
+                                            <a href="#" class="source-chip" data-chip-id="10-november-1945" data-tooltip="Lihat entitas '10 November 1945' dalam Knowledge Graph">10 November 1945</a>
                                         </div>
                                     </div>
                                     <div class="source-section">
                                         <h6><span class="material-icons-outlined">article</span> Dokumen Teranotasi</h6>
                                         <div class="chip-container">
-                                            <a href="#" class="source-chip" data-tooltip="Buka dokumen Keppres No. 22 Tahun 2015">Keppres No. 22 Tahun 2015</a>
-                                            <a href="#" class="source-chip" data-tooltip="Buka dokumen Naskah Asli Resolusi Jihad 1945">Naskah Asli Resolusi Jihad 1945</a>
+                                            <a href="#" class="source-chip" data-chip-id="keppres-no-22-tahun-2015" data-tooltip="Buka dokumen Keppres No. 22 Tahun 2015">Keppres No. 22 Tahun 2015</a>
+                                            <a href="#" class="source-chip" data-chip-id="naskah-asli-resolusi-jihad-1945" data-tooltip="Buka dokumen Naskah Asli Resolusi Jihad 1945">Naskah Asli Resolusi Jihad 1945</a>
                                         </div>
                                     </div>
                                     <div class="research-suggestions">
@@ -516,21 +543,21 @@
                                     <div class="source-section">
                                         <h6><span class="material-icons-outlined">hub</span> Entitas Knowledge Graph</h6>
                                         <div class="chip-container">
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Resolusi Jihad' dalam Knowledge Graph">Resolusi Jihad</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'NICA' dalam Knowledge Graph">NICA</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'KH Wahab Chasbullah' dalam Knowledge Graph">KH Wahab Chasbullah</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Fardhu 'Ain' dalam Knowledge Graph">Fardhu 'Ain</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'KH Hasyim Asy'ari' dalam Knowledge Graph">KH Hasyim Asy'ari</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Proklamasi Kemerdekaan' dalam Knowledge Graph">Proklamasi Kemerdekaan</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Pasukan Sekutu' dalam Knowledge Graph">Pasukan Sekutu</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Surabaya' dalam Knowledge Graph">Surabaya</a>
+                                            <a href="#" class="source-chip" data-chip-id="resolusi-jihad" data-tooltip="Lihat entitas 'Resolusi Jihad' dalam Knowledge Graph">Resolusi Jihad</a>
+                                            <a href="#" class="source-chip" data-chip-id="nica" data-tooltip="Lihat entitas 'NICA' dalam Knowledge Graph">NICA</a>
+                                            <a href="#" class="source-chip" data-chip-id="kh-wahab-chasbullah" data-tooltip="Lihat entitas 'KH Wahab Chasbullah' dalam Knowledge Graph">KH Wahab Chasbullah</a>
+                                            <a href="#" class="source-chip" data-chip-id="fardhu-ain" data-tooltip="Lihat entitas 'Fardhu 'Ain' dalam Knowledge Graph">Fardhu 'Ain</a>
+                                            <a href="#" class="source-chip" data-chip-id="kh-hasyim-asyari" data-tooltip="Lihat entitas 'KH Hasyim Asy'ari' dalam Knowledge Graph">KH Hasyim Asy'ari</a>
+                                            <a href="#" class="source-chip" data-chip-id="proklamasi-kemerdekaan" data-tooltip="Lihat entitas 'Proklamasi Kemerdekaan' dalam Knowledge Graph">Proklamasi Kemerdekaan</a>
+                                            <a href="#" class="source-chip" data-chip-id="pasukan-sekutu" data-tooltip="Lihat entitas 'Pasukan Sekutu' dalam Knowledge Graph">Pasukan Sekutu</a>
+                                            <a href="#" class="source-chip" data-chip-id="surabaya" data-tooltip="Lihat entitas 'Surabaya' dalam Knowledge Graph">Surabaya</a>
                                         </div>
                                     </div>
                                     <div class="source-section">
                                         <h6><span class="material-icons-outlined">article</span> Dokumen Teranotasi</h6>
                                         <div class="chip-container">
-                                            <a href="#" class="source-chip" data-tooltip="Buka dokumen Buku 'Benteng Ulama' oleh Choirul Anam">Buku 'Benteng Ulama' (Choirul Anam)</a>
-                                            <a href="#" class="source-chip" data-tooltip="Buka dokumen Majalah 'Berita Nahdlatoel Oelama', Oktober 1945">Majalah 'Berita Nahdlatoel Oelama', 1945</a>
+                                            <a href="#" class="source-chip" data-chip-id="buku-benteng-ulama" data-tooltip="Buka dokumen Buku 'Benteng Ulama' oleh Choirul Anam">Buku 'Benteng Ulama' (Choirul Anam)</a>
+                                            <a href="#" class="source-chip" data-chip-id="majalah-berita-nahdlatoel-oelama-1945" data-tooltip="Buka dokumen Majalah 'Berita Nahdlatoel Oelama', Oktober 1945">Majalah 'Berita Nahdlatoel Oelama', 1945</a>
                                         </div>
                                     </div>
                                     <div class="research-suggestions">
@@ -576,20 +603,20 @@
                                     <div class="source-section">
                                         <h6><span class="material-icons-outlined">hub</span> Entitas Knowledge Graph</h6>
                                         <div class="chip-container">
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Jihad Difa'i' dalam Knowledge Graph">Jihad Difa'i</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Fardhu 'Ain' dalam Knowledge Graph">Fardhu 'Ain</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Maqashid Syariah' dalam Knowledge Graph">Maqashid Syariah</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Fatwa' dalam Knowledge Graph">Fatwa</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Jihad Ibtida'i' dalam Knowledge Graph">Jihad Ibtida'i</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Fardhu Kifayah' dalam Knowledge Graph">Fardhu Kifayah</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Fiqh' dalam Knowledge Graph">Fiqh</a>
+                                            <a href="#" class="source-chip" data-chip-id="jihad-difai" data-tooltip="Lihat entitas 'Jihad Difa'i' dalam Knowledge Graph">Jihad Difa'i</a>
+                                            <a href="#" class="source-chip" data-chip-id="fardhu-ain" data-tooltip="Lihat entitas 'Fardhu 'Ain' dalam Knowledge Graph">Fardhu 'Ain</a>
+                                            <a href="#" class="source-chip" data-chip-id="maqashid-syariah" data-tooltip="Lihat entitas 'Maqashid Syariah' dalam Knowledge Graph">Maqashid Syariah</a>
+                                            <a href="#" class="source-chip" data-chip-id="fatwa" data-tooltip="Lihat entitas 'Fatwa' dalam Knowledge Graph">Fatwa</a>
+                                            <a href="#" class="source-chip" data-chip-id="jihad-ibtidai" data-tooltip="Lihat entitas 'Jihad Ibtida'i' dalam Knowledge Graph">Jihad Ibtida'i</a>
+                                            <a href="#" class="source-chip" data-chip-id="fardhu-kifayah" data-tooltip="Lihat entitas 'Fardhu Kifayah' dalam Knowledge Graph">Fardhu Kifayah</a>
+                                            <a href="#" class="source-chip" data-chip-id="fiqh" data-tooltip="Lihat entitas 'Fiqh' dalam Knowledge Graph">Fiqh</a>
                                         </div>
                                     </div>
                                     <div class="source-section">
                                         <h6><span class="material-icons-outlined">article</span> Dokumen Teranotasi</h6>
                                         <div class="chip-container">
-                                            <a href="#" class="source-chip" data-tooltip="Buka dokumen Kitab Fath al-Mu'in (Bab Jihad)">Kitab Fath al-Mu'in (Bab Jihad)</a>
-                                            <a href="#" class="source-chip" data-tooltip="Buka dokumen Naskah Asli Resolusi Jihad 1945">Naskah Asli Resolusi Jihad 1945</a>
+                                            <a href="#" class="source-chip" data-chip-id="kitab-fath-al-muin" data-tooltip="Buka dokumen Kitab Fath al-Mu'in (Bab Jihad)">Kitab Fath al-Mu'in (Bab Jihad)</a>
+                                            <a href="#" class="source-chip" data-chip-id="naskah-asli-resolusi-jihad-1945" data-tooltip="Buka dokumen Naskah Asli Resolusi Jihad 1945">Naskah Asli Resolusi Jihad 1945</a>
                                         </div>
                                     </div>
                                     <div class="research-suggestions">
@@ -636,21 +663,21 @@
                                     <div class="source-section">
                                         <h6><span class="material-icons-outlined">hub</span> Entitas Knowledge Graph</h6>
                                         <div class="chip-container">
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'KH Hasyim Asy'ari' dalam Knowledge Graph">KH Hasyim Asy'ari</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Pancasila' dalam Knowledge Graph">Pancasila</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Negara Kebangsaan' dalam Knowledge Graph">Negara Kebangsaan</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Ukhuwah Wathaniyah' dalam Knowledge Graph">Ukhuwah Wathaniyah</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Maqashid Syariah' dalam Knowledge Graph">Maqashid Syariah</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Dar al-Mītsāq' dalam Knowledge Graph">Dar al-Mītsāq</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'Nahdlatul Ulama' dalam Knowledge Graph">Nahdlatul Ulama</a>
-                                            <a href="#" class="source-chip" data-tooltip="Lihat entitas 'NKRI' dalam Knowledge Graph">NKRI</a>
+                                            <a href="#" class="source-chip" data-chip-id="kh-hasyim-asyari" data-tooltip="Lihat entitas 'KH Hasyim Asy'ari' dalam Knowledge Graph">KH Hasyim Asy'ari</a>
+                                            <a href="#" class="source-chip" data-chip-id="pancasila" data-tooltip="Lihat entitas 'Pancasila' dalam Knowledge Graph">Pancasila</a>
+                                            <a href="#" class="source-chip" data-chip-id="negara-kebangsaan" data-tooltip="Lihat entitas 'Negara Kebangsaan' dalam Knowledge Graph">Negara Kebangsaan</a>
+                                            <a href="#" class="source-chip" data-chip-id="ukhuwah-wathaniyah" data-tooltip="Lihat entitas 'Ukhuwah Wathaniyah' dalam Knowledge Graph">Ukhuwah Wathaniyah</a>
+                                            <a href="#" class="source-chip" data-chip-id="maqashid-syariah" data-tooltip="Lihat entitas 'Maqashid Syariah' dalam Knowledge Graph">Maqashid Syariah</a>
+                                            <a href="#" class="source-chip" data-chip-id="dar-al-mitsaq" data-tooltip="Lihat entitas 'Dar al-Mītsāq' dalam Knowledge Graph">Dar al-Mītsāq</a>
+                                            <a href="#" class="source-chip" data-chip-id="nahdlatul-ulama" data-tooltip="Lihat entitas 'Nahdlatul Ulama' dalam Knowledge Graph">Nahdlatul Ulama</a>
+                                            <a href="#" class="source-chip" data-chip-id="nkri" data-tooltip="Lihat entitas 'NKRI' dalam Knowledge Graph">NKRI</a>
                                         </div>
                                     </div>
                                     <div class="source-section">
                                         <h6><span class="material-icons-outlined">article</span> Dokumen Teranotasi</h6>
                                         <div class="chip-container">
-                                            <a href="#" class="source-chip" data-tooltip="Buka dokumen Qanun Asasi Nahdlatul Ulama">Qanun Asasi Nahdlatul Ulama</a>
-                                            <a href="#" class="source-chip" data-tooltip="Buka dokumen Buku 'Negara Paripurna' oleh Yudi Latif">Buku 'Negara Paripurna' (Yudi Latif)</a>
+                                            <a href="#" class="source-chip" data-chip-id="qanun-asasi-nahdlatul-ulama" data-tooltip="Buka dokumen Qanun Asasi Nahdlatul Ulama">Qanun Asasi Nahdlatul Ulama</a>
+                                            <a href="#" class="source-chip" data-chip-id="buku-negara-paripurna" data-tooltip="Buka dokumen Buku 'Negara Paripurna' oleh Yudi Latif">Buku 'Negara Paripurna' (Yudi Latif)</a>
                                         </div>
                                     </div>
                                     <div class="research-suggestions">
@@ -714,6 +741,324 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // --- Embedded Essay Content ---
+            const sourceChipContent = {
+                "hari-santri": {
+                    nama_entitas: "Hari Santri",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Peristiwa Sejarah Dunia",
+                    deskripsi: "Hari peringatan nasional di Indonesia yang ditetapkan pada tanggal 22 Oktober setiap tahunnya, untuk mengenang seruan Resolusi Jihad yang dicetuskan oleh Hadratussyaikh KH Hasyim Asy'ari pada 22 Oktober 1945.",
+                    tokoh_kunci: ["kh-hasyim-asyari"],
+                    konteks_historis: ["resolusi-jihad", "pertempuran-surabaya"],
+                    dasar_hukum: ["keppres-no-22-tahun-2015"],
+                    kontributor: ["tim-sejarah-uin-jakarta"],
+                    validator: ["iip-d-yahya"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: ["keppres-no-22-tahun-2015"]
+                },
+                "resolusi-jihad": {
+                    nama_entitas: "Resolusi Jihad",
+                    kategori_entitas: "Karya dan Kontribusi / Fatwa dan Keputusan Hukum",
+                    deskripsi: "Sebuah fatwa yang dikeluarkan oleh para ulama Nahdlatul Ulama pada 22 Oktober 1945 yang mewajibkan setiap Muslim untuk berperang melawan penjajah. Fatwa ini menjadi pemicu utama Pertempuran Surabaya.",
+                    pengarang_karya: ["kh-hasyim-asyari", "kh-wahab-chasbullah"],
+                    karya_konteks_historis: ["hari-santri", "pertempuran-surabaya"],
+                    intertekstualitas: ["naskah-asli-resolusi-jihad-1945"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: ["buku-benteng-ulama"]
+                },
+                "kh-hasyim-asyari": {
+                    nama_entitas: "KH Hasyim Asy'ari",
+                    kategori_entitas: "Ulama dan Tokoh / Ulama Nusantara",
+                    deskripsi: "Pendiri Nahdlatul Ulama dan salah satu pahlawan nasional Indonesia. Beliau adalah pencetus Resolusi Jihad dan memiliki pandangan moderat tentang hubungan Islam dan negara, yang menjadi landasan bagi penerimaan Pancasila oleh NU.",
+                    karya_yang_dihasilkan: ["qanun-asasi-nahdlatul-ulama"],
+                    peran_dalam_peristiwa: ["resolusi-jihad"],
+                    afiliasi_organisasi: ["nahdlatul-ulama"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: ["buku-negara-paripurna"]
+                },
+                "nahdlatul-ulama": {
+                    nama_entitas: "Nahdlatul Ulama (NU)",
+                    kategori_entitas: "Gerakan Sosial dan Aktivisme Islam / Organisasi Massa Islam",
+                    deskripsi: "Organisasi Islam terbesar di Indonesia, didirikan oleh KH Hasyim Asy'ari. NU memainkan peran sentral dalam perjuangan kemerdekaan melalui Resolusi Jihad dan dikenal dengan pandangannya yang moderat dan penerimaannya terhadap Pancasila.",
+                    tokoh_kunci: ["kh-hasyim-asyari", "kh-wahab-chasbullah"],
+                    dokumen_pendiri: ["qanun-asasi-nahdlatul-ulama"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "pertempuran-surabaya": {
+                    nama_entitas: "Pertempuran Surabaya",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Peristiwa Sejarah Dunia",
+                    deskripsi: "Pertempuran besar antara pejuang Indonesia melawan pasukan Sekutu yang terjadi setelah proklamasi kemerdekaan. Pertempuran ini dipicu oleh seruan Resolusi Jihad dan diperingati setiap tahun sebagai Hari Pahlawan.",
+                    tokoh_kunci: ["kh-hasyim-asyari"],
+                    penyebab_peristiwa: ["resolusi-jihad"],
+                    peristiwa_terkait: ["10-november-1945"],
+                    kontributor: ["tim-sejarah-uin-jakarta"],
+                    validator: ["iip-d-yahya"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "nica": {
+                    nama_entitas: "NICA (Netherlands Indies Civil Administration)",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Kekuatan Kolonial",
+                    deskripsi: "Administrasi sipil Hindia Belanda yang dibentuk untuk mengembalikan kekuasaan kolonial Belanda di Indonesia setelah Perang Dunia II. Kedatangan NICA yang membonceng Sekutu menjadi ancaman langsung bagi kemerdekaan Indonesia.",
+                    konflik_dan_persaingan: ["resolusi-jihad", "pertempuran-surabaya"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "pasukan-sekutu": {
+                    nama_entitas: "Pasukan Sekutu",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Kekuatan Kolonial",
+                    deskripsi: "Pasukan gabungan pemenang Perang Dunia II, terutama dari Inggris, yang bertugas melucuti tentara Jepang di Indonesia. Namun, kedatangan mereka diboncengi oleh NICA yang memicu perlawanan dari rakyat Indonesia.",
+                    konflik_dan_persaingan: ["resolusi-jihad", "pertempuran-surabaya"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "10-november-1945": {
+                    nama_entitas: "10 November 1945 (Hari Pahlawan)",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Peristiwa Sejarah Dunia",
+                    deskripsi: "Puncak dari Pertempuran Surabaya, yang kini diperingati sebagai Hari Pahlawan di Indonesia untuk mengenang jasa para pejuang yang gugur.",
+                    konteks_historis: ["pertempuran-surabaya"],
+                    kontributor: ["tim-sejarah-uin-jakarta"],
+                    validator: ["iip-d-yahya"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "keppres-no-22-tahun-2015": {
+                    nama_entitas: "Keppres No. 22 Tahun 2015",
+                    kategori_entitas: "Karya dan Kontribusi / Tata Kota dan Tata Negara",
+                    deskripsi: "Keputusan Presiden Republik Indonesia yang secara resmi menetapkan tanggal 22 Oktober sebagai Hari Santri Nasional.",
+                    karya_konteks_historis: ["hari-santri"],
+                    kontributor: ["tim-sejarah-uin-jakarta"],
+                    validator: ["iip-d-yahya"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "naskah-asli-resolusi-jihad-1945": {
+                    nama_entitas: "Naskah Asli Resolusi Jihad 1945",
+                    kategori_entitas: "Karya dan Kontribusi / Manuskrip",
+                    deskripsi: "Dokumen historis yang berisi teks fatwa Resolusi Jihad yang dirumuskan oleh para ulama NU.",
+                    intertekstualitas: ["resolusi-jihad"],
+                    kontributor: ["tim-sejarah-uin-jakarta"],
+                    validator: ["iip-d-yahya"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "kh-wahab-chasbullah": {
+                    nama_entitas: "KH Wahab Chasbullah",
+                    kategori_entitas: "Ulama dan Tokoh / Ulama Nusantara",
+                    deskripsi: "Salah satu pendiri Nahdlatul Ulama bersama KH Hasyim Asy'ari. Beliau adalah seorang organisatoris ulung dan diplomat yang berperan penting dalam perumusan Resolusi Jihad.",
+                    afiliasi_organisasi: ["nahdlatul-ulama"],
+                    peran_dalam_peristiwa: ["resolusi-jihad"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "fardhu-ain": {
+                    nama_entitas: "Fardhu 'Ain",
+                    kategori_entitas: "Aliran Pemikiran dan Mazhab / Mazhab Fiqh",
+                    deskripsi: "Sebuah status hukum dalam fiqh Islam yang berarti kewajiban individual. Setiap Muslim wajib melaksanakannya tanpa bisa diwakilkan, seperti shalat lima waktu. Dalam konteks Resolusi Jihad, membela negara ditetapkan berhukum Fardhu 'Ain.",
+                    dialektika_pemikiran: ["fardhu-kifayah"],
+                    mazhab_praktik_sosial: ["resolusi-jihad"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: ["kitab-fath-al-muin"]
+                },
+                "proklamasi-kemerdekaan": {
+                    nama_entitas: "Proklamasi Kemerdekaan Indonesia",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Peristiwa Sejarah Dunia",
+                    deskripsi: "Peristiwa deklarasi kemerdekaan Indonesia pada 17 Agustus 1945, yang menjadi titik awal berdirinya Negara Kesatuan Republik Indonesia.",
+                    peristiwa_dampak: ["resolusi-jihad"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "surabaya": {
+                    nama_entitas: "Surabaya",
+                    kategori_entitas: "Ekologi dan Geografi / Pola Permukiman",
+                    deskripsi: "Kota di Jawa Timur yang menjadi pusat Pertempuran 10 November 1945. Kota ini menjadi saksi dahsyatnya perlawanan rakyat yang dimotivasi oleh Resolusi Jihad.",
+                    lokasi_peristiwa: ["pertempuran-surabaya"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "buku-benteng-ulama": {
+                    nama_entitas: "Buku 'Benteng Ulama' (Choirul Anam)",
+                    kategori_entitas: "Karya dan Kontribusi / Karya Tulis",
+                    deskripsi: "Sebuah buku referensi sejarah yang mengulas secara mendalam peran ulama dan santri dalam perjuangan kemerdekaan, termasuk detail mengenai Resolusi Jihad.",
+                    topik_utama: ["resolusi-jihad"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "majalah-berita-nahdlatoel-oelama-1945": {
+                    nama_entitas: "Majalah 'Berita Nahdlatoel Oelama', 1945",
+                    kategori_entitas: "Media dan Komunikasi / Surat Kabar dan Majalah Islam",
+                    deskripsi: "Media cetak milik Nahdlatul Ulama yang menjadi salah satu corong utama untuk menyebarkan informasi dan fatwa, termasuk Resolusi Jihad, pada masanya.",
+                    media_penyebaran_ide: ["resolusi-jihad"],
+                    kontributor: ["tim-sejarah-uin-suka"],
+                    validator: ["ayung-notonegoro"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "jihad-difai": {
+                    nama_entitas: "Jihad Difa'i (Jihad Defensif)",
+                    kategori_entitas: "Aliran Pemikiran dan Mazhab / Mazhab Fiqh",
+                    deskripsi: "Konsep jihad dalam fiqh yang bersifat defensif, yaitu berjuang untuk mempertahankan diri, keluarga, harta, dan negara dari serangan musuh. Ini adalah jenis jihad yang berlaku dalam konteks Resolusi Jihad.",
+                    dialektika_pemikiran: ["jihad-ibtidai"],
+                    mazhab_praktik_sosial: ["resolusi-jihad"],
+                    kontributor: ["model-ai"],
+                    validator: [],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: ["kitab-fath-al-muin"]
+                },
+                "maqashid-syariah": {
+                    nama_entitas: "Maqashid Syariah",
+                    kategori_entitas: "Aliran Pemikiran dan Mazhab / Metodologi Tafsir dan Hadits",
+                    deskripsi: "Tujuan-tujuan fundamental dari syariat Islam yang mencakup perlindungan terhadap lima hal pokok: agama (ad-din), jiwa (an-nafs), akal (al-aql), keturunan (an-nasl), dan harta (al-mal). Konsep ini menjadi dasar justifikasi penerimaan Pancasila.",
+                    metodologi_tafsir_konteks_sosio_politik: ["pancasila"],
+                    kontributor: ["model-ai"],
+                    validator: [],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "fatwa": {
+                    nama_entitas: "Fatwa",
+                    kategori_entitas: "Karya dan Kontribusi / Fatwa dan Keputusan Hukum",
+                    deskripsi: "Sebuah opini atau keputusan hukum yang dikeluarkan oleh seorang ulama (mufti) atau lembaga keagamaan mengenai suatu masalah berdasarkan interpretasi terhadap Al-Qur'an, Hadits, dan sumber hukum Islam lainnya.",
+                    contoh_karya: ["resolusi-jihad"],
+                    kontributor: ["model-ai"],
+                    validator: [],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "jihad-ibtidai": {
+                    nama_entitas: "Jihad Ibtida'i (Jihad Ofensif)",
+                    kategori_entitas: "Aliran Pemikiran dan Mazhab / Mazhab Fiqh",
+                    deskripsi: "Konsep jihad dalam fiqh yang bersifat ofensif atau memulai pertempuran, biasanya untuk tujuan penyebaran agama atau perluasan wilayah. Konsep ini memiliki syarat dan ketentuan yang sangat ketat dan tidak berlaku dalam konteks Resolusi Jihad.",
+                    dialektika_pemikiran: ["jihad-difai"],
+                    kontributor: ["model-ai"],
+                    validator: [],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "fardhu-kifayah": {
+                    nama_entitas: "Fardhu Kifayah",
+                    kategori_entitas: "Aliran Pemikiran dan Mazhab / Mazhab Fiqh",
+                    deskripsi: "Sebuah status hukum dalam fiqh Islam yang berarti kewajiban kolektif. Jika sebagian orang dalam suatu komunitas telah melaksanakannya, maka gugurlah kewajiban bagi yang lain, contohnya adalah shalat jenazah.",
+                    dialektika_pemikiran: ["fardhu-ain"],
+                    kontributor: ["model-ai"],
+                    validator: [],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "fiqh": {
+                    nama_entitas: "Fiqh",
+                    kategori_entitas: "Aliran Pemikiran dan Mazhab / Mazhab Fiqh",
+                    deskripsi: "Yurisprudensi Islam. Fiqh adalah ilmu yang membahas hukum-hukum syariat Islam yang bersifat praktis (amaliyah) yang digali dari dalil-dalilnya yang terperinci.",
+                    contoh_hukum: ["fardhu-ain", "fardhu-kifayah", "jihad-difai"],
+                    kontributor: ["model-ai"],
+                    validator: [],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "kitab-fath-al-muin": {
+                    nama_entitas: "Kitab Fath al-Mu'in",
+                    kategori_entitas: "Karya dan Kontribusi / Kitab",
+                    deskripsi: "Sebuah kitab fiqh mazhab Syafi'i yang sangat populer di kalangan pesantren di Indonesia. Kitab ini berisi penjelasan mengenai berbagai hukum Islam, termasuk bab tentang jihad.",
+                    karya_aliran_pemikiran: ["fiqh", "jihad-difai"],
+                    kontributor: ["model-ai"],
+                    validator: [],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "pancasila": {
+                    nama_entitas: "Pancasila",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Tata Kota dan Tata Negara",
+                    deskripsi: "Dasar negara dan ideologi resmi Republik Indonesia. Bagi Nahdlatul Ulama, Pancasila dianggap selaras dengan tujuan syariat (Maqashid Syariah) dan menjadi landasan bagi konsep persaudaraan kebangsaan (Ukhuwah Wathaniyah).",
+                    geopolitik_aliran_pemikiran: ["maqashid-syariah", "ukhuwah-wathaniyah"],
+                    tokoh_kunci: ["kh-hasyim-asyari"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: ["buku-negara-paripurna"]
+                },
+                "negara-kebangsaan": {
+                    nama_entitas: "Negara Kebangsaan (Nation-State)",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Tata Kota dan Tata Negara",
+                    deskripsi: "Konsep negara modern yang didasarkan pada kesamaan bangsa, wilayah, dan pemerintahan. KH Hasyim Asy'ari berpandangan bahwa Islam tidak menentang konsep negara-bangsa selama ia dapat menjamin kemaslahatan umat.",
+                    dialektika_pemikiran: ["pancasila", "dar-al-mitsaq"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "ukhuwah-wathaniyah": {
+                    nama_entitas: "Ukhuwah Wathaniyah",
+                    kategori_entitas: "Konteks Sosio-Kultural / Norma dan Nilai",
+                    deskripsi: "Konsep persaudaraan kebangsaan. Ini adalah pandangan yang meyakini bahwa seluruh warga negara Indonesia, terlepas dari suku dan agamanya, adalah saudara sebangsa dan setanah air.",
+                    norma_praktik_keagamaan: ["pancasila"],
+                    tokoh_kunci: ["kh-hasyim-asyari"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "dar-al-mitsaq": {
+                    nama_entitas: "Dar al-Mītsāq (Negara Kesepakatan)",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Tata Kota dan Tata Negara",
+                    deskripsi: "Konsep yang memandang Indonesia sebagai negara kesepakatan bersama seluruh elemen bangsa. Oleh karena itu, negara Pancasila dianggap sah dan final bagi umat Islam di Indonesia.",
+                    dialektika_pemikiran: ["negara-kebangsaan", "pancasila"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "nkri": {
+                    nama_entitas: "NKRI (Negara Kesatuan Republik Indonesia)",
+                    kategori_entitas: "Geopolitik dan Sejarah Dunia / Tata Kota dan Tata Negara",
+                    deskripsi: "Bentuk final negara Indonesia yang berdasarkan Pancasila dan UUD 1945. Bagi NU, menjaga keutuhan NKRI adalah sebuah kewajiban.",
+                    konteks_historis: ["pancasila", "dar-al-mitsaq"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "qanun-asasi-nahdlatul-ulama": {
+                    nama_entitas: "Qanun Asasi Nahdlatul Ulama",
+                    kategori_entitas: "Karya dan Kontribusi / Karya Tulis",
+                    deskripsi: "Anggaran dasar organisasi Nahdlatul Ulama yang dirumuskan oleh KH Hasyim Asy'ari. Dokumen ini menjadi landasan ideologis dan organisasional bagi NU.",
+                    pengarang_karya: ["kh-hasyim-asyari"],
+                    karya_institusi: ["nahdlatul-ulama"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                },
+                "buku-negara-paripurna": {
+                    nama_entitas: "Buku 'Negara Paripurna' (Yudi Latif)",
+                    kategori_entitas: "Karya dan Kontribusi / Karya Tulis",
+                    deskripsi: "Sebuah buku karya Yudi Latif yang mengupas secara mendalam historisitas, rasionalitas, dan aktualitas Pancasila sebagai dasar negara Indonesia.",
+                    topik_utama: ["pancasila"],
+                    kontributor: ["ltn-nu"],
+                    validator: ["diaz-nawaksara"],
+                    diperbarui: "1 Agustus 2025",
+                    referensi: []
+                }
+            };
+
             const contributorProfiles = {
                 "tim-sejarah-uin-jakarta": { name: "Tim Sejarah Peradaban Islam UIN Syarif Hidayatullah", profile: "Tim riset dari UIN Syarif Hidayatullah Jakarta yang berfokus pada studi dan publikasi mengenai sejarah peradaban Islam, baik dalam konteks global maupun lokal di Nusantara." },
                 "iip-d-yahya": { name: "Iip D. Yahya", profile: "Seorang penulis dan peneliti yang aktif dalam kajian tasawuf dan sejarah Walisongo. Karyanya banyak berfokus pada penerjemahan dan interpretasi naskah-naskah klasik untuk audiens modern." },
@@ -815,71 +1160,125 @@
             const modalTitle = document.getElementById('modal-title');
             const modalContent = document.getElementById('modal-content');
             const closeModalBtn = document.getElementById('modal-close-btn');
-            
-            function showModal(title, content) {
-                modalTitle.textContent = title;
-                let htmlContent = content
-                    .replace(/\n\n+/g, '</p><p>')
-                    .replace(/\n/g, '<br>')
-                    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-                    .replace(/`(.*?)`/g, '<code>$1</code>');
-                modalContent.innerHTML = `<p>${htmlContent}</p>`;
-                modal.classList.add('visible');
-            }
 
             function hideModal() {
                 modal.classList.remove('visible');
             }
 
-            // Handler for sidebar menu links
+            function showModal(id) {
+                const data = sourceChipContent[id];
+                const contributorProfile = contributorProfiles[id];
+                const essayBody = essayContent[id];
+
+                if (data) {
+                    modalTitle.textContent = data.nama_entitas;
+                    modalContent.innerHTML = ''; // Clear previous content
+
+                    // --- Bagian Utama ---
+                    let mainHtml = '';
+                    if (data.kategori_entitas) mainHtml += `<h4>Kategori Entitas</h4><p>${data.kategori_entitas}</p>`;
+                    if (data.deskripsi) mainHtml += `<h4>Deskripsi</h4><p>${data.deskripsi}</p>`;
+                    
+                    // --- Bagian Relasi Dinamis ---
+                    const relationKeys = Object.keys(data).filter(k => k.includes('_') && Array.isArray(data[k]) && data[k].length > 0);
+
+                    relationKeys.forEach(key => {
+                        const title = key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                        const links = data[key].map(itemId => {
+                            const itemData = sourceChipContent[itemId] || contributorProfiles[itemId] || { name: itemId.replace(/-/g, ' ') };
+                            const entityName = itemData.nama_entitas || itemData.name;
+                            return `<li><a href="#" data-chip-id="${itemId}">${entityName}</a></li>`;
+                        }).join('');
+                        mainHtml += `<h4>${title}</h4><ul>${links}</ul>`;
+                    });
+
+                    modalContent.innerHTML = mainHtml;
+
+                    // --- Kotak Metadata ---
+                    const metadataBox = document.createElement('div');
+                    metadataBox.className = 'metadata-box';
+
+                    const renderInlineLinks = (items, isProfileLink = false) => {
+                        if (!items || items.length === 0) return '';
+                        return items.map(itemId => {
+                            const itemData = sourceChipContent[itemId] || contributorProfiles[itemId] || { name: itemId.replace(/-/g, ' ') };
+                            const entityName = itemData.nama_entitas || itemData.name;
+                            const dataAttribute = isProfileLink ? `data-contributor-id="${itemId}"` : `data-chip-id="${itemId}"`;
+                            return `<a href="#" ${dataAttribute}>${entityName}</a>`;
+                        }).join(', ');
+                    };
+
+                    const createMetadataRow = (label, content) => {
+                        if (!content || (Array.isArray(content) && content.length === 0)) return '';
+                        return `<div class="metadata-row"><strong>${label}:</strong> <span>${content}</span></div>`;
+                    };
+
+                    let metadataHtml = '';
+                    metadataHtml += createMetadataRow('Kontributor', renderInlineLinks(data.kontributor, true));
+                    metadataHtml += createMetadataRow('Validator', renderInlineLinks(data.validator, true));
+                    metadataHtml += createMetadataRow('Diperbarui', data.diperbarui);
+                    metadataHtml += createMetadataRow('Referensi', renderInlineLinks(data.referensi));
+
+                    if (metadataHtml) {
+                        metadataBox.innerHTML = metadataHtml;
+                        modalContent.appendChild(metadataBox);
+                    }
+
+                } else if (contributorProfile) {
+                    modalTitle.textContent = `Profil: ${contributorProfile.name}`;
+                    modalContent.innerHTML = `<p>${contributorProfile.profile}</p>`;
+                } else if (essayBody) {
+                    modalTitle.textContent = id;
+                     let htmlContent = essayBody
+                        .replace(/\n\n+/g, '</p><p>')
+                        .replace(/\n/g, '<br>')
+                        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+                        .replace(/`(.*?)`/g, '<code>$1</code>');
+                    modalContent.innerHTML = `<p>${htmlContent}</p>`;
+                } else {
+                    modalTitle.textContent = id.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+                    modalContent.innerHTML = '<p>Konten untuk entitas ini akan segera ditambahkan.</p>';
+                }
+                
+                modal.classList.add('visible');
+            }
+
+            // Handler for sidebar menu links (for essays)
             const menuLinks = document.querySelectorAll('.main-menu .nav-list a[data-section]');
             menuLinks.forEach(link => {
                 link.addEventListener('click', function(e) {
                     e.preventDefault();
                     const sectionKey = this.querySelector('span:last-child').textContent;
-                    const sectionContent = essayContent[sectionKey] || "Konten tidak ditemukan.";
-                    showModal(sectionKey, sectionContent);
+                    showModal(sectionKey);
                 });
             });
 
-            // Handlers for Left Sidebar Modals
-            const profileCard = document.querySelector('.profile-card');
-            const creditsArea = document.querySelector('.credits');
-            const topUpBtn = document.querySelector('.top-up-btn');
-
-            profileCard.addEventListener('click', function() {
-                showModal('Profil Pengguna', '<p>Informasi detail mengenai profil pengguna, preferensi, dan riwayat aktivitas akan ditampilkan di sini.</p>');
-            });
-
-            creditsArea.addEventListener('click', function(e) {
-                // Prevent the button click from also triggering this
+            // Simplified handlers for other modals
+            document.querySelector('.profile-card').addEventListener('click', () => showModal('Profil Pengguna', 'Informasi detail mengenai profil pengguna, preferensi, dan riwayat aktivitas akan ditampilkan di sini.'));
+            document.querySelector('.credits').addEventListener('click', (e) => {
                 if (e.target.classList.contains('top-up-btn')) return;
-                showModal('Rincian Kredit', '<p>Riwayat penggunaan dan detail kredit Anda akan ditampilkan di sini.</p>');
+                showModal('Rincian Kredit', 'Riwayat penggunaan dan detail kredit Anda akan ditampilkan di sini.');
             });
+            document.querySelector('.top-up-btn').addEventListener('click', () => showModal('Top Up Kredit', 'Opsi dan instruksi untuk menambah kredit akan ditampilkan di sini, termasuk metode pembayaran yang tersedia.'));
 
-            topUpBtn.addEventListener('click', function() {
-                showModal('Top Up Kredit', '<p>Opsi dan instruksi untuk menambah kredit akan ditampilkan di sini, termasuk metode pembayaran yang tersedia.</p>');
-            });
-
-            // Handler for source chips (event delegation)
+            // Event delegation for all clickable chips/links in the main content
             mainContent.addEventListener('click', function(e) {
-                const chip = e.target.closest('.source-chip');
-                if (chip) {
+                const link = e.target.closest('a[data-chip-id], a[data-contributor-id]');
+                if (link) {
                     e.preventDefault();
-                    const chipText = chip.textContent.trim();
-                    showModal(chipText, ''); // Show only the title for now
-                    return; // Stop further execution
+                    const id = link.dataset.chipId || link.dataset.contributorId;
+                    if (id) showModal(id);
                 }
+            });
 
-                const contributorLink = e.target.closest('.contributor-link');
-                if (contributorLink) {
+            // Event delegation for recursive exploration inside the modal
+            modalContent.addEventListener('click', function(e) {
+                const link = e.target.closest('a[data-chip-id], a[data-contributor-id]');
+                if (link) {
                     e.preventDefault();
-                    const contributorId = contributorLink.dataset.contributorId;
-                    const profileData = contributorProfiles[contributorId];
-                    if (profileData) {
-                        showModal(`Profil: ${profileData.name}`, profileData.profile);
-                    }
+                    const id = link.dataset.chipId || link.dataset.contributorId;
+                    if (id) showModal(id);
                 }
             });
 

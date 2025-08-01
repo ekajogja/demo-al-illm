@@ -131,15 +131,30 @@
 
         /* New: Metadata Box */
         .metadata-box {
-            background-color: var(--md-sidebar-color); /* Using sidebar color for a subtle background */
+            background-color: var(--md-sidebar-color);
             border-radius: 8px;
             padding: 16px;
-            margin-top: 20px; /* Adjusted margin for bottom placement */
-            box-shadow: var(--elevation-1);
-            font-size: 0.85em; /* Smaller font size */
+            margin-top: 20px;
+            font-size: 0.9em;
+            line-height: 1.6;
         }
-        .metadata-box h4 {
-            margin-top: 0; /* Override default h4 margin */
+        .metadata-row {
+            margin-bottom: 8px;
+        }
+        .metadata-row:last-child {
+            margin-bottom: 0;
+        }
+        .metadata-row strong {
+            color: var(--md-text-primary);
+            margin-right: 8px;
+        }
+        .metadata-row a {
+            color: var(--md-primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .metadata-row a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
@@ -175,20 +190,10 @@
                 </ul>
 
                 <div class="metadata-box">
-                    <h4>Kontributor</h4>
-                    <ul>
-                        <li><a href="#" data-chip-id="tim-sejarah-uin-jakarta">Tim Sejarah Peradaban Islam UIN Syarif Hidayatullah</a></li>
-                    </ul>
-                    <h4>Validator</h4>
-                    <ul>
-                        <li><a href="#" data-chip-id="iip-d-yahya">Iip D. Yahya</a></li>
-                    </ul>
-                    <h4>Diperbarui</h4>
-                    <p>1 Agustus 2025</p>
-                    <h4>Referensi</h4>
-                    <ul>
-                        <li><a href="#" data-chip-id="keppres-no-22-tahun-2015">Keppres No. 22 Tahun 2015</a></li>
-                    </ul>
+                    <div class="metadata-row"><strong>Kontributor:</strong> <span><a href="#" data-chip-id="tim-sejarah-uin-jakarta">Tim Sejarah Peradaban Islam UIN Syarif Hidayatullah</a></span></div>
+                    <div class="metadata-row"><strong>Validator:</strong> <span><a href="#" data-chip-id="iip-d-yahya">Iip D. Yahya</a></span></div>
+                    <div class="metadata-row"><strong>Diperbarui:</strong> <span>1 Agustus 2025</span></div>
+                    <div class="metadata-row"><strong>Referensi:</strong> <span><a href="#" data-chip-id="keppres-no-22-tahun-2015">Keppres No. 22 Tahun 2015</a></span></div>
                 </div>
             </div>
         </div>
