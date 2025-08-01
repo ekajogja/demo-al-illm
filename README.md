@@ -108,9 +108,5 @@ Aplikasi ini dirancang untuk menjadi *mobile-friendly* dengan logika sebagai ber
 Berikut adalah daftar fungsionalitas yang perlu diimplementasikan atau diselesaikan:
 
 1.  **Isi Konten Modal `source-chip`:** Ganti *placeholder* judul saat ini dengan konten penjelasan yang relevan untuk setiap *chip* sumber informasi.
-2.  **Lengkapi Profil Kontributor:** Ganti *placeholder* profil saat ini dengan biografi atau deskripsi yang lebih detail untuk setiap kontributor dan mushahih.
-3.  **Modal Info Pengguna:** Implementasikan jendela modal yang muncul saat pengguna mengklik area `.user-info` untuk menampilkan detail profil.
-4.  **Modal Rincian Kredit:** Implementasikan jendela modal yang muncul saat pengguna mengklik `.credits span` untuk menampilkan riwayat dan detail penggunaan kredit.
-5.  **Modal Top-Up:** Implementasikan jendela modal yang muncul saat pengguna mengklik tombol `.top-up-btn` untuk menampilkan instruksi atau antarmuka penambahan kredit.
 
 Dengan mengikuti spesifikasi ini, tim pengembangan dapat membangun antarmuka yang fungsional dan setia pada visi konseptual proyek AL 'ILLM.
