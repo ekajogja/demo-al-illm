@@ -108,36 +108,69 @@ Aplikasi ini dirancang untuk menjadi *mobile-friendly* dengan logika sebagai ber
 Berikut adalah daftar fungsionalitas yang perlu diimplementasikan atau diselesaikan:
 
 1.  **Implementasi Konten Modal `source-chip` (Sesuai Skema Knowledge Graph):**
+    **PENTING:** Dalam mendefinisikan kategori, atribut, dan relasi untuk setiap entitas, **WAJIB** merujuk dan mematuhi `skema-knowledge-graph.md` untuk memastikan konsistensi dan integritas data.
     Mengganti *placeholder* judul saat ini dengan kartu profil mini yang informatif untuk setiap entitas, berdasarkan struktur yang didefinisikan dalam `skema-knowledge-graph.md`.
-    -   **a. Modifikasi Struktur Data JavaScript:** Buat objek JavaScript baru bernama `sourceChipContent`. Kunci dari objek ini adalah `data-chip-id` dari setiap elemen `<a>` pada *chip*. Nilainya adalah objek terstruktur yang berisi atribut dari skema (misalnya, `kategori`, `deskripsi`, `tokoh_terkait`, dll.).
-    -   **b. Perbarui Fungsi `showModal`:** Modifikasi fungsi `showModal` agar dapat menerima objek terstruktur dari `sourceChipContent` dan merendernya menjadi HTML yang diformat dengan baik. Fungsi ini harus mampu mengubah daftar relasi (seperti `tokoh_terkait`) menjadi daftar tautan HTML yang dapat diklik, masing-masing dengan `data-chip-id` yang sesuai.
+    -   **a. Modifikasi Struktur Data JavaScript:** Buat objek JavaScript baru bernama `sourceChipContent`. Kunci dari objek ini adalah `data-chip-id` dari setiap elemen `<a>` pada *chip*. Nilainya adalah objek terstruktur yang berisi atribut dari skema (misalnya, `kategori_entitas`, `deskripsi`, `tokoh_terkait`, `peristiwa_terkait`, `dokumen_terkait`, `kontributor`, `validator`, `diperbarui`, `referensi`).
+    -   **b. Perbarui Fungsi `showModal`:** Modifikasi fungsi `showModal` agar dapat menerima objek terstruktur dari `sourceChipContent` dan merendernya menjadi HTML yang diformat dengan baik. Ini termasuk:
+        -   Mengatur `modal-title` dengan nama entitas (misalnya, "Hari Santri").
+        -   Menampilkan `Kategori Entitas`, `Deskripsi`, `Tokoh Terkait`, `Peristiwa Terkait`, dan `Dokumen Terkait` sebagai bagian utama konten modal.
+        -   Menampilkan `Kontributor`, `Validator`, `Diperbarui`, dan `Referensi` di dalam `div` dengan kelas `metadata-box` di bagian **bawah** konten modal, dengan ukuran *font* yang lebih kecil.
+        -   Fungsi ini harus mampu mengubah daftar relasi (seperti `tokoh_terkait`) menjadi daftar tautan HTML yang dapat diklik, masing-masing dengan `data-chip-id` yang sesuai.
     -   **c. Isi Konten untuk Setiap Chip:** Untuk setiap `.source-chip` yang ada di `index.html`, buat entri yang sesuai di dalam objek `sourceChipContent`.
     -   **d. Implementasi Penjelajahan Rekursif:** Tambahkan *event listener* pada kontainer modal (`#modal-content`) untuk menangani klik pada tautan entitas yang baru dibuat. Klik ini tidak boleh menutup modal, melainkan harus memanggil kembali fungsi `showModal` dengan konten dari entitas yang baru diklik, menciptakan pengalaman menjelajah yang mulus.
 
-    **Contoh Implementasi untuk Chip "Resolusi Jihad":**
-    -   **HTML:** `<a href="#" class="source-chip" data-chip-id="resolusi-jihad">Resolusi Jihad</a>`
+    **Contoh Implementasi untuk Chip "Hari Santri" (Lihat juga `harisantri.html` sebagai contoh visual):**
+    -   **HTML:** `<a href="#" class="source-chip" data-chip-id="hari-santri">Hari Santri</a>`
     -   **JavaScript (dalam `sourceChipContent`):**
         ```javascript
-        "resolusi-jihad": {
-            kategori: "Karya dan Kontribusi / Fatwa",
-            deskripsi: "Seruan jihad yang dicetuskan oleh Hadratussyaikh KH Hasyim Asy'ari pada 22 Oktober 1945, yang mewajibkan setiap Muslim untuk berperang melawan pasukan NICA.",
-            tokoh_terkait: ["KH Hasyim Asy'ari", "KH Wahab Chasbullah"],
-            peristiwa_terkait: ["Pertempuran Surabaya"]
+        "hari-santri": {
+            kategori_entitas: "Geopolitik dan Sejarah Dunia / Peristiwa Sejarah Dunia",
+            deskripsi: "Hari peringatan nasional di Indonesia yang ditetapkan pada tanggal 22 Oktober setiap tahunnya, untuk mengenang seruan Resolusi Jihad yang dicetuskan oleh Hadratussyaikh KH Hasyim Asy'ari pada 22 Oktober 1945.",
+            tokoh_terkait: ["kh-hasyim-asyari"],
+            peristiwa_terkait: ["resolusi-jihad", "pertempuran-surabaya"],
+            dokumen_terkait: ["keppres-no-22-tahun-2015", "naskah-asli-resolusi-jihad-1945"],
+            kontributor: ["tim-sejarah-uin-jakarta"],
+            validator: ["iip-d-yahya"],
+            diperbarui: "1 Agustus 2025",
+            referensi: ["keppres-no-22-tahun-2015"]
         }
         ```
     -   **Output Modal (dihasilkan oleh `showModal`):**
         ```html
-        <h4>Kategori</h4>
-        <p>Karya dan Kontribusi / Fatwa</p>
+        <h4>Kategori Entitas</h4>
+        <p>Geopolitik dan Sejarah Dunia / Peristiwa Sejarah Dunia</p>
         <h4>Deskripsi</h4>
-        <p>Seruan jihad yang dicetuskan oleh...</p>
+        <p>Hari peringatan nasional di Indonesia yang ditetapkan pada tanggal 22 Oktober setiap tahunnya, untuk mengenang seruan Resolusi Jihad yang dicetuskan oleh Hadratussyaikh KH Hasyim Asy'ari pada 22 Oktober 1945.</p>
         <h4>Tokoh Terkait</h4>
         <ul>
             <li><a href="#" data-chip-id="kh-hasyim-asyari">KH Hasyim Asy'ari</a></li>
-            <li><a href="#" data-chip-id="kh-wahab-chasbullah">KH Wahab Chasbullah</a></li>
         </ul>
         <h4>Peristiwa Terkait</h4>
         <ul>
+            <li><a href="#" data-chip-id="resolusi-jihad">Resolusi Jihad</a></li>
             <li><a href="#" data-chip-id="pertempuran-surabaya">Pertempuran Surabaya</a></li>
         </ul>
+        <h4>Dokumen Terkait</h4>
+        <ul>
+            <li><a href="#" data-chip-id="keppres-no-22-tahun-2015">Keppres No. 22 Tahun 2015</a></li>
+            <li><a href="#" data-chip-id="naskah-asli-resolusi-jihad-1945">Naskah Asli Resolusi Jihad 1945</a></li>
+        </ul>
+        <div class="metadata-box">
+            <h4>Kontributor</h4>
+            <ul>
+                <li><a href="#" data-chip-id="tim-sejarah-uin-jakarta">Tim Sejarah Peradaban Islam UIN Syarif Hidayatullah</a></li>
+            </ul>
+            <h4>Validator</h4>
+            <ul>
+                <li><a href="#" data-chip-id="iip-d-yahya">Iip D. Yahya</a></li>
+            </ul>
+            <h4>Diperbarui</h4>
+            <p>1 Agustus 2025</p>
+            <h4>Referensi</h4>
+            <ul>
+                <li><a href="#" data-chip-id="keppres-no-22-tahun-2015">Keppres No. 22 Tahun 2015</a></li>
+            </ul>
+        </div>
         ```
+
+Dengan mengikuti spesifikasi ini, tim pengembangan dapat membangun antarmuka yang fungsional dan setia pada visi konseptual proyek AL 'ILLM.
