@@ -68,6 +68,10 @@ Setiap jawaban dari bot harus berisi komponen-komponen berikut untuk memastikan 
 - **Status Jawaban (`.status-badge`)**
     - **Fungsi:** Indikator visual paling utama. Harus langsung terlihat. `Jawaban Sahih` untuk konten dari Q&A pairs tervalidasi; `Jawaban Belum Ditashih` untuk konten yang di-generate oleh model AI.
 
+- **Metadata Jawaban (`.metadata`)**
+    - **Elemen:** Menampilkan **Kontributor Q&A** dan **Mushahih**.
+    - **Spesifikasi Interaksi:** Nama kontributor dan mushahih kini berupa **tautan yang dapat diklik**. Mengklik tautan ini akan **membuka jendela modal** yang menampilkan profil singkat dari individu atau lembaga tersebut. Konten profil saat ini masih berupa *placeholder*.
+
 - **Sumber Informasi (`.source-section`)**
     - **Elemen:** Terdiri dari dua sub-seksi: "Entitas Knowledge Graph" dan "Dokumen Teranotasi". Keduanya berisi elemen `.source-chip`.
     - **Spesifikasi Interaksi:**
@@ -104,8 +108,9 @@ Aplikasi ini dirancang untuk menjadi *mobile-friendly* dengan logika sebagai ber
 Berikut adalah daftar fungsionalitas yang perlu diimplementasikan atau diselesaikan:
 
 1.  **Isi Konten Modal `source-chip`:** Ganti *placeholder* judul saat ini dengan konten penjelasan yang relevan untuk setiap *chip* sumber informasi.
-2.  **Modal Info Pengguna:** Implementasikan jendela modal yang muncul saat pengguna mengklik area `.user-info` untuk menampilkan detail profil.
-3.  **Modal Rincian Kredit:** Implementasikan jendela modal yang muncul saat pengguna mengklik `.credits span` untuk menampilkan riwayat dan detail penggunaan kredit.
-4.  **Modal Top-Up:** Implementasikan jendela modal yang muncul saat pengguna mengklik tombol `.top-up-btn` untuk menampilkan instruksi atau antarmuka penambahan kredit.
+2.  **Lengkapi Profil Kontributor:** Ganti *placeholder* profil saat ini dengan biografi atau deskripsi yang lebih detail untuk setiap kontributor dan mushahih.
+3.  **Modal Info Pengguna:** Implementasikan jendela modal yang muncul saat pengguna mengklik area `.user-info` untuk menampilkan detail profil.
+4.  **Modal Rincian Kredit:** Implementasikan jendela modal yang muncul saat pengguna mengklik `.credits span` untuk menampilkan riwayat dan detail penggunaan kredit.
+5.  **Modal Top-Up:** Implementasikan jendela modal yang muncul saat pengguna mengklik tombol `.top-up-btn` untuk menampilkan instruksi atau antarmuka penambahan kredit.
 
 Dengan mengikuti spesifikasi ini, tim pengembangan dapat membangun antarmuka yang fungsional dan setia pada visi konseptual proyek AL 'ILLM.

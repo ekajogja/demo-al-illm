@@ -364,6 +364,15 @@
             color: var(--md-text-primary);
         }
 
+        .contributor-link {
+            color: var(--md-primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .contributor-link:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
@@ -438,8 +447,8 @@
                                         <p>Hari Santri adalah hari peringatan nasional di Indonesia yang ditetapkan pada tanggal 22 Oktober setiap tahunnya. Peringatan ini didasarkan pada Keputusan Presiden Nomor 22 Tahun 2015.</p>
                                         <p>Tanggal 22 Oktober dipilih untuk mengenang seruan <strong>Resolusi Jihad</strong> yang dicetuskan oleh Hadratussyaikh KH Hasyim Asy'ari pada 22 Oktober 1945. Seruan ini mewajibkan setiap Muslim untuk berperang melawan pasukan Sekutu (NICA) yang ingin kembali menjajah Indonesia, yang kemudian memicu peristiwa heroik Pertempuran Surabaya pada 10 November 1945.</p>
                                         <div class="metadata">
-                                            <strong>Kontributor Q&A:</strong> Tim Sejarah PBNU<br>
-                                            <strong>Mushahih:</strong> Prof. Dr. Azyumardi Azra
+                                            <strong>Kontributor Q&A:</strong> <a href="#" class="contributor-link" data-contributor-id="tim-sejarah-pbnu">Tim Sejarah PBNU</a><br>
+                                            <strong>Mushahih:</strong> <a href="#" class="contributor-link" data-contributor-id="azyumardi-azra">Prof. Dr. Azyumardi Azra</a>
                                         </div>
                                     </div>
                                     <div class="source-section">
@@ -499,8 +508,8 @@
                                         <p>Resolusi Jihad lahir sebagai respons langsung terhadap situasi genting pasca-Proklamasi Kemerdekaan Indonesia. Pada September-Oktober 1945, pasukan NICA (Netherlands Indies Civil Administration) yang membonceng pasukan Sekutu mulai mendarat di kota-kota besar, termasuk Surabaya, dengan niat untuk mengembalikan kekuasaan kolonial Belanda.</p>
                                         <p>Melihat ancaman ini, para ulama Nahdlatul Ulama di bawah pimpinan <strong>KH Hasyim Asy'ari</strong> dan <strong>KH Wahab Chasbullah</strong> berkumpul dan mengeluarkan fatwa pada 22 Oktober 1945. Fatwa ini menyatakan bahwa hukum membela tanah air dan kemerdekaan adalah <strong>fardhu 'ain</strong> (kewajiban individu) bagi setiap Muslim yang berada dalam radius 94 kilometer dari pusat pertempuran. Resolusi ini secara efektif mengubah perjuangan fisik menjadi perang suci, membakar semangat para santri dan rakyat untuk melawan penjajah.</p>
                                         <div class="metadata">
-                                            <strong>Kontributor Q&A:</strong> Pusat Studi Pesantren<br>
-                                            <strong>Mushahih:</strong> Dr. Tiar Anwar Bachtiar
+                                            <strong>Kontributor Q&A:</strong> <a href="#" class="contributor-link" data-contributor-id="pusat-studi-pesantren">Pusat Studi Pesantren</a><br>
+                                            <strong>Mushahih:</strong> <a href="#" class="contributor-link" data-contributor-id="tiar-anwar-bachtiar">Dr. Tiar Anwar Bachtiar</a>
                                         </div>
                                     </div>
                                     <div class="source-section">
@@ -619,8 +628,8 @@
                                         <p>Hadratussyaikh KH Hasyim Asy'ari memandang bahwa tidak ada pertentangan antara Islam dan konsep <strong>Negara Kebangsaan (nation-state)</strong> yang berdasarkan Pancasila. Bagi beliau, tujuan utama syariat <em>(maqashid syariah)</em> adalah untuk mewujudkan kemaslahatan umat, yang mencakup perlindungan terhadap agama, jiwa, akal, keturunan, dan harta.</p>
                                         <p>Beliau berpendapat bahwa bentuk negara tidak diatur secara kaku dalam Islam. Oleh karena itu, Indonesia sebagai negara-bangsa yang berlandaskan Pancasila dianggap sah dan final <em>(dar al-mītsāq)</em>, selama negara tersebut dapat menjamin terwujudnya nilai-nilai dan tujuan syariat tersebut. Pandangan ini menjadi dasar bagi Nahdlatul Ulama untuk menerima Pancasila dan menolak gagasan negara Islam formal di Indonesia, karena substansi keislaman dapat diwujudkan dalam kerangka <strong>Ukhuwah Wathaniyah</strong> (persaudaraan kebangsaan).</p>
                                         <div class="metadata">
-                                            <strong>Kontributor Q&A:</strong> Lakpesdam NU<br>
-                                            <strong>Mushahih:</strong> Dr. Yudi Latif, M.A.
+                                            <strong>Kontributor Q&A:</strong> <a href="#" class="contributor-link" data-contributor-id="lakpesdam-nu">Lakpesdam NU</a><br>
+                                            <strong>Mushahih:</strong> <a href="#" class="contributor-link" data-contributor-id="yudi-latif">Dr. Yudi Latif, M.A.</a>
                                         </div>
                                     </div>
                                     <div class="source-section">
@@ -704,6 +713,15 @@
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             // --- Embedded Essay Content ---
+            const contributorProfiles = {
+                "tim-sejarah-pbnu": { name: "Tim Sejarah PBNU", profile: "Tim Sejarah PBNU adalah komite ahli yang dibentuk oleh Pengurus Besar Nahdlatul Ulama untuk meneliti, mendokumentasikan, dan memverifikasi peristiwa-peristiwa penting dalam sejarah NU dan Islam di Indonesia." },
+                "azyumardi-azra": { name: "Prof. Dr. Azyumardi Azra", profile: "Prof. Dr. Azyumardi Azra adalah seorang sejarawan dan intelektual Muslim terkemuka di Indonesia. Beliau dikenal luas atas karyanya dalam studi jaringan ulama dan reformasi Islam di Asia Tenggara." },
+                "pusat-studi-pesantren": { name: "Pusat Studi Pesantren", profile: "Pusat Studi Pesantren adalah lembaga riset yang berfokus pada kajian akademik mengenai sejarah, kurikulum, dan dampak sosial dari institusi pesantren di seluruh Indonesia." },
+                "tiar-anwar-bachtiar": { name: "Dr. Tiar Anwar Bachtiar", profile: "Dr. Tiar Anwar Bachtiar adalah seorang sejarawan yang memiliki spesialisasi dalam sejarah pergerakan Islam di Indonesia, terutama pada masa pra-kemerdekaan." },
+                "lakpesdam-nu": { name: "Lakpesdam NU", profile: "Lembaga Kajian dan Pengembangan Sumber Daya Manusia (Lakpesdam) NU adalah salah satu perangkat organisasi Nahdlatul Ulama yang fokus pada isu-isu sosial, politik, dan keagamaan kontemporer." },
+                "yudi-latif": { name: "Dr. Yudi Latif, M.A.", profile: "Dr. Yudi Latif, M.A. adalah seorang cendekiawan dan pakar Pancasila yang dikenal atas analisisnya yang mendalam mengenai kebangsaan dan pluralisme di Indonesia." }
+            };
+
             const essayContent = {
                 "Narasi & Visi Proyek": `Seorang santri bertanya tentang hukum cryptocurrency kepada chatbot. Seorang mahasiswa mencari dalil untuk skripsinya dari AI (Kecerdasan Buatan) generatif. Kedua skenario ini bukan lagi angan-angan, melainkan realitas sehari-hari yang tak terhindarkan.\n\nAI sudah masuk ke ranah studi Islam. Pertanyaannya bukan lagi haruskah kita menggunakan AI, melainkan bagaimana memastikan AI yang digunakan tidak menyesatkan.\n\nDi sinilah letak urgensi AL 'ILLM (*Authorized Intelligence - Islamic Large Language Model* atau Model Bahasa Besar Islami Berotoritas). Bukan sekadar membangun AI islami, melainkan merajut sebuah ekosistem kecerdasan buatan yang komprehensif, aman, dan dapat dipertanggungjawabkan.`,
                 "Kurasi & Anotasi Naskah": `Fondasi setiap sistem pengetahuan adalah data. Dalam konteks keilmuan Islam, ini berarti naskah-naskah klasik, kitab-kitab, dan dokumen-dokumen otentik yang menjadi rujukan utama. Pilar pertama AL 'ILLM adalah kuratorial naskah yang menempatkan akurasi sebagai prioritas absolut.\n\nKeputusan krusial pertama menyangkut digitalisasi. *OCR* (*Optical Character Recognition* atau pengenalan karakter optik) yang umum digunakan rawan kekeliruan, terutama untuk aksara Arab atau naskah kuno. Pilihan kami adalah mengetik ulang secara manual, yang tampaknya mundur di era otomasi. Namun sesungguhnya, ini adalah strategi yang disengaja untuk mencegah distorsi makna.`,
@@ -831,6 +849,17 @@
                     e.preventDefault();
                     const chipText = chip.textContent.trim();
                     showModal(chipText, ''); // Show only the title for now
+                    return; // Stop further execution
+                }
+
+                const contributorLink = e.target.closest('.contributor-link');
+                if (contributorLink) {
+                    e.preventDefault();
+                    const contributorId = contributorLink.dataset.contributorId;
+                    const profileData = contributorProfiles[contributorId];
+                    if (profileData) {
+                        showModal(`Profil: ${profileData.name}`, profileData.profile);
+                    }
                 }
             });
 
