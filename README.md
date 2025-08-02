@@ -1,5 +1,7 @@
 # Spesifikasi Fungsional & Panduan Interaksi UI AL 'ILLM
 
+![screenshot al illm](Screenshot_2025-08-02.png)
+
 **Tujuan Dokumen:** Dokumen ini berfungsi sebagai panduan teknis bagi desainer UI/UX dan developer frontend untuk memahami, mereplikasi, dan mengembangkan fungsionalitas yang dirancang dalam mockup `index.html`.
 
 **Filosofi Inti:** Setiap elemen dan interaksi bertujuan untuk mewujudkan tiga prinsip utama: **Otoritas yang Transparan**, **Eksplorasi Terpandu**, dan **Kejelasan Intuitif**.
