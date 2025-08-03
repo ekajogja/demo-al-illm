@@ -80,6 +80,14 @@ Setiap jawaban dari bot harus berisi komponen-komponen berikut untuk memastikan 
         - **Klik `.source-chip`:** **Membuka jendela modal yang saat ini hanya menampilkan judul dari sumber tersebut sebagai placeholder.** Konten detail untuk setiap *chip* akan diimplementasikan di masa mendatang (lihat Daftar Tugas).
         - **Tooltip:** Setiap chip memiliki tooltip yang menjelaskan aksinya (contoh: "Lihat entitas 'Imam Syafi'i' dalam Knowledge Graph").
 
+- **Penalaran & Umpan Balik (khusus `Jawaban Belum Ditashih`)**
+    - **Elemen:**
+        1.  `<details class="reasoning-section">`: Komponen *collapsible* (akordeon) yang berisi penjelasan langkah-langkah yang diambil model AI untuk menghasilkan jawaban.
+        2.  `.feedback-section`: Kontainer untuk interaksi pengguna.
+    - **Spesifikasi Interaksi:**
+        - **Klik `summary` ("Cek Penalaran"):** Membuka atau menutup bagian penalaran.
+        - **Klik Tombol Umpan Balik:** Tombol "Ya", "Tidak", dan "Laporkan" berfungsi sebagai titik interaksi bagi pengguna untuk memberikan masukan terhadap kualitas jawaban yang dihasilkan AI. Fungsionalitas pengiriman umpan balik ini akan diimplementasikan di masa mendatang.
+
 ### 2.2. Riset Lanjutan (`.research-suggestions`)
 
 - **Fungsi:** Komponen proaktif untuk memandu pengguna.
@@ -105,9 +113,13 @@ Aplikasi ini dirancang untuk menjadi *mobile-friendly* dengan logika sebagai ber
 
 ---
 
-## 4. Fungsionalitas Modal Knowledge Graph
+## 4. Fungsionalitas Modal
 
-Setiap `.source-chip` di dalam aplikasi kini bersifat interaktif. Saat diklik, sebuah jendela modal akan muncul, menampilkan kartu profil detail untuk entitas yang dipilih. Konten ini dimuat secara dinamis dari objek `sourceChipContent` yang ada di `index.html`. Struktur data dan relasi di dalam objek ini secara ketat mematuhi `skema-knowledge-graph.md` untuk memastikan integritas dan konsistensi data.
+Setiap `.source-chip` di dalam aplikasi, serta item menu di sidebar kanan, kini bersifat interaktif. Saat diklik, sebuah jendela modal akan muncul, menampilkan konten yang relevan.
+
+- **Konten Knowledge Graph:** Saat `.source-chip` diklik, modal akan menampilkan kartu profil detail untuk entitas yang dipilih. Konten ini dimuat secara dinamis dari objek `sourceChipContent` yang ada di `index.html`. Struktur data dan relasi di dalam objek ini secara ketat mematuhi `skema-knowledge-graph.md` untuk memastikan integritas data.
+
+- **Konten Penjelasan Proyek:** Saat item menu di sidebar kanan (seperti "Kebijakan AL ILLM" atau "Alur Kerja Chatbot") diklik, modal akan menampilkan konten penjelasan yang sesuai dari objek `essayContent`. Konten ini mendukung format Markdown, termasuk rendering diagram alur kerja menggunakan pustaka Mermaid.js.
 
 Fitur ini juga mendukung **penjelajahan rekursif**: mengklik tautan entitas lain di dalam modal akan memuat profil entitas baru tersebut di dalam modal yang sama, memungkinkan eksplorasi mendalam tanpa hambatan.
 
