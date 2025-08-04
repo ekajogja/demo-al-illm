@@ -173,9 +173,11 @@ Dengan mengikuti spesifikasi ini, tim pengembangan dapat membangun antarmuka yan
 
 ---
 
-## 5. Rencana Pengembangan Mockup Dasbor Admin (`dasbor.html`)
+## 5. Pengembangan Mockup Dasbor Admin (`dasbor.html`)
 
-Bagian ini menguraikan rencana pengembangan untuk mockup antarmuka pengguna (UI) Dasbor Admin. Tujuannya adalah untuk menciptakan sebuah file HTML mandiri (`dasbor.html`) yang secara visual merepresentasikan semua alur kerja dan komponen yang didefinisikan dalam `visi-fungsional-dasbor.md`. Mockup ini akan menjadi panduan visual bagi desainer dan developer.
+Bagian ini menguraikan rencana dan status pengembangan untuk mockup antarmuka pengguna (UI) Dasbor Admin. Tujuannya adalah untuk menciptakan sebuah file HTML mandiri (`dasbor.html`) yang secara visual merepresentasikan semua alur kerja dan komponen yang didefinisikan dalam `visi-fungsional-dasbor.md`.
+
+> **Status Saat Ini:** Pengembangan telah dimulai. File `dasbor.html` dan `dokumentasi-dasbor.html` telah dibuat. Implementasi awal mencakup layout utama dasbor, navigasi, dan halaman **Dasbor Pelacak Dokumen**. Rencana di bawah ini tetap menjadi panduan untuk pengembangan fitur dan halaman selanjutnya yang belum selesai.
 
 ### 5.1. Prinsip & Teknologi Dasar
 

@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dokumentasi - Dasbor Admin AL 'ILLM</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+
+    <style>
+        :root {
+            --sidebar-width: 280px;
+            --header-height: 60px;
+            --brand-primary: #00695C;
+            --brand-secondary: #B8860B;
+            --md-primary-color: #1976D2;
+            --md-primary-variant-color: #004ba0;
+            --md-secondary-color: #673AB7;
+            --md-text-primary: rgba(0, 0, 0, 0.87);
+            --md-text-secondary: rgba(0, 0, 0, 0.70);
+            --elevation-1: 0 2px 1px -1px rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 3px 0 rgba(0,0,0,0.12);
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f6f9;
+        }
+        .sidebar {
+            width: var(--sidebar-width);
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            background-color: var(--brand-primary);
+            color: white;
+            transition: transform 0.3s ease-in-out;
+        }
+        .main-content {
+            margin-left: var(--sidebar-width);
+            padding-top: var(--header-height);
+            transition: margin-left 0.3s ease-in-out;
+        }
+        .main-header {
+            height: var(--header-height);
+            position: fixed;
+            top: 0;
+            left: var(--sidebar-width);
+            right: 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #dee2e6;
+            z-index: 1000;
+            transition: left 0.3s ease-in-out;
+            box-shadow: 0 2px 4px rgba(0,0,0,.08);
+        }
+        body.sidebar-collapsed .sidebar { transform: translateX(calc(-1 * var(--sidebar-width))); }
+        body.sidebar-collapsed .main-content { margin-left: 0; }
+        body.sidebar-collapsed .main-header { left: 0; }
+
+        .sidebar .nav-link {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+            padding: 0.85rem 1.5rem;
+            border-left: 3px solid transparent;
+        }
+        .sidebar .nav-link:hover { color: #ffffff; background-color: rgba(255, 255, 255, 0.05); }
+        .sidebar .nav-link.active { color: #ffffff; font-weight: 500; background-color: rgba(0, 0, 0, 0.2); border-left: 3px solid var(--brand-secondary); }
+        .sidebar .nav-link .bi { margin-right: 0.75rem; }
+        .sidebar-header { padding: 0.75rem 1.5rem; margin-bottom: 1rem; text-align: center; }
+        .sidebar-header img { max-height: 50px; }
+        .sidebar-footer { position: absolute; bottom: 0; width: 100%; background-color: rgba(0,0,0,0.1); }
+        
+        .card {
+            border: none;
+            box-shadow: var(--elevation-1);
+            border-radius: 0.5rem;
+        }
+        .documentation-content {
+            color: var(--md-text-primary);
+            line-height: 1.7;
+        }
+        .documentation-content h1, .documentation-content h2, .documentation-content h3, .documentation-content h4 {
+            font-weight: 500;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        .documentation-content h1 { font-size: 2.5rem; }
+        .documentation-content h2 { font-size: 2rem; border-bottom: 1px solid #e0e0e0; padding-bottom: 0.5rem; color: var(--md-primary-color); }
+        .documentation-content h3 { font-size: 1.75rem; color: var(--md-primary-variant-color); }
+        .documentation-content h4 { font-size: 1.5rem; color: var(--md-secondary-color); }
+        .documentation-content p, .documentation-content ul {
+            color: var(--md-text-secondary);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        .documentation-content ul { padding-left: 2rem; }
+        .documentation-content hr { margin: 3rem 0; }
+        .documentation-content .lead { font-size: 1.25rem; color: var(--md-text-primary); font-weight: 300; }
+
+        .mermaid {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.5rem;
+            padding: 1rem;
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Sidebar -->
+    <aside class="sidebar d-flex flex-column">
+        <div class="sidebar-header">
+            <img src="logo-al-illm.webp" alt="Logo AL 'ILLM">
+        </div>
+        <ul class="nav flex-column mb-auto">
+            <li class="nav-item">
+                <a href="dokumentasi-dasbor.html" class="nav-link active" aria-current="page">
+                    <i class="bi bi-book"></i>
+                    Dokumentasi
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="dasbor.html" class="nav-link">
+                    <i class="bi bi-layout-text-sidebar-reverse"></i>
+                    Pipeline Kurasi
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-share"></i>
+                    Manajemen KG
+                </a>
+            </li>
+            <li>
+                <a href="#" class="nav-link">
+                    <i class="bi bi-chat-quote"></i>
+                    Tinjauan Umpan Balik
+                </a>
+            </li>
+        </ul>
+        <div class="sidebar-footer p-3">
+            <div class="dropdown">
+                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                    <strong>Eka</strong>
+                </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow">
+                    <li><a class="dropdown-item" href="#">Profil</a></li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li><a class="dropdown-item" href="#">Keluar</a></li>
+                </ul>
+            </div>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <header class="main-header d-flex align-items-center px-4">
+            <button class="btn" id="sidebar-toggle"><i class="bi bi-list fs-4"></i></button>
+            <h4 class="ms-3 mb-0">Dokumentasi Fungsional Dasbor</h4>
+        </header>
+
+        <main class="p-4">
+            <div class="card">
+                <div class="card-body p-4 p-md-5 documentation-content">
+                    
+                    <h1>Visi Fungsional: Dasbor Kolaboratif AL 'ILLM</h1>
+                    <p class="lead">Dokumen ini mendefinisikan arsitektur dan visi fungsional untuk <strong>Dasbor Admin AL 'ILLM</strong>. Dasbor ini adalah sebuah platform berbasis web yang dirancang sebagai ekosistem kolaboratif untuk mengelola seluruh siklus hidup konten, dari sumber mentah hingga menjadi data yang tervalidasi dan siap pakai.</p>
+                    <hr>
+
+                    <h2>1. Arsitektur & Prinsip Desain</h2>
+                    
+                    <h3>1.1. Arsitektur Berbasis Modul</h3>
+                    <p>Dasbor dirancang dengan arsitektur modular, di mana setiap fungsi utama dipisahkan ke dalam modul-modul yang saling terhubung. Pendekatan ini memastikan kejelasan, skalabilitas, dan kemudahan pengelolaan.</p>
+                    
+                    <h3>1.2. Peran Pengguna & Kontrol Akses (RBAC)</h3>
+                    <p>Sistem ini beroperasi berdasarkan prinsip <strong>Role-Based Access Control (RBAC)</strong> yang fundamental. Setiap pengguna akan diberi satu atau lebih peran (misal: Juru Ketik, Anotator, Ahli KG, Mushahih) oleh admin sistem. Peran ini secara otomatis menentukan modul, data, dan tindakan apa saja yang dapat diakses oleh pengguna, menciptakan antarmuka yang fokus dan aman.</p>
+                    
+                    <h3>1.3. Konsep Inti: Unit Kerja Semantik (Semantic Chunk)</h3>
+                    <p>Untuk mengakomodasi beragam jenis dokumen, alur kerja menggunakan konsep <strong>"Unit Kerja Semantik"</strong>—potongan konten yang logis (bisa berupa bab, sub-bab, atau paragraf). Unit-unit ini didefinisikan dalam satu langkah persiapan awal dan digunakan secara konsisten di seluruh pipeline untuk memfasilitasi kerja paralel.</p>
+                    <hr>
+
+                    <h2>2. Diagram Gambaran Umum Pipeline Kurasi</h2>
+                    <p>Diagram ini menunjukkan keseluruhan proses dalam Modul Pipeline Kurasi Dokumen.</p>
+                    <div class="mermaid">
+                        graph TD
+                            A[Dokumen Sumber] --> B{Alur Kerja 1: Digitalisasi};
+                            B --> C(Dokumen Sahih <br/> di IPFS/Blockchain);
+                            C --> D{Alur Kerja 2: Anotasi};
+                            D --> E(Dokumen Teranotasi <br/> di IPFS);
+                            E --> F{Alur Kerja 3: Ekstraksi Q&A};
+                            F --> G[Q&A Sahih Tervalidasi];
+                    </div>
+                    <hr>
+
+                    <h2>3. Modul-Modul Utama Dasbor</h2>
+                    
+                    <h3>3.1. Modul Pipeline Kurasi Dokumen</h3>
+                    <p>Ini adalah modul inti dari "pabrik konten". Modul ini memfasilitasi alur kerja dari dokumen mentah hingga menjadi Q&A tervalidasi. Akses ke berbagai tahap di dalamnya dikelola melalui <strong>Dasbor Pelacak Dokumen</strong> terpusat, yang menunjukkan status setiap dokumen dan mengarahkan pengguna ke antarmuka yang relevan sesuai peran mereka.</p>
+                    
+                    <h4>3.1.1. Alur Kerja 1: Digitalisasi & Validasi Teks</h4>
+                    <ul>
+                        <li><strong>Tujuan:</strong> Menghasilkan transkripsi teks digital ("Dokumen Sahih") yang 100% akurat dari dokumen sumber.</li>
+                        <li><strong>Input:</strong> Pindaian dokumen sumber (misal: PDF, JPG).</li>
+                        <li><strong>Output:</strong> Sebuah <strong>"Dokumen Sahih"</strong> yang disimpan di IPFS dengan jejak audit di blockchain.</li>
+                        <li><strong>Peran:</strong> Juru Ketik, Peer Checker (Juru Ketik), Mushahih Transkripsi.</li>
+                    </ul>
+                    <div class="mermaid">
+                        graph TD
+                            subgraph "Alur Kerja 1"
+                                A1(Definisi Unit Kerja) --> B(Juru Ketik: Mengetik Unit Kerja);
+                                B --> C{Peer Checker: Review};
+                                C -- "Ada Kesalahan?" --> D(Highlight & Minta Revisi);
+                                D --> E(Juru Ketik: Merevisi);
+                                E --> B;
+                                C -- "OK" --> F(Unit Kerja Lolos);
+                                F --> G{Semua Unit Selesai?};
+                                G -- "Belum" --> B;
+                                G -- "Ya" --> H(Mushahih Transkripsi: Review Final);
+                                H --> I(Dokumen Sahih <br/> Arsip ke IPFS/Blockchain);
+                            end
+                    </div>
+
+                    <h4>3.1.2. Alur Kerja 2: Anotasi & Pengayaan Semantik</h4>
+                     <ul>
+                        <li><strong>Tujuan:</strong> Memperkaya "Dokumen Sahih" dengan menghubungkannya ke Knowledge Graph, menghasilkan "Dokumen Teranotasi".</li>
+                        <li><strong>Input:</strong> "Dokumen Sahih" dari Alur Kerja 1.</li>
+                        <li><strong>Output:</strong> Sebuah <strong>"Dokumen Teranotasi"</strong> yang disimpan sebagai artefak baru.</li>
+                        <li><strong>Peran:</strong> Anotator, Peer Checker (Anotator), Anotator Senior.</li>
+                    </ul>
+                    <div class="mermaid">
+                        graph TD
+                            subgraph "Alur Kerja 2"
+                                A[Dokumen Sahih] --> B(Anotator: Menerima Unit Kerja);
+                                B --> C(AI Memberikan Saran Label);
+                                C --> D(Anotator: Approve/Reject/Edit/Add);
+                                D -- "Butuh Entitas Baru?" --> D_ext(Kirim Permintaan ke Tim KG);
+                                D --> E{Peer Checker: Review Anotasi};
+                                E -- "Ada Kesalahan?" --> F(Minta Revisi);
+                                F --> D;
+                                E -- "OK" --> G(Unit Kerja Lolos);
+                                G --> H{Semua Unit Selesai?};
+                                H -- "Belum" --> B;
+                                H -- "Ya" --> I(Anotator Senior: Review Final);
+                                I --> J(Dokumen Teranotasi <br/> Arsip ke IPFS);
+                            end
+                    </div>
+
+                    <h4>3.1.3. Alur Kerja 3: Ekstraksi & Validasi Q&A</h4>
+                    <ul>
+                        <li><strong>Tujuan:</strong> Menghasilkan daftar tanya-jawab yang akurat dan relevan ("Q&A Sahih") dari dokumen yang sudah teranotasi.</li>
+                        <li><strong>Input:</strong> "Dokumen Teranotasi" dari Alur Kerja 2.</li>
+                        <li><strong>Output:</strong> Daftar <strong>"Q&A Sahih"</strong> yang siap digunakan oleh chatbot.</li>
+                        <li><strong>Peran:</strong> Kontributor Q&A, Peer Checker (Kontributor Q&A), Tim Validasi Final (Kontributor Q&A Senior & Mushahih Q&A).</li>
+                    </ul>
+                    <div class="mermaid">
+                        graph TD
+                            subgraph "Alur Kerja 3"
+                                A[Dokumen Teranotasi] --> B(Kontributor Q&A: Menerima Unit Kerja);
+                                B --> C(AI Memberikan Saran Q&A Pairs);
+                                C --> D(Kontributor: Approve/Reject/Edit/Add);
+                                D --> E{Peer Checker: Review Q&A};
+                                E -- "Ada Kesalahan?" --> F(Minta Revisi);
+                                F --> D;
+                                E -- "OK" --> G(Unit Kerja Lolos);
+                                G --> H{Semua Unit Selesai?};
+                                H -- "Belum" --> B;
+                                H -- "Ya" --> I(Tim Validasi Final <br/> Kontributor Senior & Mushahih Q&A);
+                                I --> J(Q&A Sahih <br/> Publikasi ke Sistem);
+                            end
+                    </div>
+
+                    <h3>3.2. Modul Manajemen Knowledge Graph</h3>
+                    <p>Modul ini adalah pusat kendali untuk membangun, mengelola, dan menjelajahi basis pengetahuan. Modul ini melayani dua fungsi utama yang berjalan paralel: <strong>(1) Alur Kerja Populasi Graf</strong> secara proaktif oleh tim internal, dan <strong>(2) Alur Kerja Permintaan Entitas</strong> yang bersifat reaktif dari modul lain.</p>
+                    
+                    <h4>3.2.1. Alur Kerja Proaktif: Populasi Knowledge Graph</h4>
+                    <p>Ini adalah alur kerja utama untuk mengisi KG dari nol, mengikuti proses kurasi tiga lapis.</p>
+                    <div class="mermaid">
+                        graph TD
+                            subgraph "Alur Kerja Populasi KG"
+                                A[Tugas Entri Data Dibuat] --> B(Kontributor KG: Membuat Entitas);
+                                B --> C{Peer Checker KG: Review};
+                                C -- "Ada Kesalahan?" --> D(Minta Revisi);
+                                D --> B;
+                                C -- "OK" --> E{Batch Selesai?};
+                                E -- "Belum" --> B;
+                                E -- "Ya" --> F(Ahli KG: Validasi Final);
+                                F --> G([Entitas Terpublikasi di Graf]);
+                            end
+                    </div>
+
+                    <h4>3.2.2. Alur Kerja Reaktif: Penanganan Permintaan Entitas</h4>
+                    <p>Ini adalah alur kerja yang lebih singkat untuk menanggapi kebutuhan mendesak dari tim kurasi dokumen.</p>
+                    <div class="mermaid">
+                        graph TD
+                            subgraph "Modul Lain"
+                                A[Analis/Anotator Butuh Entitas] --> B(Kirim Permintaan Entitas);
+                            end
+                        
+                            subgraph "Modul Manajemen KG"
+                                B --> C{Antrean Permintaan Entitas};
+                                C --> D(Ahli KG: Kerjakan Tugas);
+                                D --> E(Gunakan Editor Entitas <br> untuk Membuat/Melengkapi Data);
+                                E --> F{Simpan & Publikasikan Entitas};
+                            end
+                        
+                            F --> G([Pemohon Menerima Notifikasi]);
+                    </div>
+
+                    <h4>3.2.3. Alur Kerja Pemeliharaan & Jaminan Kualitas Jangka Panjang</h4>
+                    <p>Untuk menjaga agar Knowledge Graph tetap akurat, bersih, dan relevan seiring waktu, diperlukan alur kerja pemeliharaan yang berkelanjutan. Ini mencakup manajemen siklus hidup entitas (pembaruan, penggabungan duplikat, pengarsipan), laporan konsistensi graf, dan perencanaan evolusi skema.</p>
+
+                    <h3>3.3. Modul Tinjauan Umpan Balik Pengguna</h3>
+                    <p>Modul ini berfungsi untuk mengubah masukan pasif dari pengguna menjadi tugas perbaikan konten yang aktif dan dapat dilacak.</p>
+                    
+                    <h4>Alur Kerja Triase & Tindak Lanjut</h4>
+                    <div class="mermaid">
+                        graph TD
+                            subgraph "Modul Tinjauan Umpan Balik"
+                                A[Umpan Balik Baru Masuk] --> B{Analis: Review & Kategorisasi};
+                                B -- "Dapat Diabaikan" --> C[Arsipkan Umpan Balik];
+                                B -- "Konten Tidak Akurat/Lengkap" --> D(Buat Tugas Perbaikan Q&A);
+                                B -- "Jawaban Tidak Relevan" --> E{Pilih Tindakan};
+                                E --> D;
+                                E --> F(Minta Entitas KG Baru);
+                            end
+                        
+                            subgraph "Modul Lain"
+                                D --> G([Tugas Baru di Pipeline Kurasi]);
+                                F --> H([Tugas Baru di Manajemen KG]);
+                            end
+                    </div>
+                    <p><strong>Siklus Penutupan Umpan Balik:</strong> Ketika seorang Analis Umpan Balik membuat tugas perbaikan, tugas tersebut akan masuk ke alur validasi standar (termasuk peer review dan validasi final) sebelum dipublikasikan, memastikan semua perubahan tetap melalui kontrol kualitas yang ketat.</p>
+
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Mermaid JS -->
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.min.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Sidebar Toggle
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            if(sidebarToggle) {
+                sidebarToggle.addEventListener('click', function() {
+                    document.body.classList.toggle('sidebar-collapsed');
+                });
+            }
+
+            // Initialize Mermaid
+            mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { 'primaryColor': '#f4f6f9', 'primaryTextColor': '#333', 'lineColor': '#6c757d' } });
+        });
+    </script>
+</body>
+</html>
