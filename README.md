@@ -170,3 +170,78 @@ Selain itu, untuk entitas yang ditandai sebagai `tipe_entitas: "dokumen"`, sebua
     ```
 
 Dengan mengikuti spesifikasi ini, tim pengembangan dapat membangun antarmuka yang fungsional dan setia pada visi konseptual proyek AL 'ILLM.
+
+---
+
+## 5. Rencana Pengembangan Mockup Dasbor Admin (`dasbor.html`)
+
+Bagian ini menguraikan rencana pengembangan untuk mockup antarmuka pengguna (UI) Dasbor Admin. Tujuannya adalah untuk menciptakan sebuah file HTML mandiri (`dasbor.html`) yang secara visual merepresentasikan semua alur kerja dan komponen yang didefinisikan dalam `visi-fungsional-dasbor.md`. Mockup ini akan menjadi panduan visual bagi desainer dan developer.
+
+### 5.1. Prinsip & Teknologi Dasar
+
+- **File Mandiri:** Sama seperti `index.html`, `dasbor.html` akan menjadi file tunggal yang menyematkan semua CSS dan JavaScript yang diperlukan untuk interaktivitas dasar.
+- **Framework CSS:** Akan menggunakan framework CSS modern dan ringan seperti Bootstrap 5 atau yang serupa untuk memastikan layout yang responsif dan komponen yang konsisten (tabel, formulir, modal, tombol).
+- **Ikonografi:** Menggunakan pustaka ikon seperti Bootstrap Icons atau Font Awesome untuk memperjelas aksi dan status.
+- **Fokus pada Visual, Bukan Logika:** Mockup ini tidak akan berisi logika backend. Semua data akan berupa *dummy data* (data contoh) yang disematkan langsung di HTML/JavaScript untuk mensimulasikan keadaan aplikasi yang nyata.
+
+### 5.2. Struktur Halaman Utama
+
+Struktur dasar dasbor akan terdiri dari:
+
+1.  **Header Global:** Berisi logo, nama pengguna yang login, dan menu profil/logout.
+2.  **Sidebar Navigasi Utama (Kiri):** Tautan utama untuk beralih antar modul:
+    -   Dasbor Utama
+    -   Pipeline Kurasi Dokumen
+    -   Manajemen Knowledge Graph
+    -   Tinjauan Umpan Balik
+3.  **Area Konten Utama:** Area dinamis di mana konten dari modul yang dipilih akan ditampilkan.
+
+### 5.3. Rencana Implementasi per Modul
+
+#### 5.3.1. Modul Pipeline Kurasi Dokumen
+
+- **Halaman Utama (Dasbor Pelacak Dokumen):**
+    - Membuat tabel yang menampilkan daftar semua dokumen dalam pipeline.
+    - Kolom: `Nama Dokumen`, `Status Saat Ini` (misal: `Proses Anotasi`), `Penanggung Jawab`, `Tanggal Diperbarui`.
+    - Status akan menggunakan *badge* berwarna untuk identifikasi cepat.
+
+- **Halaman Alur Kerja Digitalisasi:**
+    - Membuat antarmuka *side-by-side*.
+    - Sisi kiri: Placeholder untuk gambar pindaian dokumen.
+    - Sisi kanan: Area `textarea` untuk transkripsi.
+    - Di bawahnya: Panel untuk siklus review, menampilkan komentar dari *peer checker*.
+
+- **Halaman Alur Kerja Anotasi:**
+    - Menampilkan teks dari "Dokumen Sahih".
+    - Mensimulasikan penyorotan teks. Saat teks disorot, sebuah jendela modal akan muncul.
+    - Modal Anotasi: Berisi *dropdown* untuk memilih tipe entitas dan kolom pencarian *autocomplete* (disimulasikan) untuk menautkan ke entitas KG.
+
+- **Halaman Alur Kerja Ekstraksi Q&A:**
+    - Menampilkan teks dari "Dokumen Teranotasi".
+    - Di sampingnya, menampilkan daftar Q&A pairs yang disarankan (sebagai *dummy data*).
+    - Setiap Q&A pair akan memiliki tombol `Approve`, `Reject`, `Edit`.
+
+#### 5.3.2. Modul Manajemen Knowledge Graph
+
+- **Halaman Utama (Dasbor KG):**
+    - Membuat *widget* atau kartu untuk "Antrean Permintaan Entitas".
+    - Setiap item permintaan akan dapat diklik.
+
+- **Halaman Editor Entitas:**
+    - Membuat formulir yang komprehensif berdasarkan `skema-knowledge-graph.md`.
+    - *Dropdown* untuk "Tipe Entitas" akan secara dinamis (disimulasikan dengan JavaScript) menampilkan/menyembunyikan kolom formulir yang relevan.
+    - Kolom relasi akan menggunakan input teks biasa sebagai placeholder untuk fungsi *autocomplete*.
+
+- **Halaman Penjelajah Graf (Opsional untuk Mockup Awal):**
+    - Jika memungkinkan, membuat visualisasi graf sederhana menggunakan pustaka seperti Mermaid.js atau D3.js untuk beberapa entitas contoh. Jika terlalu kompleks, cukup sediakan placeholder halaman.
+
+#### 5.3.3. Modul Tinjauan Umpan Balik
+
+- **Halaman Utama (Inbox Umpan Balik):**
+    - Membuat antarmuka seperti *inbox* email.
+    - Setiap baris mewakili satu umpan balik, menampilkan penggalan pertanyaan pengguna dan jenis umpan baliknya (misal: ikon jempol ke bawah).
+    - Mengklik satu baris akan membuka tampilan detail.
+
+- **Halaman Detail Umpan Balik:**
+    - Menampilkan detail lengkap: Pertanyaan, Jawaban Bot, Komentar Pengguna.
+    - Di bawahnya, ada bagian "Tindakan" dengan tombol-tombol seperti `Buat Tugas Perbaikan Q&A` dan `Arsipkan`.
