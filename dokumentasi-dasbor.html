@@ -38,7 +38,6 @@
         }
         .main-content {
             margin-left: var(--sidebar-width);
-            padding-top: var(--header-height);
             transition: margin-left 0.3s ease-in-out;
         }
         .main-header {
@@ -56,6 +55,49 @@
         body.sidebar-collapsed .sidebar { transform: translateX(calc(-1 * var(--sidebar-width))); }
         body.sidebar-collapsed .main-content { margin-left: 0; }
         body.sidebar-collapsed .main-header { left: 0; }
+
+        .toc-sidebar {
+            position: fixed;
+            top: var(--header-height);
+            right: 0;
+            width: 375px; /* Adjusted width */
+            height: calc(100vh - var(--header-height));
+            overflow-y: auto;
+            padding: 1rem;
+            background-color: #f8f9fa;
+            border-left: 1px solid #dee2e6;
+            z-index: 999;
+        }
+        .toc-sidebar .nav-link {
+            padding: 0.25rem 0;
+            color: #495057;
+            font-size: 0.9rem;
+        }
+        .toc-sidebar .nav-link.active {
+            font-weight: 600;
+            color: var(--md-primary-color);
+        }
+        .toc-sidebar .nav .nav-item {
+            margin-left: 1rem;
+        }
+        .toc-sidebar h6 {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #6c757d;
+            margin-bottom: 0.75rem;
+            margin-top: 1rem;
+        }
+        .main-content-wrapper {
+            padding-right: 375px; /* Space for TOC */
+        }
+        @media (max-width: 1200px) {
+            .toc-sidebar {
+                display: none; /* Hide TOC on smaller screens */
+            }
+            .main-content-wrapper {
+                padding-right: 0;
+            }
+        }
 
         .sidebar .nav-link {
             color: rgba(255, 255, 255, 0.7);
@@ -156,18 +198,21 @@
     </aside>
 
     <!-- Main Content -->
-    <div class="main-content">
-        <header class="main-header d-flex align-items-center px-4">
-            <button class="btn" id="sidebar-toggle"><i class="bi bi-list fs-4"></i></button>
-            <h4 class="ms-3 mb-0">Dokumentasi Fungsional Dasbor</h4>
-        </header>
+    <div class="main-content d-flex">
+        <div class="main-content-wrapper flex-grow-1">
+            <header class="main-header d-flex align-items-center px-4">
+                <button class="btn" id="sidebar-toggle"><i class="bi bi-list fs-4"></i></button>
+                <h4 class="ms-3 mb-0">Dokumentasi Fungsionalitas Dasbor</h4>
+            </header>
 
-        <main class="p-4">
-            <div class="card">
-                <div class="card-body p-4 p-md-5 documentation-content">
+            <main class="p-4">
+                <div class="card">
+                    <div class="card-body p-4 p-md-5 documentation-content">
                     
-                    <h1>Visi Fungsional: Dasbor Kolaboratif AL 'ILLM</h1>
-                    <p class="lead">Dokumen ini mendefinisikan arsitektur dan visi fungsional untuk <strong>Dasbor Admin AL 'ILLM</strong>. Dasbor ini adalah sebuah platform berbasis web yang dirancang sebagai ekosistem kolaboratif untuk mengelola seluruh siklus hidup konten, dari sumber mentah hingga menjadi data yang tervalidasi dan siap pakai.</p>
+                    <h2>Dasbor Kolaboratif AL 'ILLM</h2>
+                    <p>Dokumen ini mendefinisikan arsitektur dan visi fungsional untuk <strong>Dasbor Admin AL 'ILLM</strong>.</p>
+                    
+                    <p>Dasbor ini adalah sebuah platform berbasis web yang dirancang sebagai ekosistem kolaboratif untuk mengelola seluruh siklus hidup konten, dari sumber mentah hingga menjadi data yang tervalidasi dan siap pakai.</p>
                     <hr>
 
                     <h2>1. Arsitektur & Prinsip Desain</h2>
@@ -176,31 +221,31 @@
                     <p>Dasbor dirancang dengan arsitektur modular, di mana setiap fungsi utama dipisahkan ke dalam modul-modul yang saling terhubung. Pendekatan ini memastikan kejelasan, skalabilitas, dan kemudahan pengelolaan.</p>
                     
                     <h3>1.2. Peran Pengguna & Kontrol Akses (RBAC)</h3>
-                    <p>Sistem ini beroperasi berdasarkan prinsip <strong>Role-Based Access Control (RBAC)</strong> yang fundamental. Setiap pengguna akan diberi satu atau lebih peran (misal: Juru Ketik, Anotator, Ahli KG, Mushahih) oleh admin sistem. Peran ini secara otomatis menentukan modul, data, dan tindakan apa saja yang dapat diakses oleh pengguna, menciptakan antarmuka yang fokus dan aman.</p>
+                    <p>Sistem ini beroperasi berdasarkan prinsip <strong>Role-Based Access Control (RBAC)</strong> yang fundamental.<br><br>Setiap pengguna akan diberi satu atau lebih peran (misal: Juru Ketik, Anotator, Ahli KG, Mushahih) oleh admin sistem. Peran ini secara otomatis menentukan modul, data, dan tindakan apa saja yang dapat diakses oleh pengguna, menciptakan antarmuka yang fokus dan aman.</p>
                     
-                    <h3>1.3. Konsep Inti: Unit Kerja Semantik (Semantic Chunk)</h3>
-                    <p>Untuk mengakomodasi beragam jenis dokumen, alur kerja menggunakan konsep <strong>"Unit Kerja Semantik"</strong>—potongan konten yang logis (bisa berupa bab, sub-bab, atau paragraf). Unit-unit ini didefinisikan dalam satu langkah persiapan awal dan digunakan secara konsisten di seluruh pipeline untuk memfasilitasi kerja paralel.</p>
+                    <h3>1.3. Unit Kerja Semantik (Semantic Chunk)</h3>
+                    <p>Untuk mengakomodasi beragam jenis dokumen, alur kerja menggunakan konsep <strong>"Unit Kerja Semantik"</strong> atau <em>chunks</em> (potongan konten) yang logis; bisa berupa bab, sub-bab, atau paragraf. Unit-unit ini didefinisikan dalam satu langkah persiapan awal dan digunakan secara konsisten di seluruh pipeline untuk memfasilitasi kerja paralel.</p>
                     <hr>
 
-                    <h2>2. Diagram Gambaran Umum Pipeline Kurasi</h2>
+                    
+                    <h2>2. Modul Pipeline Kurasi Dokumen</h3>
+                    <p>Ini adalah modul inti dari "pabrik konten". Modul ini memfasilitasi alur kerja dari dokumen mentah hingga menjadi Q&A tervalidasi. Akses ke berbagai tahap di dalamnya dikelola melalui <strong>Dasbor Pelacak Dokumen</strong> terpusat, yang menunjukkan status setiap dokumen dan mengarahkan pengguna ke antarmuka yang relevan sesuai peran mereka.</p>
+
+                    <h4>2.0. Diagram Alur Kurasi</h4>
                     <p>Diagram ini menunjukkan keseluruhan proses dalam Modul Pipeline Kurasi Dokumen.</p>
                     <div class="mermaid">
                         graph TD
-                            A[Dokumen Sumber] --> B{Alur Kerja 1: Digitalisasi};
-                            B --> C(Dokumen Sahih <br/> di IPFS/Blockchain);
-                            C --> D{Alur Kerja 2: Anotasi};
-                            D --> E(Dokumen Teranotasi <br/> di IPFS);
-                            E --> F{Alur Kerja 3: Ekstraksi Q&A};
-                            F --> G[Q&A Sahih Tervalidasi];
+                            subgraph "Kurasi Data"
+                                A[Dokumen Sumber] --> B{Alur Kerja 1: Digitalisasi};
+                                B --> C(Dokumen Sahih <br/> di IPFS/Blockchain);
+                                C --> D{Alur Kerja 2: Anotasi};
+                                D --> E(Dokumen Teranotasi <br/> di IPFS);
+                                E --> F{Alur Kerja 3: Ekstraksi Q&A};
+                                F --> G[Q&A Sahih Tervalidasi];
+                            end
                     </div>
-                    <hr>
-
-                    <h2>3. Modul-Modul Utama Dasbor</h2>
                     
-                    <h3>3.1. Modul Pipeline Kurasi Dokumen</h3>
-                    <p>Ini adalah modul inti dari "pabrik konten". Modul ini memfasilitasi alur kerja dari dokumen mentah hingga menjadi Q&A tervalidasi. Akses ke berbagai tahap di dalamnya dikelola melalui <strong>Dasbor Pelacak Dokumen</strong> terpusat, yang menunjukkan status setiap dokumen dan mengarahkan pengguna ke antarmuka yang relevan sesuai peran mereka.</p>
-                    
-                    <h4>3.1.1. Alur Kerja 1: Digitalisasi & Validasi Teks</h4>
+                    <h4>2.1. Digitalisasi & Validasi Teks</h4>
                     <ul>
                         <li><strong>Tujuan:</strong> Menghasilkan transkripsi teks digital ("Dokumen Sahih") yang 100% akurat dari dokumen sumber.</li>
                         <li><strong>Input:</strong> Pindaian dokumen sumber (misal: PDF, JPG).</li>
@@ -223,7 +268,7 @@
                             end
                     </div>
 
-                    <h4>3.1.2. Alur Kerja 2: Anotasi & Pengayaan Semantik</h4>
+                    <h4>2.2. Anotasi & Pengayaan Semantik</h4>
                      <ul>
                         <li><strong>Tujuan:</strong> Memperkaya "Dokumen Sahih" dengan menghubungkannya ke Knowledge Graph, menghasilkan "Dokumen Teranotasi".</li>
                         <li><strong>Input:</strong> "Dokumen Sahih" dari Alur Kerja 1.</li>
@@ -248,7 +293,7 @@
                             end
                     </div>
 
-                    <h4>3.1.3. Alur Kerja 3: Ekstraksi & Validasi Q&A</h4>
+                    <h4>2.3. Ekstraksi & Validasi Q&A</h4>
                     <ul>
                         <li><strong>Tujuan:</strong> Menghasilkan daftar tanya-jawab yang akurat dan relevan ("Q&A Sahih") dari dokumen yang sudah teranotasi.</li>
                         <li><strong>Input:</strong> "Dokumen Teranotasi" dari Alur Kerja 2.</li>
@@ -272,10 +317,10 @@
                             end
                     </div>
 
-                    <h3>3.2. Modul Manajemen Knowledge Graph</h3>
+                    <h3>3. Modul Manajemen Knowledge Graph</h3>
                     <p>Modul ini adalah pusat kendali untuk membangun, mengelola, dan menjelajahi basis pengetahuan. Modul ini melayani dua fungsi utama yang berjalan paralel: <strong>(1) Alur Kerja Populasi Graf</strong> secara proaktif oleh tim internal, dan <strong>(2) Alur Kerja Permintaan Entitas</strong> yang bersifat reaktif dari modul lain.</p>
                     
-                    <h4>3.2.1. Alur Kerja Proaktif: Populasi Knowledge Graph</h4>
+                    <h4>3.1. Populasi Knowledge Graph</h4>
                     <p>Ini adalah alur kerja utama untuk mengisi KG dari nol, mengikuti proses kurasi tiga lapis.</p>
                     <div class="mermaid">
                         graph TD
@@ -291,7 +336,7 @@
                             end
                     </div>
 
-                    <h4>3.2.2. Alur Kerja Reaktif: Penanganan Permintaan Entitas</h4>
+                    <h4>3.2. Penanganan Permintaan Entitas</h4>
                     <p>Ini adalah alur kerja yang lebih singkat untuk menanggapi kebutuhan mendesak dari tim kurasi dokumen.</p>
                     <div class="mermaid">
                         graph TD
@@ -309,13 +354,13 @@
                             F --> G([Pemohon Menerima Notifikasi]);
                     </div>
 
-                    <h4>3.2.3. Alur Kerja Pemeliharaan & Jaminan Kualitas Jangka Panjang</h4>
+                    <h4>3.3. Pemeliharaan & Jaminan Kualitas</h4>
                     <p>Untuk menjaga agar Knowledge Graph tetap akurat, bersih, dan relevan seiring waktu, diperlukan alur kerja pemeliharaan yang berkelanjutan. Ini mencakup manajemen siklus hidup entitas (pembaruan, penggabungan duplikat, pengarsipan), laporan konsistensi graf, dan perencanaan evolusi skema.</p>
 
-                    <h3>3.3. Modul Tinjauan Umpan Balik Pengguna</h3>
+                    <h3>4. Modul Tinjauan Umpan Balik Pengguna</h3>
                     <p>Modul ini berfungsi untuk mengubah masukan pasif dari pengguna menjadi tugas perbaikan konten yang aktif dan dapat dilacak.</p>
                     
-                    <h4>Alur Kerja Triase & Tindak Lanjut</h4>
+                    <h4>4.1. Kerja Triase & Tindak Lanjut</h4>
                     <div class="mermaid">
                         graph TD
                             subgraph "Modul Tinjauan Umpan Balik"
@@ -335,8 +380,15 @@
                     <p><strong>Siklus Penutupan Umpan Balik:</strong> Ketika seorang Analis Umpan Balik membuat tugas perbaikan, tugas tersebut akan masuk ke alur validasi standar (termasuk peer review dan validasi final) sebelum dipublikasikan, memastikan semua perubahan tetap melalui kontrol kualitas yang ketat.</p>
 
                 </div>
-            </div>
-        </main>
+                </div>
+            </main>
+        </div>
+
+        <!-- TOC Sidebar -->
+        <aside class="toc-sidebar">
+            <h6>Daftar Isi</h6>
+            <nav id="TableOfContents" class="nav flex-column"></nav>
+        </aside>
     </div>
 
     <!-- Bootstrap JS -->
@@ -356,6 +408,68 @@
 
             // Initialize Mermaid
             mermaid.initialize({ startOnLoad: true, theme: 'base', themeVariables: { 'primaryColor': '#f4f6f9', 'primaryTextColor': '#333', 'lineColor': '#6c757d' } });
+
+            // Generate Table of Contents and Scrollspy
+            const tocContainer = document.getElementById('TableOfContents');
+            const content = document.querySelector('.documentation-content');
+            const headings = content.querySelectorAll('h2, h3, h4');
+
+            let tocHtml = '';
+            let currentH2 = null;
+            let currentH3 = null;
+
+            headings.forEach((heading, index) => {
+                const text = heading.textContent.trim();
+                let id = heading.id || text.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-|-$|\s/g, '');
+                heading.id = id;
+
+                if (heading.tagName === 'H2') {
+                    if (currentH2) {
+                        if (currentH3) {
+                            tocHtml += '</ul>';
+                            currentH3 = null;
+                        }
+                        tocHtml += '</ul>';
+                    }
+                    tocHtml += `<li class="nav-item"><a class="nav-link" href="#${id}">${text}</a>`;
+                    tocHtml += '<ul class="nav flex-column">';
+                    currentH2 = id;
+                    currentH3 = null;
+                } else if (heading.tagName === 'H3') {
+                    if (currentH3) {
+                        tocHtml += '</ul>';
+                    }
+                    tocHtml += `<li class="nav-item"><a class="nav-link" href="#${id}">${text}</a>`;
+                    tocHtml += '<ul class="nav flex-column">';
+                    currentH3 = id;
+                } else if (heading.tagName === 'H4') {
+                    tocHtml += `<li class="nav-item"><a class="nav-link" href="#${id}">${text}</a></li>`;
+                }
+            });
+
+            if (currentH2) {
+                if (currentH3) {
+                    tocHtml += '</ul>';
+                }
+                tocHtml += '</ul>';
+            }
+            tocContainer.innerHTML = tocHtml;
+
+            // Scrollspy logic
+            const scrollSpy = new bootstrap.ScrollSpy(document.body, {
+                target: '#TableOfContents',
+                offset: 100 // Adjust offset as needed
+            });
+
+            // Smooth scrolling for TOC links
+            tocContainer.querySelectorAll('a.nav-link').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
         });
     </script>
 </body>
