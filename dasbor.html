@@ -294,17 +294,54 @@
 
         <main class="p-4" id="main-content-area">
             <div id="document-tracker-dashboard" class="content-section">
-                <div class="card">
-                    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
-                        <h5 class="mb-0">Dasbor Pelacak Dokumen</h5>
-                        <button class="btn btn-primary"><i class="bi bi-upload me-2"></i> Unggah Dokumen Baru</button>
+                <div class="d-flex justify-content-end mb-3">
+                    <button class="btn btn-primary"><i class="bi bi-upload me-2"></i> Unggah Dokumen Baru</button>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0"><i class="bi bi-hourglass-split me-2"></i> Antrean Digitalisasi</h5>
                     </div>
                     <div class="card-body">
                         <table class="table table-hover">
                             <thead>
                                 <tr>
                                     <th scope="col">Nama Dokumen</th>
-                                    <th scope="col">Status Saat Ini</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Penanggung Jawab</th>
+                                    <th scope="col">Tanggal Diperbarui</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Tafsir Hidayaturrahman karya Kiai Sholeh Darat</td>
+                                    <td><span class="badge rounded-pill status-badge warning">Baru</span></td>
+                                    <td>Juru Ketik C</td>
+                                    <td>2025-08-05</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Kerjakan</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Serat Walisana</td>
+                                    <td><span class="badge rounded-pill status-badge danger">Revisi Ditolak</span></td>
+                                    <td>Juru Ketik A</td>
+                                    <td>2025-08-03</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Kerjakan</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0"><i class="bi bi-pencil-square me-2"></i> Proses Anotasi</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama Dokumen</th>
                                     <th scope="col">Penanggung Jawab</th>
                                     <th scope="col">Tanggal Diperbarui</th>
                                     <th scope="col">Aksi</th>
@@ -313,41 +350,226 @@
                             <tbody>
                                 <tr>
                                     <td>Risalah Sidang BPUPKI 1945</td>
-                                    <td><span class="badge rounded-pill status-badge primary">Proses Anotasi</span></td>
                                     <td>Tim Anotator B</td>
                                     <td>2025-08-05</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td>Kitab Al-Umm - Jilid 1</td>
-                                    <td><span class="badge rounded-pill status-badge warning">Proses Digitalisasi</span></td>
-                                    <td>Juru Ketik C</td>
-                                    <td>2025-08-05</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td>Sejarah Nasional Indonesia Jilid V</td>
-                                    <td><span class="badge rounded-pill status-badge info">Validasi Q&A</span></td>
-                                    <td>Tim Validasi Q&A</td>
-                                    <td>2025-08-04</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                                </tr>
-                                <tr>
-                                    <td>Keppres No. 22 Tahun 2015</td>
-                                    <td><span class="badge rounded-pill status-badge success">Selesai</span></td>
-                                    <td>-</td>
-                                    <td>2025-08-01</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                                </tr>
-                                 <tr>
-                                    <td>Naskah Perjanjian Giyanti</td>
-                                    <td><span class="badge rounded-pill status-badge danger">Revisi Ditolak</span></td>
-                                    <td>Juru Ketik A</td>
-                                    <td>2025-08-03</td>
-                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Kerjakan</a></td>
                                 </tr>
                             </tbody>
                         </table>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0"><i class="bi bi-check2-square me-2"></i> Validasi Q&A</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama Dokumen</th>
+                                    <th scope="col">Penanggung Jawab</th>
+                                    <th scope="col">Tanggal Diperbarui</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Kitab Anwarul Bashair karya K.H. Sahal Mahfudh</td>
+                                    <td>Tim Validasi Q&A</td>
+                                    <td>2025-08-04</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Kerjakan</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header bg-white py-3">
+                        <h5 class="mb-0"><i class="bi bi-archive me-2"></i> Arsip Dokumen Terkurasi</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama Dokumen</th>
+                                    <th scope="col">Tanggal Selesai</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Keppres No. 22 Tahun 2015</td>
+                                    <td>2025-08-01</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Hasil</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="qa-validation-workflow" class="content-section" style="display:none;">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                        <h5 class="mb-0">Validasi Q&A: <span id="qa-doc-title"></span></h5>
+                        <button class="btn btn-outline-secondary back-to-tracker-dashboard"><i class="bi bi-arrow-left me-2"></i> Kembali ke Dasbor Pelacak</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-7">
+                                <h6>Dokumen Teranotasi</h6>
+                                <div class="bg-light border rounded p-4" style="height: 600px; overflow-y: auto;">
+                                    <p>Ini adalah placeholder untuk teks dokumen yang sudah teranotasi. Teks akan menampilkan <mark>entitas-entitas</mark> yang sudah ditautkan ke Knowledge Graph, memberikan konteks penuh bagi validator Q&A untuk menilai keakuratan pertanyaan dan jawaban yang disarankan oleh sistem.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <h6>Saran Pasangan Q&A</h6>
+                                <div style="height: 600px; overflow-y: auto;">
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <p class="mb-1"><strong>Tanya:</strong> Apa definisi dari 'Anwarul Bashair'?</p>
+                                            <p><strong>Jawab:</strong> Anwarul Bashair adalah...</p>
+                                            <div class="d-flex justify-content-end gap-2">
+                                                <button class="btn btn-sm btn-success"><i class="bi bi-check-lg"></i> Setujui</button>
+                                                <button class="btn btn-sm btn-danger"><i class="bi bi-x-lg"></i> Tolak</button>
+                                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Ubah</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="card mb-3">
+                                        <div class="card-body">
+                                            <p class="mb-1"><strong>Tanya:</strong> Siapa penulis kitab ini?</p>
+                                            <p><strong>Jawab:</strong> Kitab ini ditulis oleh K.H. Sahal Mahfudh.</p>
+                                            <div class="d-flex justify-content-end gap-2">
+                                                <button class="btn btn-sm btn-success"><i class="bi bi-check-lg"></i> Setujui</button>
+                                                <button class="btn btn-sm btn-danger"><i class="bi bi-x-lg"></i> Tolak</button>
+                                                <button class="btn btn-sm btn-warning"><i class="bi bi-pencil"></i> Ubah</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="annotation-workflow" class="content-section" style="display:none;">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                        <h5 class="mb-0">Alur Kerja Anotasi: <span id="annotation-doc-title"></span></h5>
+                        <button class="btn btn-outline-secondary back-to-tracker-dashboard"><i class="bi bi-arrow-left me-2"></i> Kembali ke Dasbor Pelacak</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12">
+                                <h6>Teks Dokumen Sahih</h6>
+                                <div id="document-text-content" class="bg-light border rounded p-4" style="height: 600px; overflow-y: auto; line-height: 2;">
+                                    <p>
+                                        Tuan-tuan sekalian, saya diminta oleh Paduka Tuan Ketua untuk mengemukakan dasar negara Indonesia Merdeka. Menurut anggapan saya, yang diminta oleh Paduka Tuan Ketua ialah, dalam bahasa Belanda, "Philosophische grondslag" daripada Indonesia merdeka. Philosophische grondslag itulah fundamen, filsafat, pikiran yang sedalam-dalamnya, jiwa, hasrat yang sedalam-dalamnya untuk di atasnya didirikan gedung Indonesia Merdeka yang kekal dan abadi.
+                                    </p>
+                                    <p>
+                                        Saya mengerti, bahwa banyak anggota yang telah berpidato, dan dalam pidato mereka itu telah diutarakan hal-hal yang sebenarnya dapat dipakai sebagai dasar negara Indonesia. Saya lihat misalnya dalam pidato <mark data-bs-toggle="tooltip" title="Entitas KG: Ir. Soekarno">Ir. Soekarno</mark>, di dalam pidato <mark data-bs-toggle="tooltip" title="Entitas KG: Ki Hadjar Dewantara">Ki Hadjar Dewantara</mark>, dan lain-lain, telah dikemukakan dasar-dasar itu.
+                                    </p>
+                                    <p>
+                                        Maka dari itu, saya akan menetapkan lima prinsip sebagai dasar negara. Pertama: Kebangsaan Indonesia. Kedua: Internasionalisme atau Perikemanusiaan. Ketiga: Mufakat atau Demokrasi. Keempat: Kesejahteraan Sosial. Kelima: Ketuhanan Yang Maha Esa. Lima prinsip ini saya namakan <mark data-bs-toggle="tooltip" title="Entitas KG: Pancasila">Pancasila</mark>.
+                                    </p>
+                                    <p class="text-muted mt-4">
+                                        <i class="bi bi-lightbulb"></i> Untuk membuat anotasi baru, silakan seleksi/sorot teks yang diinginkan.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Annotation -->
+            <div class="modal fade" id="annotation-modal" tabindex="-1" aria-labelledby="annotationModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="annotationModalLabel">Buat Anotasi Entitas</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <!-- Search View -->
+                    <div id="annotation-search-view">
+                        <div class="mb-3">
+                            <label class="form-label">Teks Terpilih:</label>
+                            <p class="fw-bold" id="selected-text-display"></p>
+                        </div>
+                        <div class="mb-3">
+                            <label for="entity-search" class="form-label">Tautkan ke Entitas Knowledge Graph</label>
+                            <input type="text" class="form-control" id="entity-search" placeholder="Cari entitas yang sudah ada...">
+                        </div>
+                        <div class="form-text">
+                            Entitas tidak ditemukan? <a href="#" id="show-create-request-form">Buat Permintaan Entitas Baru</a>.
+                        </div>
+                    </div>
+
+                    <!-- Create Request View (hidden by default) -->
+                    <div id="annotation-request-view" style="display: none;">
+                        <div class="mb-3">
+                            <label for="request-entity-name" class="form-label">Nama Entitas Baru (dari teks terpilih)</label>
+                            <input type="text" class="form-control" id="request-entity-name" readonly>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="request-entity-category" class="form-label">Kategori</label>
+                                <select class="form-select" id="request-entity-category">
+                                    <option selected disabled>Pilih kategori...</option>
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="request-entity-subcategory" class="form-label">Subkategori</label>
+                                <select class="form-select" id="request-entity-subcategory" disabled>
+                                    <option selected disabled>Pilih subkategori...</option>
+                                    <!-- Populated by JS -->
+                                </select>
+                            </div>
+                        </div>
+                        <a href="#" id="back-to-search-view">Kembali ke pencarian</a>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+                    <button type="button" class="btn btn-primary" id="save-annotation-btn">Simpan Anotasi</button>
+                    <button type="button" class="btn btn-info" id="submit-request-btn" style="display: none;">Kirim Permintaan</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div id="digitization-workflow" class="content-section" style="display:none;">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                        <h5 class="mb-0">Alur Kerja Digitalisasi: <span id="digitization-doc-title"></span></h5>
+                        <button class="btn btn-outline-secondary back-to-tracker-dashboard"><i class="bi bi-arrow-left me-2"></i> Kembali ke Dasbor Pelacak</button>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Pindaian Dokumen</h6>
+                                <div class="bg-light border rounded p-3" style="height: 500px;">
+                                    <p class="text-muted text-center">Placeholder untuk gambar pindaian dokumen.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Transkripsi</h6>
+                                <textarea class="form-control" rows="15" placeholder="Mulai transkripsi di sini..."></textarea>
+                                <div class="mt-3 d-flex justify-content-end gap-2">
+                                    <button class="btn btn-secondary">Simpan Draf</button>
+                                    <button class="btn btn-primary">Kirim untuk Ditinjau</button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr class="my-4">
+                        <h6>Siklus Peninjauan</h6>
+                        <div class="alert alert-info">Belum ada tinjauan untuk dokumen ini.</div>
                     </div>
                 </div>
             </div>
@@ -637,8 +859,8 @@
             const contentSections = document.querySelectorAll('.content-section');
             const mainHeaderTitle = document.querySelector('.main-header h4');
             const dashboards = { document: document.getElementById('document-tracker-dashboard'), feedback: document.getElementById('feedback-review-dashboard'), kg: document.getElementById('knowledge-graph-dashboard') };
-            const views = { feedbackDetail: document.getElementById('feedback-detail-view'), entityEditor: document.getElementById('entity-editor') };
-            const buttons = { createNewEntity: document.getElementById('create-new-entity-btn'), backToKgDashboard: document.getElementById('back-to-kg-dashboard') };
+            const views = { feedbackDetail: document.getElementById('feedback-detail-view'), entityEditor: document.getElementById('entity-editor'), digitizationWorkflow: document.getElementById('digitization-workflow'), annotationWorkflow: document.getElementById('annotation-workflow'), qaValidationWorkflow: document.getElementById('qa-validation-workflow') };
+            const buttons = { createNewEntity: document.getElementById('create-new-entity-btn'), backToKgDashboard: document.getElementById('back-to-kg-dashboard'), backToTrackerDashboard: document.querySelectorAll('.back-to-tracker-dashboard') };
             const entityEditorForm = { categorySelect: document.getElementById('entity-category'), subcategorySelect: document.getElementById('entity-subcategory'), fieldsPlaceholder: document.getElementById('dynamic-fields-placeholder'), nameInput: document.getElementById('entity-name'), form: document.getElementById('entity-form') };
             const kgRequestsTableBody = document.querySelector('#knowledge-graph-dashboard tbody');
 
@@ -703,6 +925,94 @@
                 showContent(views.entityEditor);
                 updateHeader('Editor Entitas Knowledge Graph');
             }
+
+            buttons.backToTrackerDashboard.forEach(button => {
+                button.addEventListener('click', () => { 
+                    showContent(dashboards.document); 
+                    updateHeader('Pipeline Kurasi Dokumen'); 
+                });
+            });
+
+            dashboards.document.addEventListener('click', (e) => {
+                if (e.target.classList.contains('btn-outline-secondary')) {
+                    e.preventDefault();
+                    const row = e.target.closest('tr');
+                    const docTitle = row.cells[0].textContent;
+                    const docStatus = row.closest('.card').querySelector('h5').textContent;
+
+                    if (docStatus.includes('Digitalisasi')) {
+                        document.getElementById('digitization-doc-title').textContent = docTitle;
+                        showContent(views.digitizationWorkflow);
+                        updateHeader('Alur Kerja Digitalisasi');
+                    } else if (docStatus.includes('Anotasi')) {
+                        document.getElementById('annotation-doc-title').textContent = docTitle;
+                        showContent(views.annotationWorkflow);
+                        updateHeader('Alur Kerja Anotasi');
+                    } else if (docStatus.includes('Validasi Q&A')) {
+                        document.getElementById('qa-doc-title').textContent = docTitle;
+                        showContent(views.qaValidationWorkflow);
+                        updateHeader('Alur Kerja Validasi Q&A');
+                    }
+                }
+            });
+
+            const annotationModalEl = document.getElementById('annotation-modal');
+            const annotationModal = new bootstrap.Modal(annotationModalEl);
+            const documentTextContent = document.getElementById('document-text-content');
+            const selectedTextDisplay = document.getElementById('selected-text-display');
+            const showCreateRequestFormBtn = document.getElementById('show-create-request-form');
+            const backToSearchViewBtn = document.getElementById('back-to-search-view');
+            const annotationSearchView = document.getElementById('annotation-search-view');
+            const annotationRequestView = document.getElementById('annotation-request-view');
+            const saveAnnotationBtn = document.getElementById('save-annotation-btn');
+            const submitRequestBtn = document.getElementById('submit-request-btn');
+            const requestEntityNameInput = document.getElementById('request-entity-name');
+            const requestCategorySelect = document.getElementById('request-entity-category');
+            const requestSubcategorySelect = document.getElementById('request-entity-subcategory');
+
+            function switchToRequestView() {
+                annotationSearchView.style.display = 'none';
+                annotationRequestView.style.display = 'block';
+                saveAnnotationBtn.style.display = 'none';
+                submitRequestBtn.style.display = 'block';
+                requestEntityNameInput.value = selectedTextDisplay.textContent;
+                populateRequestCategories();
+            }
+
+            function switchToSearchView() {
+                annotationRequestView.style.display = 'none';
+                annotationSearchView.style.display = 'block';
+                submitRequestBtn.style.display = 'none';
+                saveAnnotationBtn.style.display = 'block';
+            }
+
+            function populateRequestCategories() {
+                requestCategorySelect.innerHTML = '<option selected disabled>Pilih kategori...</option>';
+                Object.keys(kgSchema).forEach(cat => requestCategorySelect.add(new Option(cat, cat)));
+            }
+
+            function updateRequestSubcategories() {
+                const category = requestCategorySelect.value;
+                requestSubcategorySelect.innerHTML = '<option selected disabled>Pilih subkategori...</option>';
+                requestSubcategorySelect.disabled = true;
+                if (category && kgSchema[category]) {
+                    Object.keys(kgSchema[category].subcategories).forEach(sub => requestSubcategorySelect.add(new Option(sub, sub)));
+                    requestSubcategorySelect.disabled = false;
+                }
+            }
+
+            showCreateRequestFormBtn.addEventListener('click', (e) => { e.preventDefault(); switchToRequestView(); });
+            backToSearchViewBtn.addEventListener('click', (e) => { e.preventDefault(); switchToSearchView(); });
+            requestCategorySelect.addEventListener('change', updateRequestSubcategories);
+
+            documentTextContent.addEventListener('mouseup', () => {
+                const selection = window.getSelection().toString().trim();
+                if (selection) {
+                    selectedTextDisplay.textContent = selection;
+                    switchToSearchView(); // Always start with search view
+                    annotationModal.show();
+                }
+            });
 
             // --- EVENT LISTENERS ---
             sidebarToggle.addEventListener('click', () => document.body.classList.toggle('sidebar-collapsed'));
