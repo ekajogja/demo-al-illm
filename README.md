@@ -245,5 +245,10 @@ Struktur dasar dasbor akan terdiri dari:
     - Mengklik satu baris akan membuka tampilan detail.
 
 - **Halaman Detail Umpan Balik:**
-    - Menampilkan detail lengkap: Pertanyaan, Jawaban Bot, Komentar Pengguna.
-    - Di bawahnya, ada bagian "Tindakan" dengan tombol-tombol seperti `Buat Tugas Perbaikan Q&A` dan `Arsipkan`.
+    - Menampilkan detail lengkap: Pertanyaan Pengguna, Jawaban Bot, Komentar Pengguna, dan **field Komentar Peninjau**.
+    - Bagian Pertanyaan, Jawaban Bot, dan Komentar Pengguna kini ditampilkan dalam **kartu terpisah** untuk kejelasan visual.
+    - Bagian penalaran pada Jawaban Bot (`.reasoning-section`) kini memiliki **pemisah visual dan ikon *expand/collapse*** yang konsisten dengan `index.html`.
+    - Di bawahnya, ada bagian "Tindakan" dengan tombol-tombol:
+        - `Buat Tugas Perbaikan Q&A` (untuk perbaikan konten bot).
+        - `Buat Tugas Manajemen KG` (untuk penambahan/koreksi entitas/fakta di Knowledge Graph).
+        - `Arsipkan Umpan Balik` (untuk umpan balik yang tidak relevan atau dapat diabaikan).

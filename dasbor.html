@@ -12,6 +12,9 @@
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
 
+    <!-- Material Icons -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+
     <style>
         :root {
             --sidebar-width: 280px;
@@ -154,6 +157,43 @@
             box-shadow: var(--elevation-1);
             border-radius: 0.5rem;
         }
+        .response-card {
+            background-color: var(--md-surface-color);
+            border: 1px solid #e0e0e0;
+            border-radius: 0.5rem;
+            box-shadow: var(--elevation-1);
+        }
+        .reasoning-section {
+            margin-top: 16px;
+            border-top: 1px solid rgba(0,0,0,0.1);
+            padding-top: 12px;
+        }
+
+        .reasoning-section summary {
+            font-weight: 500;
+            cursor: pointer;
+            color: var(--md-text-secondary);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .reasoning-section summary .material-icons {
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .reasoning-section[open] summary .material-icons {
+            transform: rotate(90deg);
+        }
+
+        .reasoning-content {
+            margin-top: 8px;
+            padding: 12px;
+            background-color: rgba(0,0,0,0.03);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            color: var(--md-text-secondary);
+        }
 
         /* Mobile responsiveness */
         @media (max-width: 768px) {
@@ -212,19 +252,19 @@
                 </a>
             </li>
             <li class="nav-item">
-                <a href="dasbor.html" class="nav-link active" aria-current="page">
+                <a href="dasbor.html" class="nav-link active" aria-current="page" id="nav-pipeline-kurasi">
                     <i class="bi bi-layout-text-sidebar-reverse"></i>
                     Pipeline Kurasi
                 </a>
             </li>
             <li>
-                <a href="#" class="nav-link">
+                <a href="#" class="nav-link" id="nav-manajemen-kg">
                     <i class="bi bi-share"></i>
                     Manajemen KG
                 </a>
             </li>
-            <li>
-                <a href="#" class="nav-link">
+            <li class="nav-item">
+                <a href="#" class="nav-link" id="nav-tinjauan-umpan-balik">
                     <i class="bi bi-chat-quote"></i>
                     Tinjauan Umpan Balik
                 </a>
@@ -252,61 +292,175 @@
             <h4 class="ms-3 mb-0">Pipeline Kurasi Dokumen</h4>
         </header>
 
-        <main class="p-4">
-            <div class="card">
-                <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
-                    <h5 class="mb-0">Dasbor Pelacak Dokumen</h5>
-                    <button class="btn btn-primary"><i class="bi bi-upload me-2"></i> Unggah Dokumen Baru</button>
+        <main class="p-4" id="main-content-area">
+            <div id="document-tracker-dashboard" class="content-section">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                        <h5 class="mb-0">Dasbor Pelacak Dokumen</h5>
+                        <button class="btn btn-primary"><i class="bi bi-upload me-2"></i> Unggah Dokumen Baru</button>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Nama Dokumen</th>
+                                    <th scope="col">Status Saat Ini</th>
+                                    <th scope="col">Penanggung Jawab</th>
+                                    <th scope="col">Tanggal Diperbarui</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Risalah Sidang BPUPKI 1945</td>
+                                    <td><span class="badge rounded-pill status-badge primary">Proses Anotasi</span></td>
+                                    <td>Tim Anotator B</td>
+                                    <td>2025-08-05</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Kitab Al-Umm - Jilid 1</td>
+                                    <td><span class="badge rounded-pill status-badge warning">Proses Digitalisasi</span></td>
+                                    <td>Juru Ketik C</td>
+                                    <td>2025-08-05</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Sejarah Nasional Indonesia Jilid V</td>
+                                    <td><span class="badge rounded-pill status-badge info">Validasi Q&A</span></td>
+                                    <td>Tim Validasi Q&A</td>
+                                    <td>2025-08-04</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td>Keppres No. 22 Tahun 2015</td>
+                                    <td><span class="badge rounded-pill status-badge success">Selesai</span></td>
+                                    <td>-</td>
+                                    <td>2025-08-01</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
+                                </tr>
+                                 <tr>
+                                    <td>Naskah Perjanjian Giyanti</td>
+                                    <td><span class="badge rounded-pill status-badge danger">Revisi Ditolak</span></td>
+                                    <td>Juru Ketik A</td>
+                                    <td>2025-08-03</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">Nama Dokumen</th>
-                                <th scope="col">Status Saat Ini</th>
-                                <th scope="col">Penanggung Jawab</th>
-                                <th scope="col">Tanggal Diperbarui</th>
-                                <th scope="col">Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Risalah Sidang BPUPKI 1945</td>
-                                <td><span class="badge rounded-pill status-badge primary">Proses Anotasi</span></td>
-                                <td>Tim Anotator B</td>
-                                <td>2025-08-05</td>
-                                <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                            </tr>
-                            <tr>
-                                <td>Kitab Al-Umm - Jilid 1</td>
-                                <td><span class="badge rounded-pill status-badge warning">Proses Digitalisasi</span></td>
-                                <td>Juru Ketik C</td>
-                                <td>2025-08-05</td>
-                                <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                            </tr>
-                            <tr>
-                                <td>Sejarah Nasional Indonesia Jilid V</td>
-                                <td><span class="badge rounded-pill status-badge info">Validasi Q&A</span></td>
-                                <td>Tim Validasi Q&A</td>
-                                <td>2025-08-04</td>
-                                <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                            </tr>
-                            <tr>
-                                <td>Keppres No. 22 Tahun 2015</td>
-                                <td><span class="badge rounded-pill status-badge success">Selesai</span></td>
-                                <td>-</td>
-                                <td>2025-08-01</td>
-                                <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                            </tr>
-                             <tr>
-                                <td>Naskah Perjanjian Giyanti</td>
-                                <td><span class="badge rounded-pill status-badge danger">Revisi Ditolak</span></td>
-                                <td>Juru Ketik A</td>
-                                <td>2025-08-03</td>
-                                <td><a href="#" class="btn btn-sm btn-outline-secondary">Lihat Detail</a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+            </div>
+
+            <div id="feedback-review-dashboard" class="content-section" style="display:none;">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                        <h5 class="mb-0">Tinjauan Umpan Balik Pengguna</h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID Umpan Balik</th>
+                                    <th scope="col">Pertanyaan Pengguna</th>
+                                    <th scope="col">Jenis Umpan Balik</th>
+                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>FB-001</td>
+                                    <td>Bagaimana hukum jihad dalam konteks resolusi jihad?</td>
+                                    <td><span class="badge rounded-pill status-badge danger"><i class="bi bi-hand-thumbs-down me-1"></i> Tidak Relevan</span></td>
+                                    <td>2025-08-05</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary view-feedback-detail" data-feedback-id="fb-001">Lihat Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td>FB-002</td>
+                                    <td>Siapa saja tokoh ulama yang menandatangani Resolusi Jihad?</td>
+                                    <td><span class="badge rounded-pill status-badge success"><i class="bi bi-hand-thumbs-up me-1"></i> Relevan</span></td>
+                                    <td>2025-08-04</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary view-feedback-detail" data-feedback-id="fb-002">Lihat Detail</a></td>
+                                </tr>
+                                <tr>
+                                    <td>FB-003</td>
+                                    <td>Apa isi lengkap dari Keputusan Presiden No. 22 Tahun 2015?</td>
+                                    <td><span class="badge rounded-pill status-badge info"><i class="bi bi-flag me-1"></i> Laporan</span></td>
+                                    <td>2025-08-03</td>
+                                    <td><a href="#" class="btn btn-sm btn-outline-secondary view-feedback-detail" data-feedback-id="fb-003">Lihat Detail</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div id="feedback-detail-view" class="content-section" style="display:none;">
+                <div class="card">
+                    <div class="card-header bg-white d-flex justify-content-between align-items-center py-3">
+                        <h5 class="mb-0">Detail Umpan Balik <span id="feedback-detail-id"></span></h5>
+                        <button class="btn btn-outline-secondary" id="back-to-feedback-list"><i class="bi bi-arrow-left me-2"></i> Kembali ke Daftar</button>
+                    </div>
+                    <div class="card-body">
+                        <h6>Pertanyaan Pengguna:</h6>
+                        <div class="response-card p-3 mb-3">
+                            <p id="user-question-detail"></p>
+                        </div>
+
+                        <h6>Jawaban Bot (Belum Ditashih):</h6>
+                        <div class="response-card generated p-3 mb-3">
+                            <div class="status-badge generated">
+                                <span class="material-icons">model_training</span> Jawaban Belum Ditashih
+                            </div>
+                            <p>Dalam konteks Resolusi Jihad, hukum jihad yang berlaku adalah <strong>jihad difa'i</strong> (jihad defensif), yaitu perang untuk mempertahankan diri, kehormatan, harta, dan negara dari agresi musuh. Ini berbeda dari jihad ibtida'i (jihad ofensif) yang bersifat memulai pertempuran.</p>
+                            <p>Fatwa tersebut menetapkan perjuangan ini sebagai <strong>fardhu 'ain</strong>, sebuah kewajiban personal yang mengikat setiap individu Muslim yang mampu dalam jarak tertentu, bukan lagi fardhu kifayah (kewajiban kolektif). Penetapan hukum ini memiliki implikasi sangat kuat, karena mengangkat perjuangan kemerdekaan menjadi sebuah kewajiban agama setingkat shalat lima waktu, sehingga tidak ada tawar-menawar untuk tidak berpartisipasi. Hal ini sesuai dengan kaidah fiqh untuk melindungi tujuan syariat <em>(maqashid syariah)</em>.</p>
+                            <div class="disclaimer">
+                                Jawaban ini digenerasi oleh model AI dan belum melalui proses tashih.
+                            </div>
+                            <details class="reasoning-section">
+                                <summary>
+                                    <span class="material-icons">expand_more</span>
+                                    Cek Penalaran
+                                </summary>
+                                <div class="reasoning-content">
+                                    <ol style="padding-left: 20px; margin: 0;">
+                                        <li style="margin-bottom: 8px;"><strong>Analisis Kueri:</strong> Model mengidentifikasi entitas inti: "hukum jihad" dan "resolusi jihad".</li>
+                                        <li style="margin-bottom: 8px;"><strong>Pencarian Knowledge Graph:</strong> Model menelusuri <em>Knowledge Graph</em> untuk entitas "Resolusi Jihad". Ditemukan relasi kuat ke entitas "Jihad Difa'i", "Fardhu 'Ain", dan "KH Hasyim Asy'ari".</li>
+                                        <li style="margin-bottom: 8px;"><strong>Penelusuran Dokumen Teranotasi:</strong> Model mengakses dokumen teranotasi yang terhubung dengan entitas di atas, terutama "Naskah Asli Resolusi Jihad 1945" dan "Kitab Fath al-Mu'in (Bab Jihad)".</li>
+                                        <li style="margin-bottom: 8px;"><strong>Sintesis Jawaban:</strong>
+                                            <ul style="padding-left: 20px; margin-top: 8px;">
+                                                <li>Dari "Kitab Fath al-Mu'in", model mengambil definisi "jihad difa'i" (jihad defensif).</li>
+                                                <li>Dari "Naskah Asli Resolusi Jihad", model mengonfirmasi bahwa konteksnya adalah melawan agresi NICA, sehingga sesuai dengan kriteria jihad difa'i.</li>
+                                                <li>Status hukum "fardhu 'ain" diambil langsung dari properti entitas "Resolusi Jihad" dan didukung oleh teks naskah.</li>
+                                                <li>Konsep "Maqashid Syariah" ditambahkan sebagai justifikasi yang lebih tinggi untuk tindakan mempertahankan negara (hifdz ad-din, hifdz an-nafs).</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </details>
+                        </div>
+
+                        <h6>Komentar Pengguna:</h6>
+                        <div class="response-card p-3 mb-3">
+                            <p id="user-comment-detail"></p>
+                        </div>
+
+                        <h6>Komentar Peninjau:</h6>
+                        <div class="mb-3">
+                            <textarea class="form-control" id="reviewer-comment" rows="4" placeholder="Tambahkan komentar atau instruksi untuk tim yang didelegasikan..."></textarea>
+                        </div>
+
+                        <hr>
+
+                        <h6>Tindakan:</h6>
+                        <div class="d-flex gap-2">
+                            
+                            <button class="btn btn-warning" data-bs-toggle="tooltip" data-bs-placement="top" title="Buat tugas untuk memperbaiki atau meningkatkan Q&A dan konten yang dihasilkan bot."><i class="bi bi-pencil-square me-2"></i> Buat Tugas Perbaikan Q&A</button>
+                            <button class="btn btn-info" data-bs-toggle="tooltip" data-bs-placement="top" title="Buat tugas untuk menambah, mengedit, atau mengoreksi entitas dan fakta di Knowledge Graph."><i class="bi bi-share me-2"></i> Buat Tugas Manajemen KG</button>
+                            <button class="btn btn-secondary" data-bs-toggle="tooltip" data-bs-placement="top" title="Arsipkan umpan balik jika tidak relevan atau dapat diabaikan."><i class="bi bi-archive me-2"></i> Arsipkan Umpan Balik</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </main>
@@ -318,9 +472,101 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const sidebarToggle = document.getElementById('sidebar-toggle');
+            const navTinjauanUmpanBalik = document.getElementById('nav-tinjauan-umpan-balik');
+            const navPipelineKurasi = document.getElementById('dasbor.html'); // Assuming this is the pipeline link
+            const documentTrackerDashboard = document.getElementById('document-tracker-dashboard');
+            const feedbackReviewDashboard = document.getElementById('feedback-review-dashboard');
+            const feedbackDetailView = document.getElementById('feedback-detail-view');
+            const backToFeedbackListBtn = document.getElementById('back-to-feedback-list');
+            const feedbackDetailId = document.getElementById('feedback-detail-id');
+            const userQuestionDetail = document.getElementById('user-question-detail');
+            const userCommentDetail = document.getElementById('user-comment-detail');
+
+            const feedbackData = {
+                'fb-001': {
+                    question: 'Bagaimana hukum jihad dalam konteks resolusi jihad?',
+                    botAnswer: `Dalam konteks Resolusi Jihad, hukum jihad yang berlaku adalah <strong>jihad difa'i</strong> (jihad defensif), yaitu perang untuk mempertahankan diri, kehormatan, harta, dan negara dari agresi musuh. Ini berbeda dari jihad ibtida'i (jihad ofensif) yang bersifat memulai pertempuran.<br><br>Fatwa tersebut menetapkan perjuangan ini sebagai <strong>fardhu 'ain</strong>, sebuah kewajiban personal yang mengikat setiap individu Muslim yang mampu dalam jarak tertentu, bukan lagi fardhu kifayah (kewajiban kolektif). Penetapan hukum ini memiliki implikasi sangat kuat, karena mengangkat perjuangan kemerdekaan menjadi sebuah kewajiban agama setingkat shalat lima waktu, sehingga tidak ada tawar-menawar untuk tidak berpartisipasi. Hal ini sesuai dengan kaidah fiqh untuk melindungi tujuan syariat <em>(maqashid syariah)</em>.`, // Simplified for mockup
+                    userComment: 'Jawaban ini tidak relevan dengan pertanyaan saya. Saya mencari penjelasan lebih dalam tentang aspek fiqh-nya, bukan hanya sejarahnya.'
+                },
+                'fb-002': {
+                    question: 'Siapa saja tokoh ulama yang menandatangani Resolusi Jihad?',
+                    botAnswer: `Resolusi Jihad ditandatangani oleh para ulama Nahdlatul Ulama di bawah pimpinan KH Hasyim Asy\'ari dan KH Wahab Chasbullah.`, // Simplified for mockup
+                    userComment: 'Jawaban sangat membantu dan informatif!'
+                },
+                'fb-003': {
+                    question: 'Apa isi lengkap dari Keputusan Presiden No. 22 Tahun 2015?',
+                    botAnswer: `Keputusan Presiden Nomor 22 Tahun 2015 secara resmi menetapkan tanggal 22 Oktober sebagai Hari Santri Nasional.`, // Simplified for mockup
+                    userComment: 'Informasi yang diberikan kurang lengkap, saya butuh detail pasal-pasalnya.'
+                }
+            };
+
             sidebarToggle.addEventListener('click', function() {
                 document.body.classList.toggle('sidebar-collapsed');
             });
+
+            navTinjauanUmpanBalik.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                navTinjauanUmpanBalik.classList.add('active');
+                documentTrackerDashboard.style.display = 'none';
+                feedbackReviewDashboard.style.display = 'block';
+                feedbackDetailView.style.display = 'none';
+                document.querySelector('.main-header h4').textContent = 'Tinjauan Umpan Balik';
+            });
+
+            // Assuming the pipeline link is the one with href='dasbor.html'
+            if (navPipelineKurasi) {
+                navPipelineKurasi.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+                    navPipelineKurasi.classList.add('active');
+                    documentTrackerDashboard.style.display = 'block';
+                    feedbackReviewDashboard.style.display = 'none';
+                    feedbackDetailView.style.display = 'none';
+                    document.querySelector('.main-header h4').textContent = 'Pipeline Kurasi Dokumen';
+                });
+            }
+
+            document.querySelectorAll('.view-feedback-detail').forEach(button => {
+                button.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const feedbackId = this.dataset.feedbackId;
+                    const detail = feedbackData[feedbackId];
+
+                    if (detail) {
+                        feedbackDetailId.textContent = `(${feedbackId})`;
+                        userQuestionDetail.innerHTML = detail.question;
+                        // For bot answer, we need to update the content inside the generated response card
+                        const botAnswerContent = feedbackDetailView.querySelector('.response-card.generated p:first-of-type');
+                        if (botAnswerContent) {
+                            botAnswerContent.innerHTML = detail.botAnswer;
+                        }
+                        userCommentDetail.innerHTML = detail.userComment;
+
+                        feedbackReviewDashboard.style.display = 'none';
+                        feedbackDetailView.style.display = 'block';
+                    }
+                });
+            });
+
+            backToFeedbackListBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                feedbackDetailView.style.display = 'none';
+                feedbackReviewDashboard.style.display = 'block';
+            });
+
+            // Set initial active state for Pipeline Kurasi
+            navPipelineKurasi.classList.add('active');
+            documentTrackerDashboard.style.display = 'block';
+            feedbackReviewDashboard.style.display = 'none';
+            feedbackDetailView.style.display = 'none';
+            document.querySelector('.main-header h4').textContent = 'Pipeline Kurasi Dokumen';
+
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+              return new bootstrap.Tooltip(tooltipTriggerEl)
+            })
         });
     </script>
 </body>
