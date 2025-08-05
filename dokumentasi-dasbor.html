@@ -13,18 +13,25 @@
         :root {
             --sidebar-width: 280px;
             --header-height: 60px;
-            --brand-primary: #00695C;
-            --brand-secondary: #B8860B;
             --md-primary-color: #1976D2;
             --md-primary-variant-color: #004ba0;
             --md-secondary-color: #673AB7;
+            --md-background-color: #f5f5f5;
+            --md-surface-color: #FFFFFF;
+            --md-sidebar-color: #FFFFFF; /* White */
+            --md-on-primary-color: #FFFFFF;
             --md-text-primary: rgba(0, 0, 0, 0.87);
             --md-text-secondary: rgba(0, 0, 0, 0.70);
+            --sahih-bg: #E8F5E9;
+            --sahih-text: #2E7D32;
+            --generated-bg: #FFF3E0;
+            --generated-text: #E65100;
             --elevation-1: 0 2px 1px -1px rgba(0,0,0,0.2), 0 1px 1px 0 rgba(0,0,0,0.14), 0 1px 3px 0 rgba(0,0,0,0.12);
+            --elevation-2: 0 3px 1px -2px rgba(0,0,0,0.2), 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12);
         }
         body {
             font-family: 'Roboto', sans-serif;
-            background-color: #f4f6f9;
+            background-color: var(--md-background-color);
         }
         .sidebar {
             width: var(--sidebar-width);
@@ -32,8 +39,8 @@
             position: fixed;
             top: 0;
             left: 0;
-            background-color: var(--brand-primary);
-            color: white;
+            background-color: var(--md-sidebar-color);
+            color: var(--md-text-primary);
             transition: transform 0.3s ease-in-out;
         }
         .main-content {
@@ -100,17 +107,53 @@
         }
 
         .sidebar .nav-link {
-            color: rgba(255, 255, 255, 0.7);
+            color: var(--md-text-primary);
             font-size: 1rem;
             padding: 0.85rem 1.5rem;
             border-left: 3px solid transparent;
         }
-        .sidebar .nav-link:hover { color: #ffffff; background-color: rgba(255, 255, 255, 0.05); }
-        .sidebar .nav-link.active { color: #ffffff; font-weight: 500; background-color: rgba(0, 0, 0, 0.2); border-left: 3px solid var(--brand-secondary); }
-        .sidebar .nav-link .bi { margin-right: 0.75rem; }
-        .sidebar-header { padding: 0.75rem 1.5rem; margin-bottom: 1rem; text-align: center; }
+        .sidebar .nav-link:hover {
+            color: var(--md-primary-color);
+            background-color: rgba(25, 118, 210, 0.1);
+        }
+        .sidebar .nav-link.active {
+            color: var(--md-primary-color);
+            font-weight: 500;
+            background-color: rgba(25, 118, 210, 0.1);
+            border-left: 3px solid var(--md-primary-color);
+        }
+        .sidebar .nav-link .bi {
+            margin-right: 0.75rem;
+            color: var(--md-text-secondary);
+        }
+        .sidebar-header {
+            padding: 0.75rem 1.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            background-color: #FFFFFF; /* White background for logo */
+            padding: 1rem; /* Add some padding around the logo */
+        }
         .sidebar-header img { max-height: 50px; }
-        .sidebar-footer { position: absolute; bottom: 0; width: 100%; background-color: rgba(0,0,0,0.1); }
+        .sidebar-footer {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            background-color: var(--md-sidebar-color);
+            border-top: 1px solid #e0e0e0;
+        }
+        .sidebar-footer .dropdown-toggle {
+            color: var(--md-text-primary);
+        }
+        .sidebar-footer .dropdown-menu-dark {
+            background-color: var(--md-surface-color);
+            border: 1px solid #e0e0e0;
+        }
+        .sidebar-footer .dropdown-item {
+            color: var(--md-text-primary);
+        }
+        .sidebar-footer .dropdown-item:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
         
         .card {
             border: none;
@@ -184,7 +227,7 @@
         </ul>
         <div class="sidebar-footer p-3">
             <div class="dropdown">
-                <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
                     <strong>Eka</strong>
                 </a>
