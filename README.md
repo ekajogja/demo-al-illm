@@ -252,3 +252,38 @@ Struktur dasar dasbor akan terdiri dari:
         - `Buat Tugas Perbaikan Q&A` (untuk perbaikan konten bot).
         - `Buat Tugas Manajemen KG` (untuk penambahan/koreksi entitas/fakta di Knowledge Graph).
         - `Arsipkan Umpan Balik` (untuk umpan balik yang tidak relevan atau dapat diabaikan).
+
+#### Catatan Temporer
+
+Daftar fungsionalitas utama yang belum tergarap di dasbor.html:
+
+   1. Modul Pipeline Kurasi Dokumen Belum Lengkap:
+       * Meskipun halaman utama "Dasbor Pelacak Dokumen" sudah ada dalam
+         bentuk tabel, tidak ada fungsionalitas detailnya. Tombol "Lihat
+         Detail" pada setiap baris dokumen belum berfungsi.
+       * Seluruh halaman alur kerja yang seharusnya diakses dari dasbor
+         pelacak tersebut belum dibuat, yaitu:
+           * Halaman Alur Kerja Digitalisasi: Antarmuka untuk transkripsi
+             dokumen pindaian.
+           * Halaman Alur Kerja Anotasi: Antarmuka untuk menyorot teks dan
+              menautkannya ke entitas Knowledge Graph.
+           * Halaman Alur Kerja Ekstraksi Q&A: Antarmuka untuk menyetujui,
+              menolak, atau mengedit pasangan tanya-jawab (Q&A) yang
+             dihasilkan.
+
+   2. Modul Manajemen Knowledge Graph (KG) Belum Dibuat Sama Sekali:
+       * Tautan "Manajemen KG" di sidebar navigasi sudah ada, tetapi belum
+          berfungsi dan tidak ada konten atau halaman yang terkait
+         dengannya.
+       * Fitur yang direncanakan untuk modul ini belum ada, seperti:
+           * Dasbor KG: Untuk melihat antrean permintaan entitas baru.
+           * Editor Entitas: Formulir untuk membuat atau mengedit entitas
+             dalam Knowledge Graph.
+           * Penjelajah Graf: Visualisasi hubungan antar entitas.
+
+   3. Tindakan pada Modul Tinjauan Umpan Balik Belum Fungsional:
+       * Meskipun halaman untuk melihat daftar dan detail umpan balik
+         sudah ada, tombol-tombol tindakan di halaman detail (Buat Tugas 
+         Perbaikan Q&A, Buat Tugas Manajemen KG, Arsipkan Umpan Balik)
+         hanyalah elemen visual. Belum ada fungsionalitas yang terhubung
+         dengannya (misalnya, memunculkan modal untuk membuat tugas baru).
