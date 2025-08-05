@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dokumentasi - Dasbor Admin AL 'ILLM</title>
@@ -189,6 +190,42 @@
             padding: 1rem;
             text-align: center;
             margin-top: 1.5rem;
+        }
+
+        /* Mobile responsiveness */
+        @media (max-width: 768px) {
+            .sidebar {
+                transform: translateX(calc(-1 * var(--sidebar-width)));
+                z-index: 1050; /* Ensure sidebar is above main content when open */
+            }
+            .main-content {
+                margin-left: 0;
+            }
+            .main-header {
+                left: 0;
+                width: 100%; /* Occupy full width */
+            }
+            body.sidebar-collapsed .sidebar {
+                transform: translateX(0);
+            }
+            body.sidebar-collapsed .main-content {
+                margin-left: var(--sidebar-width); /* Push content when sidebar is open */
+            }
+            body.sidebar-collapsed .main-header {
+                left: var(--sidebar-width); /* Push header when sidebar is open */
+            }
+            .main-header #sidebar-toggle {
+                display: block; /* Ensure toggle button is visible */
+            }
+            .main-header h4 {
+                font-size: 1.2rem; /* Adjust header title size */
+            }
+            .toc-sidebar {
+                display: none; /* Hide TOC on smaller screens */
+            }
+            .main-content-wrapper {
+                padding-right: 0; /* Remove padding when TOC is hidden */
+            }
         }
     </style>
 </head>
